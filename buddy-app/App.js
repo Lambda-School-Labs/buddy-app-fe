@@ -7,6 +7,7 @@ import Landing from './components/Landing'
 
 // components 
 import SignUp from './components/SignUp.js'; 
+import SignIn from './components/SignIn';
 
 export default function App() {
   const [isAppReady, setAppReady] = useState(false)
@@ -21,6 +22,7 @@ export default function App() {
       <View style={styles.container}>
         <Image source={require('./assets/goose-test.png')} />
         <SignUp />
+        <SignIn />
       </View>
     )
   );
