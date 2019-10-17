@@ -20,15 +20,27 @@ const SignUp = () => {
 
     return (
         <View style={su_styles.container}>
-            <Text style={su_styles.logo}>BUDDY</Text>
+
+            <View style={su_styles.logoContainer}>
+                <Text style={su_styles.logo}>BUDDY</Text>
+            </View>
+
             <Text style={su_styles.signUp}>Sign Up</Text>
 
             <View style={su_styles.form}>
-                <TextInput
-                    placeholder="Full Name"
-                    onChangeText={(text) => handleChange({full_name: text})}
-                    style={su_styles.input}
-                />
+                <View style={su_styles.name}>
+                    <TextInput
+                        placeholder="First Name"
+                        onChangeText={(text) => handleChange({first_name: text})}
+                        style={su_styles.first}
+                    />
+                    <TextInput
+                        placeholder="Last Name"
+                        onChangeText={(text) => handleChange({last_name: text})}
+                        style={su_styles.last}
+                    />
+                </View>
+
                 <TextInput
                     placeholder="Email"
                     onChangeText={(text) => handleChange({email: text})}
@@ -80,14 +92,20 @@ const su_styles = StyleSheet.create({
         height: 45,
         paddingLeft: 10,
     }, 
+    logoContainer: {
+        marginBottom: 65,
+        borderRadius: 4, 
+        borderWidth: 5,
+        borderBottomColor: 'black', 
+        borderLeftColor: 'transparent', 
+        borderRightColor: 'transparent',
+        borderTopColor: 'transparent',
+        alignSelf: 'flex-start',
+    },
     logo: {
         fontSize: 45,
         fontWeight: 'bold',
         fontFamily: 'Arial',
-        textDecorationLine: 'underline',
-        alignSelf: 'flex-start',
-        paddingBottom: 30,
-        marginBottom: 25
     }, 
     signUp: {
         fontSize: 35, 
@@ -109,6 +127,25 @@ const su_styles = StyleSheet.create({
         height: 45,
         width: 130,
         fontSize: 20,
+    },
+    name: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    }, 
+    first: {
+        width: 167,
+        height: 45, 
+        borderColor: '#d6d7da', 
+        borderWidth: 1.2,
+        paddingLeft: 10,
+    },
+    last: {
+        width: 167,
+        height: 45, 
+        borderColor: '#d6d7da', 
+        borderWidth: 1.2,
+        textAlign: 'left',
+        paddingLeft: 10,
     }
 });
 

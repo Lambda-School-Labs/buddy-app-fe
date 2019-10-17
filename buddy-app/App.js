@@ -20,9 +20,9 @@ export default function App() {
         />
     ) : (
       <View style={styles.container}>
-        <Image source={require('./assets/goose-test.png')} />
+        {/* <Image source={require('./assets/goose-test.png')} /> */}
         <SignUp />
-        <SignIn />
+        {/* <SignIn /> */}
       </View>
     )
   );
