@@ -32,4 +32,10 @@ target 'BuddyApp' do
 
   use_unimodules!
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
+  pod 'react-native-sensitive-info', :path => '../node_modules/react-native-sensitive-info'
+
 end

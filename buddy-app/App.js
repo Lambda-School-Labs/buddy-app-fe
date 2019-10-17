@@ -8,7 +8,7 @@ import Landing from './components/Landing'
 // components 
 import SignUp from './components/SignUp.js'; 
 import SignIn from './components/SignIn';
-
+import Root from "./Root";
 export default function App() {
   const [isAppReady, setAppReady] = useState(false)
 
@@ -19,12 +19,16 @@ export default function App() {
         onError={console.warn} 
         />
     ) : (
+
       <View style={styles.container}>
         <Image source={require('./assets/goose-test.png')} />
         <SignUp />
         <SignIn />
+        <Root />
       </View>
+      
     )
+    
   );
 }
 
@@ -46,3 +50,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff"
+  }
+});
