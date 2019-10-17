@@ -1,0 +1,33 @@
+dependencies: \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/Surface/SurfaceHostingView/RCTSurfaceHostingProxyRootView.mm \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/ios/Pods/Target\ Support\ Files/React/React-prefix.pch \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/Surface/SurfaceHostingView/RCTSurfaceHostingProxyRootView.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/DevSupport/RCTInspectorDevServerHelper.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/DevSupport/RCTPackagerConnection.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/Surface/SurfaceHostingView/RCTSurfaceHostingView.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/Surface/RCTSurfaceDelegate.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/Surface/RCTSurfaceStage.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/Surface/SurfaceHostingView/RCTSurfaceSizeMeasureMode.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTRootContentView.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Views/RCTView.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/RCTRootViewDelegate.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Base/Surface/RCTSurface.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/ios/Pods/Headers/Private/yoga/YGEnums.h \
+  /Users/lambda_school_loaner_129/Desktop/Lambda/buddy-app-fe/buddy-app/ios/Pods/Headers/Private/yoga/YGMacros.h
