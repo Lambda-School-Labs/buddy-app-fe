@@ -17,6 +17,7 @@ const SignIn = props => {
 
   const cancelSignInHandler = () => {
     setInfo({ email: '', password: '' });
+    props.navigation.navigate('Landing');
   };
 
   const signInHandler = () => {
