@@ -1,6 +1,5 @@
 import React from 'react'; 
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'; 
-// import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
@@ -8,13 +7,11 @@ export default class SignUp extends React.Component {
 
     state = {
         isReady: false, 
-        info: {
-            first_name: '',
-            last_name: '',
-            email: '',
-            password: '',
-            location: '', 
-        }
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        location: '', 
     }
     
     componentWillMount() {
@@ -32,7 +29,8 @@ export default class SignUp extends React.Component {
     }
 
     handleChange = (text, eventName) => {
-        this.setState({[eventName]: text})
+        this.setState({...this.state, [eventName]: text})
+        console.log(this.state)
     }
 
     render() {
@@ -54,34 +52,29 @@ export default class SignUp extends React.Component {
                 <View style={su_styles.name}>
                     <TextInput
                         placeholder="First Name"
-                        onChangeText={(text) => this.handleChange(text, first_name)}
+                        onChangeText={(text) => this.handleChange(text, "first_name")}
                         style={su_styles.first}
                     />
                     <TextInput
                         placeholder="Last Name"
-                        onChangeText={(text) => this.handleChange(text,last_name)}
+                        onChangeText={(text) => this.handleChange(text,"last_name")}
                         style={su_styles.last}
                     />
                 </View>
 
                 <TextInput
                     placeholder="Email"
-                    onChangeText={(text) => this.handleChange(text, email)}
+                    onChangeText={(text) => this.handleChange(text, "email")}
                     style={su_styles.input}
                 />
                 <TextInput
                     placeholder="Password"
-                    onChangeText={(text) => this.handleChange(text, password)}
+                    onChangeText={(text) => this.handleChange(text, "password")}
                     style={su_styles.input}
                 />
-                {/* <TextInput
-                    placeholder="Confirm Password"
-                    onChangeText={(text) => handleChange({confirm_password: text})}
-                    style={su_styles.input}
-                /> */}
                 <TextInput
                     placeholder="Location"
-                    onChangeText={(text) => this.handleChange(text, location)}
+                    onChangeText={(text) => this.handleChange(text, "location")}
                     style={su_styles.input}
                 />
             </View>
@@ -89,11 +82,14 @@ export default class SignUp extends React.Component {
             <View style={su_styles.buttons}>
                 <Button
                     title='Cancel'
-                    color='black'/>
+                    color='black'
+                    fontFamily='Nunito-Light'
+                />
                 <View style={su_styles.suButton}>
                     <Button
                         title='Sign Up'
                         color='white'
+                        fontFamily='Nunito-Light'
                     />
                 </View>
             </View>
@@ -146,7 +142,7 @@ const su_styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: 350,
-        marginTop: 15
+        marginTop: 15,
     },
     suButton: {
         backgroundColor: '#6D6DFF',
