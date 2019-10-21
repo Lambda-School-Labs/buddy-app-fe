@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   View,
   Text,
@@ -6,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  AsyncStorage
 } from 'react-native';
 
 const SignIn = props => {
@@ -20,6 +22,26 @@ const SignIn = props => {
     props.navigation.navigate('Landing');
   };
 
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@token', value)
+      console.log(AsyncStorage.getItem('token'))
+    } catch (e) {
+      console.log(e)
+    }
+  } // Stores the token into AsyncStorage
+ const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@token')
+      if(value !== null) {
+        // value previously stored
+        console.log(value)
+      }
+    } catch(e) {
+      // error reading value
+    }
+  } //This is how you retrieve the token
+  
   const signInHandler = () => {
     if (!info.email || !info.password) {
       return;
@@ -35,6 +57,16 @@ const SignIn = props => {
         },
       ],
     );
+
+    axios.post('https://buddy-app-be.herokuapp.com/auth/signin', info)
+    .then(res => {
+      //console.log(res.data)
+      storeData(res.data.token)
+ 
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
     // Validation
     // Performs a HTTP request to the backend
     // Returns...?
