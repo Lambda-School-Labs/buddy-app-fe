@@ -1,36 +1,47 @@
-import React, { useState, useEffect } from 'react'; 
+import React from 'react'; 
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'; 
 // import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
 
-const SignUp = () => {
+export default class SignUp extends React.Component {
 
-    const [info, setInfo] = useState(null); 
-    // const [font, setFont] = useState(false)
-
-    // useEffect(() => {
-    //     Font.loadAsync({
-    //         'Nunito-Black': require('../assets/fonts/Nunito-Black.ttf'),
-    //         'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
-    //         'Nunito-Light': require('../assets/fonts/Nunito-Light.ttf'),
-    //         'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'),
-    //     })
-
-    //     setFont(true)
-    // }, [])
+    state = {
+        isReady: false, 
+        info: {
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: '',
+            location: '', 
+        }
+    }
     
+    componentWillMount() {
+        (async() => {
+            await Font.loadAsync({
+                'Nunito-Black': require('../assets/fonts/Nunito-Black.ttf'),
+                'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'), 
+                'Nunito-Light': require('../assets/fonts/Nunito-Light.ttf'), 
+                'Nunito-ExtraLight': require('../assets/fonts/Nunito-ExtraLight.ttf'), 
+                'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'), 
+            })
 
-    const handleChange = (event) => {
-        console.log("info", info)
-        return setInfo({...info, ...event})
+            this.setState({ isReady: true })
+        })()
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault(); 
-        
-        // axios PUT 
+    handleChange = (text, eventName) => {
+        this.setState({[eventName]: text})
     }
 
-    return (
+    render() {
+
+        if (!this.state.isReady) {
+            return <AppLoading />;
+        }
+
+        return (
         <View style={su_styles.container}>
 
             <View style={su_styles.logoContainer}>
@@ -43,24 +54,24 @@ const SignUp = () => {
                 <View style={su_styles.name}>
                     <TextInput
                         placeholder="First Name"
-                        onChangeText={(text) => handleChange({first_name: text})}
+                        onChangeText={(text) => this.handleChange(text, first_name)}
                         style={su_styles.first}
                     />
                     <TextInput
                         placeholder="Last Name"
-                        onChangeText={(text) => handleChange({last_name: text})}
+                        onChangeText={(text) => this.handleChange(text,last_name)}
                         style={su_styles.last}
                     />
                 </View>
 
                 <TextInput
                     placeholder="Email"
-                    onChangeText={(text) => handleChange({email: text})}
+                    onChangeText={(text) => this.handleChange(text, email)}
                     style={su_styles.input}
                 />
                 <TextInput
                     placeholder="Password"
-                    onChangeText={(text) => handleChange({password: text})}
+                    onChangeText={(text) => this.handleChange(text, password)}
                     style={su_styles.input}
                 />
                 {/* <TextInput
@@ -70,7 +81,7 @@ const SignUp = () => {
                 /> */}
                 <TextInput
                     placeholder="Location"
-                    onChangeText={(text) => handleChange({location: text})}
+                    onChangeText={(text) => this.handleChange(text, location)}
                     style={su_styles.input}
                 />
             </View>
@@ -87,7 +98,7 @@ const SignUp = () => {
                 </View>
             </View>
         </View>
-    )
+    )}
 }
 
 const su_styles = StyleSheet.create({
@@ -114,18 +125,21 @@ const su_styles = StyleSheet.create({
         borderBottomWidth: 5,
         borderBottomColor: 'black', 
         alignSelf: 'flex-start',
+        marginLeft: 30, 
     },
     logo: {
         fontSize: 45,
         fontWeight: 'bold',
-        fontFamily: 'Arial',
+        fontFamily: 'Nunito-Black',
     }, 
     signUp: {
         fontSize: 35, 
         paddingTop: 10, 
         paddingBottom: 20, 
+        marginLeft: 30,
         textAlign: 'left',
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start', 
+        fontFamily: 'Nunito-Regular'
     },
     buttons: {
         display: 'flex',
@@ -162,4 +176,5 @@ const su_styles = StyleSheet.create({
     }
 });
 
-export default SignUp; 
+
+
