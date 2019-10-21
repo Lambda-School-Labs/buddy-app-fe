@@ -1,16 +1,28 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'; 
-
+// import * as Font from 'expo-font';
 
 const SignUp = () => {
 
     const [info, setInfo] = useState(null); 
+    // const [font, setFont] = useState(false)
+
+    // useEffect(() => {
+    //     Font.loadAsync({
+    //         'Nunito-Black': require('../assets/fonts/Nunito-Black.ttf'),
+    //         'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
+    //         'Nunito-Light': require('../assets/fonts/Nunito-Light.ttf'),
+    //         'Nunito-Regular': require('../assets/fonts/Nunito-Regular.ttf'),
+    //     })
+
+    //     setFont(true)
+    // }, [])
+    
 
     const handleChange = (event) => {
         console.log("info", info)
         return setInfo({...info, ...event})
     }
-
 
     const handleSubmit = (event) => {
         event.preventDefault(); 
@@ -22,7 +34,7 @@ const SignUp = () => {
         <View style={su_styles.container}>
 
             <View style={su_styles.logoContainer}>
-                <Text style={su_styles.logo}>BUDDY</Text>
+                <Text style={su_styles.logo} >BUDDY</Text>
             </View>
 
             <Text style={su_styles.signUp}>Sign Up</Text>
@@ -51,9 +63,14 @@ const SignUp = () => {
                     onChangeText={(text) => handleChange({password: text})}
                     style={su_styles.input}
                 />
-                <TextInput
+                {/* <TextInput
                     placeholder="Confirm Password"
                     onChangeText={(text) => handleChange({confirm_password: text})}
+                    style={su_styles.input}
+                /> */}
+                <TextInput
+                    placeholder="Location"
+                    onChangeText={(text) => handleChange({location: text})}
                     style={su_styles.input}
                 />
             </View>
@@ -94,12 +111,8 @@ const su_styles = StyleSheet.create({
     }, 
     logoContainer: {
         marginBottom: 65,
-        borderRadius: 4, 
-        borderWidth: 5,
+        borderBottomWidth: 5,
         borderBottomColor: 'black', 
-        borderLeftColor: 'transparent', 
-        borderRightColor: 'transparent',
-        borderTopColor: 'transparent',
         alignSelf: 'flex-start',
     },
     logo: {
