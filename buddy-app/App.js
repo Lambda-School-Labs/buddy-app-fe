@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
+
 
 import Landing from './components/Landing'
 
 // components 
 import SignUp from './components/SignUp.js'; 
-import SignIn from './components/SignIn';
+// import SignIn from './components/SignIn';
 
 export default function App() {
   const [isAppReady, setAppReady] = useState(false)
@@ -20,13 +21,14 @@ export default function App() {
         />
     ) : (
       <View style={styles.container}>
-        <Image source={require('./assets/goose-test.png')} />
+        {/* <Image source={require('./assets/goose-test.png')} /> */}
         <SignUp />
-        <SignIn />
+        {/* <SignIn /> */}
       </View>
     )
   );
 }
+
 
 const  _cacheResourcesAsync = async () => {
   const images = [
