@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View, ImageBackground, Image } from 'react-native';
 
 export default function Landing(props) {
   return (
@@ -26,7 +26,7 @@ export default function Landing(props) {
       </View>
 
       <View style={landing.mapContainer}>
-        <Text>Map image goes here</Text>
+        <Image style={landing.map} source={require('../assets/landing-map.png')} />
       </View>
     </View>
     </ImageBackground>
@@ -42,7 +42,8 @@ const landing = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: '15%',
-    paddingTop: '25%',
+    paddingTop: '20%',
+    paddingBottom: '10%',
     width: '100%',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
@@ -57,24 +58,23 @@ const landing = StyleSheet.create({
     fontFamily: 'Nunito-Black',
   },
   subtitle: {
-    marginTop: 20,
     fontSize: 20,
     color: '#2E2F38',
     fontFamily: 'Nunito-Regular',
   },
   mapContainer: {
+    width: '100%'
+  },
+  map: {
+    resizeMode: 'cover',
     width: '100%',
     height: 300,
-    marginTop: 20,
-    borderWidth: 1,
-    borderColor: '#999999',
   },
   buttonContainer: {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 20,
+    alignItems: 'center'
   },
   signInButton: {
     width: 130,
