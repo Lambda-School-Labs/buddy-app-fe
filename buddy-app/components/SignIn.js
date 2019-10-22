@@ -59,30 +59,30 @@ const SignIn = props => {
   if(!props.isLoading) {
     return (
     <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
-      <View style={styles.screen}>
+      <View style={Global.container}>
         <View style={Global.logoContainer}>
           <Text style={Global.logo}>BUDDY</Text>
         </View>
-        <View style={styles.signInContainer}>
-          <Text style={styles.pageTitle}>Sign In</Text>
+          <Text style={Global.title}>Sign In</Text>
+          <View style={Global.formContainer}>
           <TextInput
-            style={styles.input}
+            style={Global.input}
             placeholder="Email"
             onChangeText={e => changeHandler(e, "email")}
             value={info.email}
             autoCapitalize="none"
           />
           <TextInput
-            style={styles.input}
+            style={Global.input}
             placeholder="Password"
             onChangeText={e => changeHandler(e, "password")}
             value={info.password}
             autoCapitalize="none"
             secureTextEntry
           />
-          <View style={styles.redirectContainer}>
-            <Text style={styles.redirect}>
-              Don't have an account yet? Sign Up (ADD LINK)
+          <View style={styles.fakeLinkContainer}>
+            <Text style={styles.fakeLink} onPress={() => {props.navigation.navigate("SignUp")}}>
+              Don't have an account yet? Sign Up
             </Text>
           </View>
           <View style={Buttons.container}>
@@ -106,37 +106,6 @@ const SignIn = props => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    paddingHorizontal: 30,
-    width: "100%",
-    marginTop: 55,
-    alignItems: 'flex-start',
-  },
-  signInContainer: {
-    marginTop: 60
-  },
-  pageTitle: {
-    fontSize: 30,
-    color: "#2E2F38",
-    fontFamily: "Nunito-Regular",
-    marginBottom: 30
-  },
-  input: {
-    marginVertical: 10,
-    width: 350,
-    padding: 8,
-    borderWidth: 0.5,
-    borderColor: "#2E2F38",
-  },
-  redirectContainer: {
-    width: "100%",
-    alignItems: "center"
-  },
-  redirect: {
-    fontSize: 15,
-    fontFamily: "Nunito-Light"
-  },
   bottomNav: {
     backgroundColor: "#6d6dff",
     height: 96,
@@ -144,6 +113,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0
+  },
+  fakeLink: {
+    color: '#6D6DFF',
+    textDecorationLine: 'underline',
+    fontSize: 15,
+    fontFamily: "Nunito-Light"
+  },
+  fakeLinkContainer: {
+    alignSelf: 'center'
   }
 });
 
