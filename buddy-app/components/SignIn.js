@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import {addToken} from '../actions/buddyActions'
+import { addToken } from '../actions/buddyActions';
 import {
   View,
   Text,
@@ -12,7 +12,6 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: '', password: '' });
@@ -46,7 +45,6 @@ const SignIn = props => {
     }
   }; //This is how you retrieve the token
 
-
   const signInHandler = () => {
     if (!info.email || !info.password) {
       return;
@@ -63,7 +61,6 @@ const SignIn = props => {
       ],
     );
 
-
     axios
       .post('https://buddy-app-be.herokuapp.com/auth/signin', info)
       .then(res => {
@@ -79,46 +76,49 @@ const SignIn = props => {
     // Returns...?
   };
 
-
   return (
-    <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
-    <View style={styles.screen}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>BUDDY</Text>
-      </View>
-      <View style={styles.signInContainer}>
-        <Text style={styles.pageTitle}>Sign In</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          onChangeText={e => changeHandler(e, 'email')}
-          value={info.email}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          onChangeText={e => changeHandler(e, 'password')}
-          value={info.password}
-          secureTextEntry
-        />
-        <View style={styles.redirectContainer}>
-          <Text style={styles.redirect}>
-            Don't have an account yet? Sign Up (ADD LINK)
-          </Text>
+    <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+      <View style={styles.screen}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}>BUDDY</Text>
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={cancelSignInHandler}
-            style={styles.cancelButton}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={signInHandler} style={styles.signInButton}>
-            <Text style={styles.buttonText}>Sign In</Text>
-          </TouchableOpacity>
+        <View style={styles.signInContainer}>
+          <Text style={styles.pageTitle}>Sign In</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            onChangeText={e => changeHandler(e, 'email')}
+            value={info.email}
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={e => changeHandler(e, 'password')}
+            value={info.password}
+            autoCapitalize="none"
+            secureTextEntry
+          />
+          <View style={styles.redirectContainer}>
+            <Text style={styles.redirect}>
+              Don't have an account yet? Sign Up (ADD LINK)
+            </Text>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={cancelSignInHandler}
+              style={styles.cancelButton}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={signInHandler}
+              style={styles.signInButton}>
+              <Text style={styles.buttonText}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+        <View style={styles.bottomNav}></View>
       </View>
-      <View style={styles.bottomNav}></View>
-    </View>
     </KeyboardAwareScrollView>
   );
 };
@@ -199,11 +199,11 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     ...state,
-    token: state.token
-  }
-}
-
+    token: state.token,
+  };
+};
 
 export default connect(
-  mapStateToProps, {addToken}
+  mapStateToProps,
+  { addToken },
 )(SignIn);
