@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
 
 const SignIn = props => {
@@ -24,25 +24,26 @@ const SignIn = props => {
     props.navigation.navigate('Landing');
   };
 
-  const storeData = async (value) => {
+  const storeData = async value => {
     try {
-      await AsyncStorage.setItem('@token', value)
-      console.log(AsyncStorage.getItem('token'))
+      await AsyncStorage.setItem('@token', value);
+      console.log(AsyncStorage.getItem('token'));
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  } // Stores the token into AsyncStorage
- const getData = async () => {
+  }; // Stores the token into AsyncStorage
+  const getData = async () => {
     try {
-      const value = await AsyncStorage.getItem('@token')
-      if(value !== null) {
+      const value = await AsyncStorage.getItem('@token');
+      if (value !== null) {
         // value previously stored
-        console.log(value)
+        console.log(value);
       }
-    } catch(e) {
+    } catch (e) {
       // error reading value
     }
-  } //This is how you retrieve the token
+  }; //This is how you retrieve the token
+
 
   const signInHandler = () => {
     if (!info.email || !info.password) {
@@ -60,16 +61,17 @@ const SignIn = props => {
       ],
     );
 
-    axios.post('https://buddy-app-be.herokuapp.com/auth/signin', info)
-    .then(res => {
-      //console.log(res.data)
-      props.addToken(res.data.token)
-      storeData(res.data.token);
- 
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+
+    axios
+      .post('https://buddy-app-be.herokuapp.com/auth/signin', info)
+      .then(res => {
+        //console.log(res.data)
+        storeData(res.data.token);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+
     // Validation
     // Performs a HTTP request to the backend
     // Returns...?
@@ -79,7 +81,7 @@ const SignIn = props => {
   return (
     <View style={styles.screen}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Buddy</Text>
+        <Text style={styles.header}>BUDDY</Text>
       </View>
       <View style={styles.signInContainer}>
         <Text style={styles.pageTitle}>Sign In</Text>
@@ -128,9 +130,9 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 35,
     color: '#2E2F38',
-    fontWeight: '800',
     borderBottomWidth: 5,
-    width: 105,
+    width: 130,
+    fontFamily: 'Nunito-Black',
   },
   signInContainer: {
     width: '100%',
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 30,
     color: '#2E2F38',
-    fontWeight: '600',
+    fontFamily: 'Nunito-Regular',
     marginBottom: 30,
   },
   input: {
@@ -147,6 +149,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderWidth: 0.5,
     borderColor: '#2E2F38',
+    borderRadius: 8,
   },
   redirectContainer: {
     width: '100%',
@@ -154,6 +157,7 @@ const styles = StyleSheet.create({
   },
   redirect: {
     fontSize: 15,
+    fontFamily: 'Nunito-Light',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -171,10 +175,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 10,
+    borderRadius: 8,
   },
   buttonText: {
     fontSize: 18,
     fontWeight: '300',
+    fontFamily: 'Nunito-Regular',
   },
   bottomNav: {
     backgroundColor: '#6d6dff',
