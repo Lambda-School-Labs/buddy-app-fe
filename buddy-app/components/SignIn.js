@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import {addToken} from '../actions/buddyActions'
 import {
   View,
   Text,
@@ -42,6 +44,7 @@ const SignIn = props => {
     }
   }; //This is how you retrieve the token
 
+
   const signInHandler = () => {
     if (!info.email || !info.password) {
       return;
@@ -58,6 +61,7 @@ const SignIn = props => {
       ],
     );
 
+
     axios
       .post('https://buddy-app-be.herokuapp.com/auth/signin', info)
       .then(res => {
@@ -67,10 +71,12 @@ const SignIn = props => {
       .catch(err => {
         console.log(err.message);
       });
+
     // Validation
     // Performs a HTTP request to the backend
     // Returns...?
   };
+
 
   return (
     <View style={styles.screen}>
@@ -186,4 +192,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignIn;
+const mapStateToProps = state => {
+  return {
+    ...state,
+    token: state.token
+  }
+}
+
+
+export default connect(
+  mapStateToProps, {addToken}
+)(SignIn);
