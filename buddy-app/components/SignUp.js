@@ -71,9 +71,9 @@ export default class SignUp extends React.Component {
               <Text style={[Buttons.text,Buttons.textAuth]}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[Buttons.btn,Buttons.primary]}
+              style={[Buttons.btn,Buttons.primary,{ width: 130 }]}
             >
-              <Text style={[Buttons.text,Buttons.textAuth,Buttons.textPrimary],{ width: 130 }}>Sign Up</Text>
+              <Text style={[Buttons.text,Buttons.textAuth,Buttons.textPrimary]}>Sign Up</Text>
             </TouchableOpacity>
           
           </View>
