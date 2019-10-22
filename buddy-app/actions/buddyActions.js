@@ -10,6 +10,6 @@ export const addUser = (user) => {
     return {type: ADD_USER, payload: user}
 }
 
-export const isLoading = (value) => {
+export const isLoadingPage = (value) => {
     return {type: IS_LOADING, payload: value}
 }
