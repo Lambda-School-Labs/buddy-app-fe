@@ -21,7 +21,7 @@ export default function Landing(props) {
         <TouchableOpacity
           onPress={() => props.navigation.navigate('SignUp')}
           style={landing.signUpButton}>
-          <Text style={landing.buttonText}>Sign Up</Text>
+          <Text style={[landing.buttonText, landing.primaryButtonText]}>Sign Up</Text>
           </TouchableOpacity>
       </View>
 
@@ -98,4 +98,7 @@ const landing = StyleSheet.create({
     fontWeight: '300',
     fontFamily: 'Nunito-Regular',
   },
+  primaryButtonText: {
+    color: '#FFF',
+  }
 })
