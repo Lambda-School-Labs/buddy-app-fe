@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { addToken, addUser  } from "../actions/buddyActions";
-import Spinner from 'react-native-loading-spinner-overlay';
+import { addToken, addUser } from "../actions/buddyActions";
+import Spinner from "react-native-loading-spinner-overlay";
 import {
   View,
   Text,
@@ -15,13 +15,11 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { storeToken } from "../authHelper";
 import AuthStack from "./AuthStack";
-import { AppLoading} from 'expo';
-
+import { AppLoading } from "expo";
 
 //styles
-import Buttons from '../styles/Buttons'
-import Global from '../styles/Global'
-
+import Buttons from "../styles/Buttons";
+import Global from "../styles/Global";
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
@@ -44,11 +42,14 @@ const SignIn = props => {
     axios
       .post("https://buddy-app-be.herokuapp.com/auth/signin", info)
       .then(res => {
-         
         storeToken(res.data.token);
-        props.addUser({first_name: res.data.first_name, last_name: res.data.last_name, id: res.data.id})
+        props.addUser({
+          first_name: res.data.first_name,
+          last_name: res.data.last_name,
+          id: res.data.id
+        });
         props.navigation.navigate("AuthStack");
-        setIsLoading(false); 
+        setIsLoading(false);
       })
       .catch(err => {
         console.log(err.message);
@@ -58,52 +59,53 @@ const SignIn = props => {
     // Returns...?
   };
 
-  if(!isLoading) {
+  if (!isLoading) {
     return (
-    <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
-      <View style={styles.screen}>
-        <View style={Global.logoContainer}>
-          <Text style={Global.logo}>BUDDY</Text>
-        </View>
-        <View style={styles.signInContainer}>
-          <Text style={styles.pageTitle}>Sign In</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            onChangeText={e => changeHandler(e, "email")}
-            value={info.email}
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            onChangeText={e => changeHandler(e, "password")}
-            value={info.password}
-            autoCapitalize="none"
-            secureTextEntry
-          />
-          <View style={styles.redirectContainer}>
-            <Text style={styles.redirect}>
-              Don't have an account yet? Sign Up (ADD LINK)
-            </Text>
+      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.screen}>
+          <View style={Global.logoContainer}>
+            <Text style={Global.logo}>BUDDY</Text>
           </View>
-          <View style={Buttons.container}>
-            <TouchableOpacity onPress={cancelSignInHandler}>
-              <Text style={[Buttons.text,Buttons.textAuth]}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={signInHandler}
-              style={[Buttons.btn,Buttons.secondary, { width: 130 }]}
-            >
-              <Text style={[Buttons.text,Buttons.textAuth]}>Sign In</Text>
-            </TouchableOpacity>
+          <View style={styles.signInContainer}>
+            <Text style={styles.pageTitle}>Sign In</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              onChangeText={e => changeHandler(e, "email")}
+              value={info.email}
+              autoCapitalize="none"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              onChangeText={e => changeHandler(e, "password")}
+              value={info.password}
+              autoCapitalize="none"
+              secureTextEntry
+            />
+            <View style={styles.redirectContainer}>
+              <Text style={styles.redirect}>
+                Don't have an account yet? Sign Up (ADD LINK)
+              </Text>
+            </View>
+            <View style={Buttons.container}>
+              <TouchableOpacity onPress={cancelSignInHandler}>
+                <Text style={[Buttons.text, Buttons.textAuth]}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={signInHandler}
+                style={[Buttons.btn, Buttons.secondary, { width: 130 }]}
+              >
+                <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
+              </TouchableOpacity>
+            </View>
           </View>
+          <View style={styles.bottomNav}></View>
         </View>
-        <View style={styles.bottomNav}></View>
-      </View>
-    </KeyboardAwareScrollView>
-  ); } else {
-    return <Spinner visible={isLoading} textContent={'Loading....'} />
+      </KeyboardAwareScrollView>
+    );
+  } else {
+    return <Spinner visible={isLoading} textContent={"Loading...."} />;
   }
 };
 
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     width: "100%",
     marginTop: 55,
-    alignItems: 'flex-start',
+    alignItems: "flex-start"
   },
   signInContainer: {
     marginTop: 60
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     width: 350,
     padding: 8,
     borderWidth: 0.5,
-    borderColor: "#2E2F38",
+    borderColor: "#2E2F38"
   },
   redirectContainer: {
     width: "100%",
