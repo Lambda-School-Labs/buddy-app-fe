@@ -1,10 +1,14 @@
 'use strict';
 
 import React from 'react'; 
-import { Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native'; 
-import * as Font from 'expo-font';
 import ValidationComponent from 'react-native-form-validator';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+//styles
+import Buttons from '../styles/Buttons'
+import Global from '../styles/Global'
+// import Axios from 'axios';
 
 export default class SignUp extends ValidationComponent {
 
@@ -22,21 +26,20 @@ export default class SignUp extends ValidationComponent {
     }
 
     handleSubmit = () => {
-        // axios call 
-
+        // testing "Hiya There!"
         console.log("Hiya There!")
 
         // axios
         //     .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
         //     .then(response => {
-        //         console.log(response)
+        //         console.log("sign up response", response)
         //     })
         //     .catch(error => {
-        //         console.log(error)
+        //         console.log("sign up error", error)
         //     })
     }
 
-    _onSubmit = () => {
+    _onComplete = () => {
         this.validate({
             first_name: {
                 required: true, 
@@ -57,173 +60,106 @@ export default class SignUp extends ValidationComponent {
         })
     }
 
-    render() {
-        return (
-        <KeyboardAwareScrollView
-            enableOnAndroid
-            contentContainerStyle={{ flex: 1 }}>
-            <View style={su_styles.container}>
-            <View style={su_styles.logoContainer}>
-                <Text style={su_styles.logo}>BUDDY</Text>
+
+  render() {
+    return (
+      <KeyboardAwareScrollView
+        enableOnAndroid
+        contentContainerStyle={{ flex: 1 }}>
+        <View style={Global.container}>
+          <View style={Global.logoContainer}>
+            <Text style={Global.logo}>BUDDY</Text>
+          </View>
+
+          <Text style={Global.title}>Sign Up</Text>
+
+          <View style={Global.formContainer}>
+            <View style={su_styles.name}>
+              <TextInput
+                placeholder="First Name"
+                onChangeText={text => this.handleChange(text, 'first_name')}
+                style={[Global.input,{ width: '45%'}]}
+                value={this.state.first_name}
+                onKeyPress={() => this._onComplete()}
+              />
+              <TextInput
+                placeholder="Last Name"
+                onChangeText={text => this.handleChange(text, 'last_name')}
+                style={[Global.input,{ width: '45%'}]}
+                value={this.state.last_name} 
+                onKeyPress={() => this._onComplete()}
+              />
             </View>
+            {this.isFieldInError('first_name') && this.getErrorsInField('first_name').map(errorMessage => 
+                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>)}   
+            {this.isFieldInError('last_name') && this.getErrorsInField('last_name').map(errorMessage => 
+                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>)}
 
-            <Text style={su_styles.signUp}>Sign Up</Text>
 
-            <View style={su_styles.form} onKeyPress={() => this._onSubmit()}>
-                <View style={su_styles.name}>
-                    <TextInput
-                        placeholder="First Name"
-                        onChangeText={text => this.handleChange(text, 'first_name')}
-                        style={su_styles.first}
-                        value={this.state.first_name}
-                        ref='first_name'
-                    />
-    
-                    <TextInput
-                        placeholder="Last Name"
-                        onChangeText={text => this.handleChange(text, 'last_name')}
-                        style={su_styles.last}
-                        value={this.state.last_name}
-                    />
-                </View>
-                {this.isFieldInError('first_name') && this.getErrorsInField('first_name').map(errorMessage => 
-                    <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>)}   
-                {this.isFieldInError('last_name') && this.getErrorsInField('last_name').map(errorMessage => 
-                    <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text> )}
+            <TextInput
+              placeholder="Email"
+              onChangeText={text => this.handleChange(text, 'email')}
+              style={Global.input}
+              autoCapitalize="none"
+              value={this.state.email}
+              onKeyPress={() => this._onComplete()}
+            />
+            {this.isFieldInError('email') && this.getErrorsInField('email').map(errorMessage => 
+                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>)}
 
-                <TextInput
-                    placeholder="Email"
-                    onChangeText={text => this.handleChange(text, 'email')}
-                    style={su_styles.input}
-                    autoCapitalize="none"
-                    value={this.state.email}
-                />
-                {this.isFieldInError('email') && this.getErrorsInField('email').map(errorMessage => 
-                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>) }
- 
-                <TextInput
-                    placeholder="Password"
-                    onChangeText={text => this.handleChange(text, 'password')}
-                    style={su_styles.input}
-                    autoCapitalize="none"
-                    value={this.state.password}
-                />
-                {this.isFieldInError('password') && this.getErrorsInField('password').map(errorMessage => 
-                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>) }
- 
-                <TextInput
-                    placeholder="Location"
-                    onChangeText={text => this.handleChange(text, 'location')}
-                    style={su_styles.input}
-                    value={this.state.location}
-                />
-                {this.isFieldInError('location') && this.getErrorsInField('location').map(errorMessage => 
-                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>) }
- 
-            </View>
+            <TextInput
+              placeholder="Password"
+              onChangeText={text => this.handleChange(text, 'password')}
+              style={Global.input}
+              autoCapitalize="none"
+              value={this.state.password}
+              onKeyPress={() => this._onComplete()}
+            />
+            {this.isFieldInError('password') && this.getErrorsInField('password').map(errorMessage => 
+                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>)}
 
-            {/* <Text>
-            {this.getErrorMessages()}
-            </Text> */}
+            <TextInput
+              placeholder="Location"
+              onChangeText={text => this.handleChange(text, 'location')}
+              style={Global.input}
+              value={this.state.location}
+              onKeyPress={() => this._onComplete()}
+            />
+            {this.isFieldInError('location') && this.getErrorsInField('location').map(errorMessage => 
+                <Text style={su_styles.error} key={errorMessage}>{errorMessage}</Text>)}
+          </View>
 
-            <View style={su_styles.buttons}>
-                <Button
-                    onPress={() => this.props.navigation.navigate('Landing')}
-                    title="Cancel"
-                    color="black"
-                    fontFamily="Nunito-Light"
-                />
-                <View style={su_styles.suButton}>
-                    <TouchableHighlight>
-                        <Button 
-                            title="Sign Up" 
-                            color="white" 
-                            fontFamily="Nunito-Light" 
-                            onPress={this.handleSubmit} 
-                        />
-                    </TouchableHighlight>
-                </View>
-            </View>
-            </View>
-        </KeyboardAwareScrollView>
-        );
-    }
+          <View style={Buttons.container}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Landing')}>
+              <Text style={[Buttons.text,Buttons.textAuth]}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[Buttons.btn,Buttons.primary,{ width: 130 }]}  onPress={this.handleSubmit}
+            >
+              <Text style={[Buttons.text,Buttons.textAuth,Buttons.textPrimary]}>Sign Up</Text>
+            </TouchableOpacity>         
+          </View>
+          <View style={su_styles.bottomNav}></View>
+        </View>
+      </KeyboardAwareScrollView>
+    );
+  }
 }
 
 const su_styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  form: {
-    height: 300,
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
-  input: {
-    borderColor: '#d6d7da',
-    borderWidth: 1.2,
-    width: 350,
-    height: 45,
-    paddingLeft: 10,
-  },
-  logoContainer: {
-    marginBottom: 65,
-    borderBottomWidth: 5,
-    borderBottomColor: 'black',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
-  },
-  logo: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    fontFamily: 'Nunito-Black',
-  },
-  signUp: {
-    fontSize: 35,
-    paddingTop: 10,
-    paddingBottom: 20,
-    marginLeft: 30,
-    textAlign: 'left',
-    alignSelf: 'flex-start',
-    fontFamily: 'Nunito-Regular',
-  },
-  buttons: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: 350,
-    marginTop: 15,
-  },
-  suButton: {
-    backgroundColor: '#6D6DFF',
-    color: '#FFFFFF',
-    height: 45,
-    width: 130,
-    fontSize: 20,
-  },
   name: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  first: {
-    width: 167,
-    height: 45,
-    borderColor: '#d6d7da',
-    borderWidth: 1.2,
-    paddingLeft: 10,
-  },
-  last: {
-    width: 167,
-    height: 45,
-    borderColor: '#d6d7da',
-    borderWidth: 1.2,
-    textAlign: 'left',
-    paddingLeft: 10,
+  bottomNav: {
+    backgroundColor: "#6d6dff",
+    height: 96,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0
   },
   error: {
-    color: 'red',
+      color: 'red'
   }
 });
