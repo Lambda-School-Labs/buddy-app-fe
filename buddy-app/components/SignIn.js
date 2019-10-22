@@ -18,6 +18,11 @@ import AuthStack from "./AuthStack";
 import { AppLoading} from 'expo';
 
 
+//styles
+import Buttons from '../styles/Buttons'
+import Global from '../styles/Global'
+
+
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
@@ -57,8 +62,8 @@ const SignIn = props => {
     return (
     <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
       <View style={styles.screen}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.header}>BUDDY</Text>
+        <View style={Global.logoContainer}>
+          <Text style={Global.logo}>BUDDY</Text>
         </View>
         <View style={styles.signInContainer}>
           <Text style={styles.pageTitle}>Sign In</Text>
@@ -82,18 +87,15 @@ const SignIn = props => {
               Don't have an account yet? Sign Up (ADD LINK)
             </Text>
           </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={cancelSignInHandler}
-              style={styles.cancelButton}
-            >
-              <Text style={styles.buttonText}>Cancel</Text>
+          <View style={Buttons.container}>
+            <TouchableOpacity onPress={cancelSignInHandler}>
+              <Text style={[Buttons.text,Buttons.textAuth]}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={signInHandler}
-              style={styles.signInButton}
+              style={[Buttons.btn,Buttons.secondary, { width: 130 }]}
             >
-              <Text style={styles.buttonText}>Sign In</Text>
+              <Text style={[Buttons.text,Buttons.textAuth]}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -110,18 +112,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 30,
     width: "100%",
-    marginTop: 55
-  },
-  headerContainer: {},
-  header: {
-    fontSize: 35,
-    color: "#2E2F38",
-    borderBottomWidth: 5,
-    width: 130,
-    fontFamily: "Nunito-Black"
+    marginTop: 55,
+    alignItems: 'flex-start',
   },
   signInContainer: {
-    width: "100%",
     marginTop: 60
   },
   pageTitle: {
@@ -132,10 +126,10 @@ const styles = StyleSheet.create({
   },
   input: {
     marginVertical: 10,
+    width: 350,
     padding: 8,
     borderWidth: 0.5,
     borderColor: "#2E2F38",
-    borderRadius: 8
   },
   redirectContainer: {
     width: "100%",
@@ -144,29 +138,6 @@ const styles = StyleSheet.create({
   redirect: {
     fontSize: 15,
     fontFamily: "Nunito-Light"
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 30
-  },
-  cancelButton: {
-    width: "40%"
-  },
-  signInButton: {
-    width: "40%",
-    borderWidth: 1,
-    borderColor: "#2e2f38",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 10,
-    borderRadius: 8
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: "300",
-    fontFamily: "Nunito-Regular"
   },
   bottomNav: {
     backgroundColor: "#6d6dff",
