@@ -97,9 +97,9 @@ const SignIn = props => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={signInHandler}
-              style={[Buttons.btn,Buttons.primary]}
+              style={[Buttons.btn,Buttons.secondary, { width: 130 }]}
             >
-              <Text style={[Buttons.text,Buttons.textAuth,Buttons.textPrimary]}>Sign In</Text>
+              <Text style={[Buttons.text,Buttons.textAuth]}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </View>
