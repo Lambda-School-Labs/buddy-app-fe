@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { addToken, addUser  } from "../actions/buddyActions";
+import { addToken, addUser, isLoadingPage } from "../actions/buddyActions";
 import Spinner from 'react-native-loading-spinner-overlay';
 import {
   View,
@@ -14,8 +14,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { storeToken } from "../authHelper";
-import AuthStack from "./AuthStack";
-import { AppLoading} from 'expo';
+
 
 
 //styles
@@ -25,7 +24,6 @@ import Global from '../styles/Global'
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
-  const [isLoading, setIsLoading] = useState(false);
   const changeHandler = (value, name) => {
     setInfo({ ...info, [name]: value });
   };
@@ -39,7 +37,7 @@ const SignIn = props => {
     if (!info.email || !info.password) {
       return;
     }
-    setIsLoading(true);
+    props.isLoadingPage(true);
 
     axios
       .post("https://buddy-app-be.herokuapp.com/auth/signin", info)
@@ -48,7 +46,7 @@ const SignIn = props => {
         storeToken(res.data.token);
         props.addUser({first_name: res.data.first_name, last_name: res.data.last_name, id: res.data.id})
         props.navigation.navigate("AuthStack");
-        setIsLoading(false); 
+     
       })
       .catch(err => {
         console.log(err.message);
@@ -58,7 +56,7 @@ const SignIn = props => {
     // Returns...?
   };
 
-  if(!isLoading) {
+  if(!props.isLoading) {
     return (
     <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
       <View style={styles.screen}>
@@ -103,7 +101,7 @@ const SignIn = props => {
       </View>
     </KeyboardAwareScrollView>
   ); } else {
-    return <Spinner visible={isLoading} textContent={'Loading....'} />
+    return <Spinner visible={props.isLoading} textContent={'Loading....'} />
   }
 };
 
@@ -152,11 +150,12 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     ...state,
-    token: state.token
+    token: state.token,
+    isLoading: state.isLoading
   };
 };
 
 export default connect(
   mapStateToProps,
-  { addToken, addUser }
+  { addToken, addUser, isLoadingPage }
 )(SignIn);
