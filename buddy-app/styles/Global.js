@@ -36,6 +36,7 @@ const Global = StyleSheet.create({
         paddingLeft: 10,
         marginBottom: 20,
         fontSize: 15,
+        fontFamily: 'Nunito-Light'
     },
     
 })
