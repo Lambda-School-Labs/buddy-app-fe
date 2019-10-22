@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { addToken } from "../actions/buddyActions";
+import { addToken, addUser  } from "../actions/buddyActions";
+import Spinner from 'react-native-loading-spinner-overlay';
 import {
   View,
   Text,
@@ -14,6 +15,8 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { storeToken } from "../authHelper";
 import AuthStack from "./AuthStack";
+import { AppLoading} from 'expo';
+
 
 //styles
 import Buttons from '../styles/Buttons'
@@ -22,7 +25,7 @@ import Global from '../styles/Global'
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
-
+  const [isLoading, setIsLoading] = useState(false);
   const changeHandler = (value, name) => {
     setInfo({ ...info, [name]: value });
   };
@@ -36,24 +39,16 @@ const SignIn = props => {
     if (!info.email || !info.password) {
       return;
     }
-    Alert.alert(
-      "Signing In",
-      `Attempting to sign in... with ${info.email} and ${info.password} `,
-      [
-        {
-          text: "OK",
-          onPress: () => console.log("Sign in attempt."),
-          style: "destructive"
-        }
-      ]
-    );
+    setIsLoading(true);
 
     axios
       .post("https://buddy-app-be.herokuapp.com/auth/signin", info)
       .then(res => {
-        //console.log(res.data)
+         
         storeToken(res.data.token);
-        return props.navigation.navigate("AuthStack");
+        props.addUser({first_name: res.data.first_name, last_name: res.data.last_name, id: res.data.id})
+        props.navigation.navigate("AuthStack");
+        setIsLoading(false); 
       })
       .catch(err => {
         console.log(err.message);
@@ -63,7 +58,8 @@ const SignIn = props => {
     // Returns...?
   };
 
-  return (
+  if(!isLoading) {
+    return (
     <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
       <View style={styles.screen}>
         <View style={Global.logoContainer}>
@@ -106,7 +102,9 @@ const SignIn = props => {
         <View style={styles.bottomNav}></View>
       </View>
     </KeyboardAwareScrollView>
-  );
+  ); } else {
+    return <Spinner visible={isLoading} textContent={'Loading....'} />
+  }
 };
 
 const styles = StyleSheet.create({
@@ -160,5 +158,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addToken }
+  { addToken, addUser }
 )(SignIn);
