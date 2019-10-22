@@ -1,28 +1,32 @@
-import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from "react";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
 // components
-import Landing from './Landing';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
+import Landing from "./Landing";
+import SignUp from "./SignUp";
+import SignIn from "./SignIn";
+import AuthStack from "./AuthStack";
 
 const AppNavigator = createStackNavigator(
   {
     Landing: {
-      screen: Landing,
+      screen: Landing
     },
     SignUp: {
-      screen: SignUp,
+      screen: SignUp
     },
     SignIn: {
-      screen: SignIn,
+      screen: SignIn
     },
+    AuthStack: {
+      screen: AuthStack
+    }
   },
   {
-    initialRouteName: 'Landing',
-    headerMode: 'none',
-  },
+    initialRouteName: "Landing",
+    headerMode: "none"
+  }
 );
 
 export default createAppContainer(AppNavigator);
