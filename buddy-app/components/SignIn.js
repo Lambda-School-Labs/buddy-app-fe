@@ -11,6 +11,7 @@ import {
   Alert,
   AsyncStorage
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
@@ -64,7 +65,6 @@ const SignIn = props => {
       .post("https://buddy-app-be.herokuapp.com/auth/signin", info)
       .then(res => {
         //console.log(res.data)
-        props.addToken(res.data.token);
         storeData(res.data.token);
       })
       .catch(err => {
@@ -76,44 +76,49 @@ const SignIn = props => {
   };
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>Buddy</Text>
-      </View>
-      <View style={styles.signInContainer}>
-        <Text style={styles.pageTitle}>Sign In</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          onChangeText={e => changeHandler(e, "email")}
-          value={info.email}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          onChangeText={e => changeHandler(e, "password")}
-          value={info.password}
-          secureTextEntry
-        />
-        <View style={styles.redirectContainer}>
-          <Text style={styles.redirect}>
-            Don't have an account yet? Sign Up (ADD LINK)
-          </Text>
+    <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+      <View style={styles.screen}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}>BUDDY</Text>
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={cancelSignInHandler}
-            style={styles.cancelButton}
-          >
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={signInHandler} style={styles.signInButton}>
-            <Text style={styles.buttonText}>Sign In</Text>
-          </TouchableOpacity>
+        <View style={styles.signInContainer}>
+          <Text style={styles.pageTitle}>Sign In</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            onChangeText={e => changeHandler(e, "email")}
+            value={info.email}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={e => changeHandler(e, "password")}
+            value={info.password}
+            secureTextEntry
+          />
+          <View style={styles.redirectContainer}>
+            <Text style={styles.redirect}>
+              Don't have an account yet? Sign Up (ADD LINK)
+            </Text>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={cancelSignInHandler}
+              style={styles.cancelButton}
+            >
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={signInHandler}
+              style={styles.signInButton}
+            >
+              <Text style={styles.buttonText}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+        <View style={styles.bottomNav}></View>
       </View>
-      <View style={styles.bottomNav}></View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -128,9 +133,9 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 35,
     color: "#2E2F38",
-    fontWeight: "800",
     borderBottomWidth: 5,
-    width: 105
+    width: 130,
+    fontFamily: "Nunito-Black"
   },
   signInContainer: {
     width: "100%",
@@ -139,21 +144,23 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 30,
     color: "#2E2F38",
-    fontWeight: "600",
+    fontFamily: "Nunito-Regular",
     marginBottom: 30
   },
   input: {
     marginVertical: 10,
     padding: 8,
     borderWidth: 0.5,
-    borderColor: "#2E2F38"
+    borderColor: "#2E2F38",
+    borderRadius: 8
   },
   redirectContainer: {
     width: "100%",
     alignItems: "center"
   },
   redirect: {
-    fontSize: 15
+    fontSize: 15,
+    fontFamily: "Nunito-Light"
   },
   buttonContainer: {
     flexDirection: "row",
@@ -170,11 +177,13 @@ const styles = StyleSheet.create({
     borderColor: "#2e2f38",
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 10
+    paddingVertical: 10,
+    borderRadius: 8
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: "300"
+    fontWeight: "300",
+    fontFamily: "Nunito-Regular"
   },
   bottomNav: {
     backgroundColor: "#6d6dff",
