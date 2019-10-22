@@ -1,9 +1,11 @@
-import React from 'react'; 
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'; 
-import { AppLoading } from 'expo';
-import * as Font from 'expo-font';
+'use strict';
 
-export default class SignUp extends React.Component {
+import React from 'react'; 
+import { Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native'; 
+import * as Font from 'expo-font';
+import ValidationComponent from 'react-native-form-validator';
+
+export default class SignUp extends ValidationComponent {
 
     state = {
         isReady: false, 
@@ -30,14 +32,37 @@ export default class SignUp extends React.Component {
 
     handleChange = (text, eventName) => {
         this.setState({...this.state, [eventName]: text})
-        console.log(this.state)
+        // console.log(this.state)
+    }
+
+    handleSubmit = () => {
+        // axios call 
+        console.log("Hiya there")
+    }
+
+    handleErrors = () => {
+        this.validate({
+            first_name: {
+                required: true, 
+                minlength: 3
+            },
+            last_name: {
+                required: true, 
+            }, 
+            email: {
+                email: true, 
+                required: true,
+            }, 
+            password: {
+                required: true,
+            }, 
+            location: {
+                required: true, 
+            }
+        })
     }
 
     render() {
-
-        if (!this.state.isReady) {
-            return <AppLoading />;
-        }
 
         return (
         <View style={su_styles.container}>
@@ -55,11 +80,15 @@ export default class SignUp extends React.Component {
                         onChangeText={(text) => this.handleChange(text, "first_name")}
                         style={su_styles.first}
                     />
+                    {this.isFieldInError('first_name') && this.getErrorsInField('first_name').map(errorMessage => <Text>{errorMessage}</Text>) }
+
                     <TextInput
                         placeholder="Last Name"
                         onChangeText={(text) => this.handleChange(text,"last_name")}
                         style={su_styles.last}
                     />
+                    {this.isFieldInError('last_name') && this.getErrorsInField('last_name').map(errorMessage => <Text>{errorMessage}</Text>) }
+
                 </View>
 
                 <TextInput
@@ -67,16 +96,22 @@ export default class SignUp extends React.Component {
                     onChangeText={(text) => this.handleChange(text, "email")}
                     style={su_styles.input}
                 />
+                {this.isFieldInError('email') && this.getErrorsInField('email').map(errorMessage => <Text>{errorMessage}</Text>) }
+
                 <TextInput
                     placeholder="Password"
                     onChangeText={(text) => this.handleChange(text, "password")}
                     style={su_styles.input}
                 />
+                {this.isFieldInError('password') && this.getErrorsInField('first_name').map(errorMessage => <Text>{errorMessage}</Text>) }
+
                 <TextInput
                     placeholder="Location"
                     onChangeText={(text) => this.handleChange(text, "location")}
                     style={su_styles.input}
                 />
+                {this.isFieldInError('location') && this.getErrorsInField('location').map(errorMessage => <Text>{errorMessage}</Text>) }
+
             </View>
 
             <View style={su_styles.buttons}>
@@ -86,11 +121,14 @@ export default class SignUp extends React.Component {
                     fontFamily='Nunito-Light'
                 />
                 <View style={su_styles.suButton}>
-                    <Button
-                        title='Sign Up'
-                        color='white'
-                        fontFamily='Nunito-Light'
-                    />
+                    {/* <TouchableHighlight onPress={this.handleErrors}> */}
+                        <Button
+                            title='Sign Up'
+                            color='white'
+                            fontFamily='Nunito-Light'
+                            onPress={this.handleSubmit}
+                        />
+                    {/* </TouchableHighlight> */}
                 </View>
             </View>
         </View>
