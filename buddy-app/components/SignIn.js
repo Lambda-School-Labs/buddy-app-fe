@@ -88,12 +88,14 @@ const SignIn = props => {
             placeholder="Email"
             onChangeText={e => changeHandler(e, "email")}
             value={info.email}
+            autoCapitalize="none"
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
             onChangeText={e => changeHandler(e, "password")}
             value={info.password}
+            autoCapitalize="none"
             secureTextEntry
           />
           <View style={styles.redirectContainer}>
