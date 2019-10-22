@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { storeToken } from "../authHelper";
+import AuthStack from "./AuthStack";
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
@@ -47,6 +48,7 @@ const SignIn = props => {
       .then(res => {
         //console.log(res.data)
         storeToken(res.data.token);
+        return props.navigation.navigate("AuthStack");
       })
       .catch(err => {
         console.log(err.message);
