@@ -12,6 +12,7 @@ import {
   AsyncStorage
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { storeToken } from "../authHelper";
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
@@ -24,26 +25,6 @@ const SignIn = props => {
     setInfo({ email: "", password: "" });
     props.navigation.navigate("Landing");
   };
-
-  const storeData = async value => {
-    try {
-      await AsyncStorage.setItem("@token", value);
-      console.log(AsyncStorage.getItem("token"));
-    } catch (e) {
-      console.log(e);
-    }
-  }; // Stores the token into AsyncStorage
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem("@token");
-      if (value !== null) {
-        // value previously stored
-        console.log(value);
-      }
-    } catch (e) {
-      // error reading value
-    }
-  }; //This is how you retrieve the token
 
   const signInHandler = () => {
     if (!info.email || !info.password) {
@@ -65,7 +46,7 @@ const SignIn = props => {
       .post("https://buddy-app-be.herokuapp.com/auth/signin", info)
       .then(res => {
         //console.log(res.data)
-        storeData(res.data.token);
+        storeToken(res.data.token);
       })
       .catch(err => {
         console.log(err.message);
