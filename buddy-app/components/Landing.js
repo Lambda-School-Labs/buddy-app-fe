@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, ImageBackground, Image } from 'react-native';
+import Buttons from '../styles/Buttons'
+import Global from '../styles/Global'
+
 
 export default function Landing(props) {
   return (
     <ImageBackground style={landing.background} source={require('../assets/landing-background.png')}>
     <View style={landing.container}>
-      <View style={landing.logoContainer}>
-        <Text style={landing.logo}>BUDDY</Text>
+      <View style={Global.logoContainer}>
+        <Text style={Global.logo}>BUDDY</Text>
       </View>
       <View>
         <Text style={landing.subtitle}>A friendly network to help you discover the world around.</Text>
@@ -14,14 +17,14 @@ export default function Landing(props) {
       <View style={landing.buttonContainer}>
           <TouchableOpacity
           onPress={() => props.navigation.navigate('SignIn')}
-          style={landing.signInButton}
+          style={[Buttons.btn,Buttons.secondary,{ width: 130 }]}
           >
-          <Text style={landing.buttonText}>Sign In</Text>
+          <Text style={[Buttons.text,Buttons.textAuth]}>Sign In</Text>
           </TouchableOpacity>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('SignUp')}
-          style={landing.signUpButton}>
-          <Text style={[landing.buttonText, landing.primaryButtonText]}>Sign Up</Text>
+          style={[Buttons.btn,Buttons.primary,{ width: 130 }]}>
+          <Text style={[Buttons.text,Buttons.textAuth,Buttons.textPrimary]}>Sign Up</Text>
           </TouchableOpacity>
       </View>
 
@@ -46,16 +49,7 @@ const landing = StyleSheet.create({
     paddingBottom: '10%',
     width: '100%',
     alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-  logoContainer: {
-    borderBottomWidth: 5,
-    borderBottomColor: 'black',
-  },
-  logo: {
-    fontSize: 35,
-    color: '#2E2F38',
-    fontFamily: 'Nunito-Black',
+    justifyContent: 'space-around',
   },
   subtitle: {
     fontSize: 20,
@@ -75,30 +69,5 @@ const landing = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center'
-  },
-  signInButton: {
-    width: 130,
-    borderWidth: 1,
-    borderColor: '#2e2f38',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 10,
-  },
-  signUpButton: {
-    width: 130,
-    borderWidth: 1,
-    backgroundColor: '#6D6DFF',
-    borderColor: '#6D6DFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 10,
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: '300',
-    fontFamily: 'Nunito-Regular',
-  },
-  primaryButtonText: {
-    color: '#FFF',
   }
 })

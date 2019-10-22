@@ -1,6 +1,10 @@
 import React from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, TextInput, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+//styles
+import Buttons from '../styles/Buttons'
+import Global from '../styles/Global'
 
 export default class SignUp extends React.Component {
   state = {
@@ -22,8 +26,8 @@ export default class SignUp extends React.Component {
         enableOnAndroid
         contentContainerStyle={{ flex: 1 }}>
         <View style={su_styles.container}>
-          <View style={su_styles.logoContainer}>
-            <Text style={su_styles.logo}>BUDDY</Text>
+          <View style={Global.logoContainer}>
+            <Text style={Global.logo}>BUDDY</Text>
           </View>
 
           <Text style={su_styles.signUp}>Sign Up</Text>
@@ -61,16 +65,17 @@ export default class SignUp extends React.Component {
             />
           </View>
 
-          <View style={su_styles.buttons}>
-            <Button
-              onPress={() => this.props.navigation.navigate('Landing')}
-              title="Cancel"
-              color="black"
-              fontFamily="Nunito-Light"
-            />
-            <View style={su_styles.suButton}>
-              <Button title="Sign Up" color="white" fontFamily="Nunito-Light" />
-            </View>
+          <View style={Buttons.container}>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Landing')}>
+              <Text style={[Buttons.text,Buttons.textAuth]}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[Buttons.btn,Buttons.secondary]}
+            >
+              <Text style={[Buttons.text,Buttons.textAuth]}>Sign Up</Text>
+            </TouchableOpacity>
+          
           </View>
         </View>
       </KeyboardAwareScrollView>
@@ -81,9 +86,10 @@ export default class SignUp extends React.Component {
 const su_styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingHorizontal: 30,
+    width: '100%',
+    marginTop: 55,
+    alignItems: 'flex-start',
   },
   form: {
     height: 300,
@@ -97,40 +103,12 @@ const su_styles = StyleSheet.create({
     height: 45,
     paddingLeft: 10,
   },
-  logoContainer: {
-    marginBottom: 65,
-    borderBottomWidth: 5,
-    borderBottomColor: 'black',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
-  },
-  logo: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    fontFamily: 'Nunito-Black',
-  },
   signUp: {
-    fontSize: 35,
-    paddingTop: 10,
-    paddingBottom: 20,
-    marginLeft: 30,
-    textAlign: 'left',
-    alignSelf: 'flex-start',
-    fontFamily: 'Nunito-Regular',
-  },
-  buttons: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: 350,
-    marginTop: 15,
-  },
-  suButton: {
-    backgroundColor: '#6D6DFF',
-    color: '#FFFFFF',
-    height: 45,
-    width: 130,
-    fontSize: 20,
+    marginTop: 60,
+    fontSize: 30,
+    color: "#2E2F38",
+    fontFamily: "Nunito-Regular",
+    marginBottom: 30,
   },
   name: {
     flexDirection: 'row',
