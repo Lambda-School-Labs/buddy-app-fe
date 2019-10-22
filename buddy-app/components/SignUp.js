@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 export default class SignUp extends React.Component {
   state = {
@@ -17,51 +19,53 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
+      <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
       <View style={su_styles.container}>
-        <View style={su_styles.logoContainer}>
-          <Text style={su_styles.logo}>BUDDY</Text>
-        </View>
+      <View style={su_styles.logoContainer}>
+        <Text style={su_styles.logo}>BUDDY</Text>
+      </View>
 
-        <Text style={su_styles.signUp}>Sign Up</Text>
+      <Text style={su_styles.signUp}>Sign Up</Text>
 
-        <View style={su_styles.form}>
-          <View style={su_styles.name}>
-            <TextInput
-              placeholder="First Name"
-              onChangeText={text => this.handleChange(text, 'first_name')}
-              style={su_styles.first}
-            />
-            <TextInput
-              placeholder="Last Name"
-              onChangeText={text => this.handleChange(text, 'last_name')}
-              style={su_styles.last}
-            />
-          </View>
-
+      <View style={su_styles.form}>
+        <View style={su_styles.name}>
           <TextInput
-            placeholder="Email"
-            onChangeText={text => this.handleChange(text, 'email')}
-            style={su_styles.input}
+            placeholder="First Name"
+            onChangeText={text => this.handleChange(text, 'first_name')}
+            style={su_styles.first}
           />
           <TextInput
-            placeholder="Password"
-            onChangeText={text => this.handleChange(text, 'password')}
-            style={su_styles.input}
-          />
-          <TextInput
-            placeholder="Location"
-            onChangeText={text => this.handleChange(text, 'location')}
-            style={su_styles.input}
+            placeholder="Last Name"
+            onChangeText={text => this.handleChange(text, 'last_name')}
+            style={su_styles.last}
           />
         </View>
 
-        <View style={su_styles.buttons}>
-          <Button title="Cancel" color="black" fontFamily="Nunito-Light" />
-          <View style={su_styles.suButton}>
-            <Button title="Sign Up" color="white" fontFamily="Nunito-Light" />
-          </View>
+        <TextInput
+          placeholder="Email"
+          onChangeText={text => this.handleChange(text, 'email')}
+          style={su_styles.input}
+        />
+        <TextInput
+          placeholder="Password"
+          onChangeText={text => this.handleChange(text, 'password')}
+          style={su_styles.input}
+        />
+        <TextInput
+          placeholder="Location"
+          onChangeText={text => this.handleChange(text, 'location')}
+          style={su_styles.input}
+        />
+      </View>
+
+      <View style={su_styles.buttons}>
+        <Button onPress={() => this.props.navigation.navigate('Landing')} title="Cancel" color="black" fontFamily="Nunito-Light" />
+        <View style={su_styles.suButton}>
+          <Button title="Sign Up" color="white" fontFamily="Nunito-Light" />
         </View>
       </View>
+    </View>
+    </KeyboardAwareScrollView>
     );
   }
 }
