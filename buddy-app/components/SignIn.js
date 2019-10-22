@@ -11,6 +11,8 @@ import {
   Alert,
   AsyncStorage,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: '', password: '' });
@@ -79,6 +81,7 @@ const SignIn = props => {
 
 
   return (
+    <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
     <View style={styles.screen}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>BUDDY</Text>
@@ -116,6 +119,7 @@ const SignIn = props => {
       </View>
       <View style={styles.bottomNav}></View>
     </View>
+    </KeyboardAwareScrollView>
   );
 };
 
