@@ -15,7 +15,6 @@ import axios from 'axios';
 //styles
 import Buttons from '../styles/Buttons';
 import Global from '../styles/Global';
-// import Axios from 'axios';
 
 export default class SignUp extends ValidationComponent {
   state = {
@@ -80,14 +79,12 @@ export default class SignUp extends ValidationComponent {
                   onChangeText={text => this.handleChange(text, 'first_name')}
                   style={[Global.input, { width: '45%' }]}
                   value={this.state.first_name}
-                  onKeyPress={() => this._onComplete()}
                 />
                 <TextInput
                   placeholder="Last Name"
                   onChangeText={text => this.handleChange(text, 'last_name')}
                   style={[Global.input, { width: '45%' }]}
                   value={this.state.last_name}
-                  onKeyPress={() => this._onComplete()}
                 />
               </View>
               {this.isFieldInError('first_name') &&
@@ -122,6 +119,7 @@ export default class SignUp extends ValidationComponent {
                 onChangeText={text => this.handleChange(text, 'password')}
                 style={Global.input}
                 autoCapitalize="none"
+                secureTextEntry
                 value={this.state.password}
               />
               {this.isFieldInError('password') &&
