@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { addToken, addUser, isLoadingPage } from "../actions/buddyActions";
-import Spinner from 'react-native-loading-spinner-overlay';
+import Spinner from "react-native-loading-spinner-overlay";
 import {
   View,
   Text,
@@ -15,12 +15,9 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { storeToken } from "../authHelper";
 
-
-
 //styles
-import Buttons from '../styles/Buttons'
-import Global from '../styles/Global'
-
+import Buttons from "../styles/Buttons";
+import Global from "../styles/Global";
 
 const SignIn = props => {
   const [info, setInfo] = useState({ email: "", password: "" });
@@ -42,11 +39,13 @@ const SignIn = props => {
     axios
       .post("https://buddy-app-be.herokuapp.com/auth/signin", info)
       .then(res => {
-         
         storeToken(res.data.token);
-        props.addUser({first_name: res.data.first_name, last_name: res.data.last_name, id: res.data.id})
+        props.addUser({
+          first_name: res.data.first_name,
+          last_name: res.data.last_name,
+          id: res.data.id
+        });
         props.navigation.navigate("AuthStack");
-     
       })
       .catch(err => {
         console.log(err.message);
@@ -56,55 +55,60 @@ const SignIn = props => {
     // Returns...?
   };
 
-  if(!props.isLoading) {
+  if (!props.isLoading && props.user.id === "") {
     return (
-    <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
-      <View style={Global.container}>
-        <View style={Global.logoContainer}>
-          <Text style={Global.logo}>BUDDY</Text>
-        </View>
+      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={Global.container}>
+          <View style={Global.logoContainer}>
+            <Text style={Global.logo}>BUDDY</Text>
+          </View>
           <Text style={Global.title}>Sign In</Text>
           <View style={Global.formContainer}>
-          <TextInput
-            style={Global.input}
-            placeholder="Email"
-            onChangeText={e => changeHandler(e, "email")}
-            value={info.email}
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={Global.input}
-            placeholder="Password"
-            onChangeText={e => changeHandler(e, "password")}
-            value={info.password}
-            autoCapitalize="none"
-            secureTextEntry
-          />
-          <View style={styles.fakeLinkContainer}>
-            <Text style={styles.fakeLink} onPress={() => {props.navigation.navigate("SignUp")}}>
-              Don't have an account yet? Sign Up
-            </Text>
+            <TextInput
+              style={Global.input}
+              placeholder="Email"
+              onChangeText={e => changeHandler(e, "email")}
+              value={info.email}
+              autoCapitalize="none"
+            />
+            <TextInput
+              style={Global.input}
+              placeholder="Password"
+              onChangeText={e => changeHandler(e, "password")}
+              value={info.password}
+              autoCapitalize="none"
+              secureTextEntry
+            />
+            <View style={styles.fakeLinkContainer}>
+              <Text
+                style={styles.fakeLink}
+                onPress={() => {
+                  props.navigation.navigate("SignUp");
+                }}
+              >
+                Don't have an account yet? Sign Up
+              </Text>
+            </View>
+            <View style={Buttons.container}>
+              <TouchableOpacity onPress={cancelSignInHandler}>
+                <Text style={[Buttons.text, Buttons.textAuth]}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={signInHandler}
+                style={[Buttons.btn, Buttons.secondary, { width: 130 }]}
+              >
+                <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={Buttons.container}>
-            <TouchableOpacity onPress={cancelSignInHandler}>
-              <Text style={[Buttons.text,Buttons.textAuth]}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={signInHandler}
-              style={[Buttons.btn,Buttons.secondary, { width: 130 }]}
-            >
-              <Text style={[Buttons.text,Buttons.textAuth]}>Sign In</Text>
-            </TouchableOpacity>
-          </View>
+          <View style={styles.bottomNav}></View>
         </View>
-        <View style={styles.bottomNav}></View>
-      </View>
-    </KeyboardAwareScrollView>
-  ); } else {
-    return <Spinner visible={props.isLoading} textContent={'Loading....'} />
+      </KeyboardAwareScrollView>
+    );
+  } else {
+    return <Spinner visible={props.isLoading} textContent={"Loading...."} />;
   }
 };
-
 const styles = StyleSheet.create({
   bottomNav: {
     backgroundColor: "#6d6dff",
@@ -115,16 +119,15 @@ const styles = StyleSheet.create({
     right: 0
   },
   fakeLink: {
-    color: '#6D6DFF',
-    textDecorationLine: 'underline',
+    color: "#6D6DFF",
+    textDecorationLine: "underline",
     fontSize: 15,
     fontFamily: "Nunito-Light"
   },
   fakeLinkContainer: {
-    alignSelf: 'center'
+    alignSelf: "center"
   }
 });
-
 const mapStateToProps = state => {
   return {
     ...state,
@@ -132,7 +135,6 @@ const mapStateToProps = state => {
     isLoading: state.isLoading
   };
 };
-
 export default connect(
   mapStateToProps,
   { addToken, addUser, isLoadingPage }
