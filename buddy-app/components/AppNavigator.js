@@ -7,6 +7,7 @@ import Landing from "./Landing";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import AuthStack from "./AuthStack";
+import InterestOnboard from "./InterestsOnboard";
 
 const AppNavigator = createStackNavigator(
   {
@@ -21,10 +22,13 @@ const AppNavigator = createStackNavigator(
     },
     AuthStack: {
       screen: AuthStack
+    },
+    InterestOnboard: {
+      screen: InterestOnboard
     }
   },
   {
-    initialRouteName: "Landing",
+    initialRouteName: "InterestOnboard",
     headerMode: "none"
   }
 );

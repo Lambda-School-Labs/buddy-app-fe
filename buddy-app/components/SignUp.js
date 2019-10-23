@@ -13,9 +13,8 @@ import axios from "axios";
 import { addUser } from "../actions/buddyActions";
 import { storeToken } from "../authHelper";
 //styles
-
-import Buttons from "../styles/Buttons";
-import Global from "../styles/Global";
+import Buttons from '../styles/Buttons';
+import Global from '../styles/Global';
 
 class SignUp extends ValidationComponent {
   state = {
