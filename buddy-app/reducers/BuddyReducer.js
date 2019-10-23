@@ -1,4 +1,9 @@
-import { ADD_TOKEN, ADD_USER, IS_LOADING } from "../actions/buddyActions";
+import {
+  ADD_TOKEN,
+  ADD_USER,
+  IS_LOADING,
+  ADD_INTEREST
+} from "../actions/buddyActions";
 const initialState = {
   token: null,
   user: {
@@ -21,7 +26,17 @@ export const buddyReducer = (state = initialState, action) => {
     case ADD_USER: {
       return {
         ...state,
-        user: action.payload
+        user: { ...action.payload, interests: [...state.user.interests] }
+      };
+    }
+
+    case ADD_INTEREST: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          interests: [...state.user.interests, action.payload]
+        }
       };
     }
 
