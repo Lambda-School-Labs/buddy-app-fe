@@ -8,7 +8,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 //styles
 import Buttons from '../styles/Buttons'
 import Global from '../styles/Global'
-// import Axios from 'axios';
+import axios from 'axios';
 
 export default class SignUp extends ValidationComponent {
 
@@ -29,14 +29,14 @@ export default class SignUp extends ValidationComponent {
         // testing "Hiya There!"
         console.log("Hiya There!")
 
-        // axios
-        //     .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
-        //     .then(response => {
-        //         console.log("sign up response", response)
-        //     })
-        //     .catch(error => {
-        //         console.log("sign up error", error)
-        //     })
+        axios
+            .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
+            .then(response => {
+                console.log("sign up response", response)
+            })
+            .catch(error => {
+                console.log("sign up error", error)
+            })
     }
 
     _onComplete = () => {
