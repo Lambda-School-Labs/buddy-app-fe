@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { addToken, addUser, isLoadingPage } from '../actions/buddyActions';
-import Spinner from 'react-native-loading-spinner-overlay';
+import React, { useState } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { addToken, addUser, isLoadingPage } from "../actions/buddyActions";
+import Spinner from "react-native-loading-spinner-overlay";
 import {
   View,
   Text,
@@ -10,20 +10,20 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
-} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { storeToken } from '../authHelper';
-import ValidationComponent from 'react-native-form-validator';
+  AsyncStorage
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { storeToken } from "../authHelper";
+import ValidationComponent from "react-native-form-validator";
 
 //styles
-import Buttons from '../styles/Buttons';
-import Global from '../styles/Global';
+import Buttons from "../styles/Buttons";
+import Global from "../styles/Global";
 
 class SignIn extends ValidationComponent {
   state = {
-    email: '',
-    password: '',
+    email: "",
+    password: ""
   };
 
   changeHandler = (value, name) => {
@@ -31,27 +31,27 @@ class SignIn extends ValidationComponent {
   };
 
   cancelSignInHandler = () => {
-    this.props.navigation.navigate('Landing');
+    this.props.navigation.navigate("Landing");
   };
 
   signInHandler = () => {
     this.props.isLoadingPage(true);
 
     axios
-      .post('https://buddy-app-be.herokuapp.com/auth/signin', this.state)
+      .post("https://buddy-app-be.herokuapp.com/auth/signin", this.state)
       .then(res => {
         storeToken(res.data.token);
         this.props.addUser({
           first_name: res.data.first_name,
           last_name: res.data.last_name,
-          id: res.data.id,
+          id: res.data.id
         });
-        this.props.navigation.navigate('AuthStack');
+        this.props.navigation.navigate("AuthStack");
       })
       .catch(err => {
         this.props.isLoadingPage(false);
         this.onComplete();
-        Alert.alert('Warning', 'Invalid credentials.', [{ text: 'OK' }]);
+        Alert.alert("Warning", "Invalid credentials.", [{ text: "OK" }]);
       });
   };
 
@@ -59,16 +59,16 @@ class SignIn extends ValidationComponent {
     this.validate({
       email: {
         email: true,
-        required: true,
+        required: true
       },
       password: {
-        required: true,
-      },
+        required: true
+      }
     });
   };
 
   render() {
-    if (!this.props.isLoading && this.props.user.id === '') {
+    if (!this.props.isLoading && this.props.user.id === "") {
       return (
         <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
           <View style={Global.container}>
@@ -80,12 +80,12 @@ class SignIn extends ValidationComponent {
               <TextInput
                 style={Global.input}
                 placeholder="Email"
-                onChangeText={e => this.changeHandler(e, 'email')}
+                onChangeText={e => this.changeHandler(e, "email")}
                 value={this.state.email}
                 autoCapitalize="none"
               />
-              {this.isFieldInError('email') &&
-                this.getErrorsInField('email').map(errorMessage => (
+              {this.isFieldInError("email") &&
+                this.getErrorsInField("email").map(errorMessage => (
                   <Text style={styles.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
@@ -94,13 +94,13 @@ class SignIn extends ValidationComponent {
               <TextInput
                 style={Global.input}
                 placeholder="Password"
-                onChangeText={e => this.changeHandler(e, 'password')}
+                onChangeText={e => this.changeHandler(e, "password")}
                 value={this.state.password}
                 autoCapitalize="none"
                 secureTextEntry
               />
-              {this.isFieldInError('password') &&
-                this.getErrorsInField('password').map(errorMessage => (
+              {this.isFieldInError("password") &&
+                this.getErrorsInField("password").map(errorMessage => (
                   <Text style={styles.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
@@ -110,8 +110,9 @@ class SignIn extends ValidationComponent {
                 <Text
                   style={styles.fakeLink}
                   onPress={() => {
-                    this.props.navigation.navigate('SignUp');
-                  }}>
+                    this.props.navigation.navigate("SignUp");
+                  }}
+                >
                   Don't have an account yet? Sign Up
                 </Text>
               </View>
@@ -121,7 +122,8 @@ class SignIn extends ValidationComponent {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={this.signInHandler}
-                  style={[Buttons.btn, Buttons.secondary, { width: 130 }]}>
+                  style={[Buttons.btn, Buttons.secondary, { width: 130 }]}
+                >
                   <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
                 </TouchableOpacity>
               </View>
@@ -132,7 +134,7 @@ class SignIn extends ValidationComponent {
       );
     } else {
       return (
-        <Spinner visible={this.props.isLoading} textContent={'Loading....'} />
+        <Spinner visible={this.props.isLoading} textContent={"Loading...."} />
       );
     }
   }
@@ -140,36 +142,36 @@ class SignIn extends ValidationComponent {
 
 const styles = StyleSheet.create({
   bottomNav: {
-    backgroundColor: '#6d6dff',
+    backgroundColor: "#6d6dff",
     height: 96,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
-    right: 0,
+    right: 0
   },
   fakeLink: {
-    color: '#6D6DFF',
-    textDecorationLine: 'underline',
+    color: "#6D6DFF",
+    textDecorationLine: "underline",
     fontSize: 15,
-    fontFamily: 'Nunito-Light',
+    fontFamily: "Nunito-Light"
   },
   fakeLinkContainer: {
-    alignSelf: 'center',
+    alignSelf: "center"
   },
   error: {
-    color: '#a80000',
-  },
+    color: "#a80000"
+  }
 });
 
 const mapStateToProps = state => {
   return {
     ...state,
     token: state.token,
-    isLoading: state.isLoading,
+    isLoading: state.isLoading
   };
 };
 
 export default connect(
   mapStateToProps,
-  { addToken, addUser, isLoadingPage },
+  { addToken, addUser, isLoadingPage }
 )(SignIn);

@@ -1,5 +1,3 @@
-"use strict";
-
 import React from "react";
 import ValidationComponent from "react-native-form-validator";
 import {
