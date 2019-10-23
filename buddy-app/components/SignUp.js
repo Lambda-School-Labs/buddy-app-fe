@@ -15,7 +15,6 @@ import axios from "axios";
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
-// import Axios from 'axios';
 
 export default class SignUp extends ValidationComponent {
   state = {
