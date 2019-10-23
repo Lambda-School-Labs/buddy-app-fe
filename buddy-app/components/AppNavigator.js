@@ -26,11 +26,11 @@ const AppNavigator = createStackNavigator(
     InterestOnboard: {
       screen: InterestOnboard
     }
-  },
-  {
-    initialRouteName: "InterestOnboard",
-    headerMode: "none"
   }
+  // {
+  //   initialRouteName: "InterestOnboard",
+  //   headerMode: "none"
+  // }
 );
 
 export default createAppContainer(AppNavigator);
