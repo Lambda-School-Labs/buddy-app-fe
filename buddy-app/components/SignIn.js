@@ -109,6 +109,7 @@ const SignIn = props => {
     return <Spinner visible={props.isLoading} textContent={"Loading...."} />;
   }
 };
+
 const styles = StyleSheet.create({
   bottomNav: {
     backgroundColor: "#6d6dff",
