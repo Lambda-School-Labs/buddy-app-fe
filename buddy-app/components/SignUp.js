@@ -13,8 +13,9 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import axios from 'axios';
 
 //styles
-import Buttons from '../styles/Buttons';
-import Global from '../styles/Global';
+
+import Buttons from "../styles/Buttons";
+import Global from "../styles/Global";
 
 export default class SignUp extends ValidationComponent {
   state = {
