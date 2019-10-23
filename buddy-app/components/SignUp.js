@@ -15,7 +15,6 @@ import axios from "axios";
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
-// import Axios from 'axios';
 
 export default class SignUp extends ValidationComponent {
   state = {
@@ -28,22 +27,11 @@ export default class SignUp extends ValidationComponent {
 
   handleChange = (text, eventName) => {
     this.setState({ ...this.state, [eventName]: text });
-    // console.log(this.state)
   };
 
   handleSubmit = () => {
-    // testing "Hiya There!"
-    console.log("Hiya There!");
-    console.log(this.state);
-    const newUser = {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      email: this.state.email,
-      location: this.state.location,
-      password: this.state.password
-    };
     axios
-      .post("https://buddy-app-be.herokuapp.com/auth/signup", newUser)
+      .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
       .then(response => {
         console.log("sign up response", response);
       })
@@ -52,7 +40,7 @@ export default class SignUp extends ValidationComponent {
       });
   };
 
-  _onComplete = () => {
+  onComplete = () => {
     this.validate({
       first_name: {
         required: true
@@ -71,6 +59,7 @@ export default class SignUp extends ValidationComponent {
         required: true
       }
     });
+
   };
 
   render() {
@@ -93,14 +82,12 @@ export default class SignUp extends ValidationComponent {
                 onChangeText={text => this.handleChange(text, "first_name")}
                 style={[Global.input, { width: "45%" }]}
                 value={this.state.first_name}
-                onKeyPress={() => this._onComplete()}
               />
               <TextInput
                 placeholder="Last Name"
                 onChangeText={text => this.handleChange(text, "last_name")}
                 style={[Global.input, { width: "45%" }]}
                 value={this.state.last_name}
-                onKeyPress={() => this._onComplete()}
               />
             </View>
             {this.isFieldInError("first_name") &&
@@ -122,7 +109,6 @@ export default class SignUp extends ValidationComponent {
               style={Global.input}
               autoCapitalize="none"
               value={this.state.email}
-              onKeyPress={() => this._onComplete()}
             />
             {this.isFieldInError("email") &&
               this.getErrorsInField("email").map(errorMessage => (
@@ -137,7 +123,6 @@ export default class SignUp extends ValidationComponent {
               style={Global.input}
               autoCapitalize="none"
               value={this.state.password}
-              onKeyPress={() => this._onComplete()}
             />
             {this.isFieldInError("password") &&
               this.getErrorsInField("password").map(errorMessage => (
@@ -151,7 +136,6 @@ export default class SignUp extends ValidationComponent {
               onChangeText={text => this.handleChange(text, "location")}
               style={Global.input}
               value={this.state.location}
-              onKeyPress={() => this._onComplete()}
             />
             {this.isFieldInError("location") &&
               this.getErrorsInField("location").map(errorMessage => (
@@ -169,7 +153,13 @@ export default class SignUp extends ValidationComponent {
             </TouchableOpacity>
             <TouchableOpacity
               style={[Buttons.btn, Buttons.primary, { width: 130 }]}
-              onPress={() => this.handleSubmit()}
+              onPress={() => {
+                // run validation tests 
+                this.onComplete()
+
+                // if the form is valid, make the post request. else, errors will display 
+                this.isFormValid() ? this.handleSubmit() : console.log("Form has errors")
+              }}
             >
               <Text
                 style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}
@@ -199,6 +189,6 @@ const su_styles = StyleSheet.create({
     right: 0
   },
   error: {
-    color: "red"
+    color: "#a80000"
   }
 });
