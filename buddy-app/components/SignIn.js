@@ -55,6 +55,7 @@ const SignIn = props => {
     // Returns...?
   };
 
+
   if (!props.isLoading && props.user.id === "") {
     return (
       <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>

@@ -72,7 +72,6 @@ export default class SignUp extends ValidationComponent {
             </View>
 
             <Text style={Global.title}>Sign Up</Text>
-
             <View style={Global.formContainer}>
               <View style={su_styles.name}>
                 <TextInput
