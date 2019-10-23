@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { connect } from "react-redux";
+
+//icons
 import bell from "../assets/icons/bell.png";
 import home from "../assets/icons/home.png";
-import inbox from "../assets/icons/inbox.png";
-import Profile from "../assets/icons/Profile.png";
+import profile from "../assets/icons/profile.png";
+
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
@@ -17,9 +19,8 @@ const Dashboard = props => {
       </View>
       <View style={styles.bottomNav}>
         <Image source={home} />
-        <Image source={inbox} />
         <Image source={bell} />
-        <Image source={Profile} />
+        <Image source={profile} />
       </View>
     </View>
   );
