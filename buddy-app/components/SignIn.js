@@ -55,7 +55,8 @@ const SignIn = props => {
     // Returns...?
   };
 
-  if (!props.isLoading) {
+
+  if (!props.isLoading && props.user.id === "") {
     return (
       <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={Global.container}>
@@ -109,7 +110,6 @@ const SignIn = props => {
     return <Spinner visible={props.isLoading} textContent={"Loading...."} />;
   }
 };
-
 const styles = StyleSheet.create({
   bottomNav: {
     backgroundColor: "#6d6dff",
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   }
 });
-
 const mapStateToProps = state => {
   return {
     ...state,
@@ -137,7 +136,6 @@ const mapStateToProps = state => {
     isLoading: state.isLoading
   };
 };
-
 export default connect(
   mapStateToProps,
   { addToken, addUser, isLoadingPage }
