@@ -1,28 +1,30 @@
-'use strict';
+"use strict";
 
-import React from 'react';
-import ValidationComponent from 'react-native-form-validator';
+import React from "react";
+import ValidationComponent from "react-native-form-validator";
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
-} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import axios from 'axios';
-
+  View
+} from "react-native";
+import { connect } from "react-redux";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import axios from "axios";
+import { addUser } from "../actions/buddyActions";
+import { storeToken } from "../authHelper";
 //styles
 import Buttons from '../styles/Buttons';
 import Global from '../styles/Global';
 
-export default class SignUp extends ValidationComponent {
+class SignUp extends ValidationComponent {
   state = {
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    location: '',
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    location: ""
   };
 
   handleChange = (text, eventName) => {
@@ -31,33 +33,41 @@ export default class SignUp extends ValidationComponent {
 
   handleSubmit = () => {
     axios
-      .post('https://buddy-app-be.herokuapp.com/auth/signup', this.state)
+      .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
       .then(response => {
-        console.log('sign up response', response);
+        console.log("sign up response", response.data);
+        const storedUser = {
+          first_name: response.data.newUser.first_name,
+          last_name: response.data.newUser.last_name,
+          id: response.data.newUser.id
+        };
+        this.props.addUser(storedUser);
+        storeToken(response.data.token);
+        console.log(this.props.user, "user");
       })
       .catch(error => {
-        console.log('sign up error', error);
+        console.log("sign up error", error);
       });
   };
 
   onComplete = () => {
     this.validate({
       first_name: {
-        required: true,
+        required: true
       },
       last_name: {
-        required: true,
+        required: true
       },
       email: {
         email: true,
-        required: true,
+        required: true
       },
       password: {
-        required: true,
+        required: true
       },
       location: {
-        required: true,
-      },
+        required: true
+      }
     });
   };
 
@@ -71,30 +81,29 @@ export default class SignUp extends ValidationComponent {
             </View>
 
             <Text style={Global.title}>Sign Up</Text>
-
             <View style={Global.formContainer}>
               <View style={su_styles.name}>
                 <TextInput
                   placeholder="First Name"
-                  onChangeText={text => this.handleChange(text, 'first_name')}
-                  style={[Global.input, { width: '45%' }]}
+                  onChangeText={text => this.handleChange(text, "first_name")}
+                  style={[Global.input, { width: "45%" }]}
                   value={this.state.first_name}
                 />
                 <TextInput
                   placeholder="Last Name"
-                  onChangeText={text => this.handleChange(text, 'last_name')}
-                  style={[Global.input, { width: '45%' }]}
+                  onChangeText={text => this.handleChange(text, "last_name")}
+                  style={[Global.input, { width: "45%" }]}
                   value={this.state.last_name}
                 />
               </View>
-              {this.isFieldInError('first_name') &&
-                this.getErrorsInField('first_name').map(errorMessage => (
+              {this.isFieldInError("first_name") &&
+                this.getErrorsInField("first_name").map(errorMessage => (
                   <Text style={su_styles.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
-              {this.isFieldInError('last_name') &&
-                this.getErrorsInField('last_name').map(errorMessage => (
+              {this.isFieldInError("last_name") &&
+                this.getErrorsInField("last_name").map(errorMessage => (
                   <Text style={su_styles.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
@@ -102,13 +111,13 @@ export default class SignUp extends ValidationComponent {
 
               <TextInput
                 placeholder="Email"
-                onChangeText={text => this.handleChange(text, 'email')}
+                onChangeText={text => this.handleChange(text, "email")}
                 style={Global.input}
                 autoCapitalize="none"
                 value={this.state.email}
               />
-              {this.isFieldInError('email') &&
-                this.getErrorsInField('email').map(errorMessage => (
+              {this.isFieldInError("email") &&
+                this.getErrorsInField("email").map(errorMessage => (
                   <Text style={su_styles.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
@@ -116,14 +125,14 @@ export default class SignUp extends ValidationComponent {
 
               <TextInput
                 placeholder="Password"
-                onChangeText={text => this.handleChange(text, 'password')}
+                onChangeText={text => this.handleChange(text, "password")}
                 style={Global.input}
                 autoCapitalize="none"
                 secureTextEntry
                 value={this.state.password}
               />
-              {this.isFieldInError('password') &&
-                this.getErrorsInField('password').map(errorMessage => (
+              {this.isFieldInError("password") &&
+                this.getErrorsInField("password").map(errorMessage => (
                   <Text style={su_styles.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
@@ -131,12 +140,12 @@ export default class SignUp extends ValidationComponent {
 
               <TextInput
                 placeholder="Location"
-                onChangeText={text => this.handleChange(text, 'location')}
+                onChangeText={text => this.handleChange(text, "location")}
                 style={Global.input}
                 value={this.state.location}
               />
-              {this.isFieldInError('location') &&
-                this.getErrorsInField('location').map(errorMessage => (
+              {this.isFieldInError("location") &&
+                this.getErrorsInField("location").map(errorMessage => (
                   <Text style={su_styles.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
@@ -145,7 +154,8 @@ export default class SignUp extends ValidationComponent {
 
             <View style={Buttons.container}>
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Landing')}>
+                onPress={() => this.props.navigation.navigate("Landing")}
+              >
                 <Text style={[Buttons.text, Buttons.textAuth]}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -157,10 +167,12 @@ export default class SignUp extends ValidationComponent {
                   // if the form is valid, make the post request. else, errors will display
                   this.isFormValid()
                     ? this.handleSubmit()
-                    : console.log('Form has errors');
-                }}>
+                    : console.log("Form has errors");
+                }}
+              >
                 <Text
-                  style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}>
+                  style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}
+                >
                   Sign Up
                 </Text>
               </TouchableOpacity>
@@ -175,18 +187,29 @@ export default class SignUp extends ValidationComponent {
 
 const su_styles = StyleSheet.create({
   name: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   bottomNav: {
-    backgroundColor: '#6d6dff',
+    backgroundColor: "#6d6dff",
     height: 96,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
-    right: 0,
+    right: 0
   },
   error: {
-    color: '#a80000',
-  },
+    color: "#a80000"
+  }
 });
+
+const mapStateToProps = state => {
+  return {
+    ...state,
+    user: state.user
+  };
+};
+export default connect(
+  mapStateToProps,
+  { addUser }
+)(SignUp);
