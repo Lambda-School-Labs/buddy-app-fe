@@ -11,6 +11,7 @@ import axios from "axios";
 
 const InterestsOnboard = () => {
   const [interests, setInterests] = useState([]);
+  const [userInterest, setUserInterest] = useState([]);
 
   useEffect(() => {
     axios
@@ -23,6 +24,20 @@ const InterestsOnboard = () => {
       });
   }, []);
 
+  const toggleInterest = interest => {
+    if (userInterest.includes(interest)) {
+      setUserInterest(
+        userInterest.filter(item => {
+          return item != interest;
+        })
+      );
+      //console.log("filter", userInterest);
+    } else {
+      setUserInterest([...userInterest, interest]);
+      //console.log("adding", userInterest);
+    }
+    console.log(userInterest);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Tell us more about yourself!</Text>
@@ -30,13 +45,39 @@ const InterestsOnboard = () => {
       <Text style={styles.titleText}>
         What are some of your interests or activites you like to do?
       </Text>
-      <FlatList
+      {/* <FlatList
         keyExtractor={interests => interests.name}
         data={interests}
+        extraData={this.state}
         renderItem={({ item }) => {
-          return <Text style={styles.textStyle}>{item.name}</Text>;
+          return (
+            <Text
+              style={styles.textStyle}
+              onPress={item => toggleInterest(item.name)}
+            >
+              {item.name}
+            </Text>
+          );
         }}
-      />
+      /> */}
+      {interests.map(item => (
+        <TouchableOpacity
+          key={item.id}
+          onPress={() => {
+            toggleInterest(item.id);
+          }}
+        >
+          <Text key={item.id} style={styles.textStyle}>
+            {item.name}
+          </Text>
+        </TouchableOpacity>
+      ))}
+      {/* test toggle */}
+      <Text style={styles.normalText}>
+        Your selected interests:
+        <Text style={styles.textStyle}>{userInterest}</Text>
+      </Text>
+
       <View style={styles.buttonView}>
         <TouchableOpacity>
           <Text style={styles.cancelButton}>Cancel</Text>
@@ -66,7 +107,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 20
   },
-  buttonView: {},
+  buttonView: {
+    flexDirection: "row",
+    alignContent: "center"
+  },
   cancelButton: {
     fontSize: 18,
     width: 130,
