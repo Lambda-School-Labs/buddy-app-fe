@@ -106,37 +106,6 @@ const SignIn = props => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    paddingHorizontal: 30,
-    width: "100%",
-    marginTop: 55,
-    alignItems: "flex-start"
-  },
-  signInContainer: {
-    marginTop: 60
-  },
-  pageTitle: {
-    fontSize: 30,
-    color: "#2E2F38",
-    fontFamily: "Nunito-Regular",
-    marginBottom: 30
-  },
-  input: {
-    marginVertical: 10,
-    width: 350,
-    padding: 8,
-    borderWidth: 0.5,
-    borderColor: "#2E2F38"
-  },
-  redirectContainer: {
-    width: "100%",
-    alignItems: "center"
-  },
-  redirect: {
-    fontSize: 15,
-    fontFamily: "Nunito-Light"
-  },
   bottomNav: {
     backgroundColor: "#6d6dff",
     height: 96,
@@ -144,18 +113,24 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0
+  },
+  fakeLink: {
+    color: "#6D6DFF",
+    textDecorationLine: "underline",
+    fontSize: 15,
+    fontFamily: "Nunito-Light"
+  },
+  fakeLinkContainer: {
+    alignSelf: "center"
   }
 });
-
 const mapStateToProps = state => {
   return {
     ...state,
     token: state.token,
-    isLoading: state.isLoading,
-    user: state.user
+    isLoading: state.isLoading
   };
 };
-
 export default connect(
   mapStateToProps,
   { addToken, addUser, isLoadingPage }

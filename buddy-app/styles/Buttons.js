@@ -5,8 +5,9 @@ const Buttons = StyleSheet.create({
     btn: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 10,
         paddingHorizontal: 30,
+        width: 130,
+        height: 40
     },
     text: {
         fontSize: 15,
