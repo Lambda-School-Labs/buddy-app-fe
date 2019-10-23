@@ -75,10 +75,7 @@ export default class SignUp extends ValidationComponent {
 
   render() {
     return (
-      <KeyboardAwareScrollView
-        enableOnAndroid
-        contentContainerStyle={{ flex: 1 }}
-      >
+      <KeyboardAwareScrollView encontentContainerStyle={{ flex: 1 }}>
         <View style={Global.container}>
           <View style={Global.logoContainer}>
             <Text style={Global.logo}>BUDDY</Text>
@@ -178,8 +175,8 @@ export default class SignUp extends ValidationComponent {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={su_styles.bottomNav}></View>
         </View>
+        <View style={su_styles.bottomNav}></View>
       </KeyboardAwareScrollView>
     );
   }
@@ -193,10 +190,8 @@ const su_styles = StyleSheet.create({
   bottomNav: {
     backgroundColor: "#6d6dff",
     height: 96,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0
+    width: "100%",
+    bottom: 0
   },
   error: {
     color: "red"
