@@ -10,6 +10,7 @@ import {
   View
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import axios from "axios";
 
 //styles
 import Buttons from "../styles/Buttons";
@@ -33,15 +34,22 @@ export default class SignUp extends ValidationComponent {
   handleSubmit = () => {
     // testing "Hiya There!"
     console.log("Hiya There!");
-
-    // axios
-    //     .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
-    //     .then(response => {
-    //         console.log("sign up response", response)
-    //     })
-    //     .catch(error => {
-    //         console.log("sign up error", error)
-    //     })
+    console.log(this.state);
+    const newUser = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      location: this.state.location,
+      password: this.state.password
+    };
+    axios
+      .post("https://buddy-app-be.herokuapp.com/auth/signup", newUser)
+      .then(response => {
+        console.log("sign up response", response);
+      })
+      .catch(error => {
+        console.log("sign up error", error);
+      });
   };
 
   _onComplete = () => {
@@ -161,7 +169,7 @@ export default class SignUp extends ValidationComponent {
             </TouchableOpacity>
             <TouchableOpacity
               style={[Buttons.btn, Buttons.primary, { width: 130 }]}
-              onPress={this.handleSubmit}
+              onPress={() => this.handleSubmit()}
             >
               <Text
                 style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}
