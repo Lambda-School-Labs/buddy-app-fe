@@ -7,10 +7,11 @@ import {
   Button,
   TouchableOpacity
 } from "react-native";
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+
 import Global from "../styles/Global";
 import Buttons from "../styles/Buttons";
-import { setRecoveryProps } from "expo/build/ErrorRecovery/ErrorRecovery";
+
 const InterestsOnboard = props => {
   const [interests, setInterests] = useState([
     { name: "Sports" },
@@ -24,16 +25,17 @@ const InterestsOnboard = props => {
   ]);
   const [userInterest, setUserInterest] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://buddy-app-be.herokuapp.com/interests")
-  //     .then(res => {
-  //       setInterests(res.data);
-  //     })
-  //     .catch(err => {
-  //       console.log("Error Message", error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://buddy-app-be.herokuapp.com/interests")
+      .then(res => {
+        setInterests(res.data);
+      })
+      .catch(err => {
+        console.log("Error Message", err.response);
+        props.navigation.navigate("SignIn");
+      });
+  }, []);
 
   const toggleInterest = interest => {
     if (userInterest.includes(interest)) {
@@ -66,7 +68,7 @@ const InterestsOnboard = props => {
       <Text style={styles.headerText}>Tell us more about {"\n"} yourself!</Text>
 
       <Text style={styles.titleText}>
-        What are some of your interests or activites you like to do?
+        What are some of your interests or activities you like to do?
       </Text>
 
       <View style={styles.interests}>

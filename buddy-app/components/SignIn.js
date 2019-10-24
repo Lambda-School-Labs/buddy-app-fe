@@ -13,7 +13,7 @@ import {
   AsyncStorage
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { storeToken } from "../authHelper";
+import { storeToken } from "../utils/authHelper";
 import ValidationComponent from "react-native-form-validator";
 
 //styles
