@@ -3,38 +3,30 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
-  Button,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from "react-native";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { connect } from "react-redux";
 import Global from "../styles/Global";
 import Buttons from "../styles/Buttons";
 
 const InterestsOnboard = props => {
-  const [interests, setInterests] = useState([
-    { name: "Sports" },
-    { name: "Film/TV" },
-    { name: "Outdoors" },
-    { name: "Eating" },
-    { name: "SportsSports" },
-    { name: "Film/TVFilm/TV" },
-    { name: "OutdoorsOutdoors" },
-    { name: "EatingEating" }
-  ]);
+  const [interests, setInterests] = useState([]);
   const [userInterest, setUserInterest] = useState([]);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get("https://buddy-app-be.herokuapp.com/interests")
-      .then(res => {
-        setInterests(res.data);
-      })
-      .catch(err => {
-        console.log("Error Message", err.response);
-        props.navigation.navigate("SignIn");
-      });
+    AsyncStorage.getItem("@token").then(token => {
+      axiosWithAuth(token)
+        .get("https://buddy-app-be.herokuapp.com/interests")
+        .then(res => {
+          setInterests(res.data);
+        })
+        .catch(err => {
+          console.log("Error Message", err.response);
+          props.navigation.navigate("SignIn");
+        });
+    });
   }, []);
 
   const toggleInterest = interest => {
@@ -58,8 +50,25 @@ const InterestsOnboard = props => {
 
   const handleFinish = () => {
     // sending interests!
-    props.navigation.navigate("Dashboard");
-  }
+    AsyncStorage.getItem("@token")
+      .then(token => {
+        userInterest.map(interest => {
+          axiosWithAuth(token)
+            .post("https://buddy-app-be.herokuapp.com/interests/user", {
+              user_id: props.user.id,
+              interests_id: interest
+            })
+            .then(res => {
+              console.log(res.data);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        });
+        props.navigation.navigate("AuthStack");
+      })
+      .catch();
+  };
 
   return (
     <View style={Global.container}>
@@ -122,7 +131,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 25,
-    fontWeight: 450,
+    fontWeight: "400",
     width: 300
   },
   normalText: {
@@ -162,4 +171,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default InterestsOnboard;
+const mapStateToProps = state => {
+  return {
+    ...state,
+    user: state.user
+  };
+};
+export default connect(
+  mapStateToProps,
+  {}
+)(InterestsOnboard);

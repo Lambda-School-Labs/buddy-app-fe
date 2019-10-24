@@ -17,6 +17,11 @@ const Dashboard = props => {
       <View style={Global.logoContainer}>
         <Text style={Global.logo}>BUDDY</Text>
       </View>
+      <View>
+        <Text>
+          Welcome {props.user.first_name} {props.user.last_name}
+        </Text>
+      </View>
       <View style={styles.bottomNav}>
         <Image source={home} />
         <Image source={bell} />

@@ -1,11 +1,12 @@
 import axios from "axios";
-import { getToken } from "./authHelper";
 
-export const axiosWithAuth = () => {
-  let token = getToken();
+const axiosWithAuth = token => {
   return axios.create({
     headers: {
-      Authorization: token
+      "Content-Type": "application/json",
+      authorization: token
     }
   });
 };
+
+export default axiosWithAuth;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -7,10 +7,14 @@ import {
   ImageBackground,
   Image
 } from "react-native";
+import { onSignOut } from "../utils/authHelper";
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 
 export default function Landing(props) {
+  useEffect(() => {
+    onSignOut();
+  }, []);
   return (
     <ImageBackground
       style={landing.background}
