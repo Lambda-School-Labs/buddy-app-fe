@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import axios from "axios";
 import { addUser } from "../actions/buddyActions";
-import { storeToken } from "../authHelper";
+import { storeToken } from "../utils/authHelper";
 //styles
 import Buttons from '../styles/Buttons';
 import Global from '../styles/Global';

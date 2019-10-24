@@ -13,7 +13,7 @@ export const getToken = async () => {
   try {
     const value = await AsyncStorage.getItem("@token");
     if (value !== null) {
-      console.log(value);
+      return value
     }
   } catch (e) {}
 }; //This is how you retrieve the token
