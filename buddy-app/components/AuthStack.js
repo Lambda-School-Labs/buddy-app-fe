@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import SignIn from "./SignIn";
-import { isSignedIn } from "../utils/authHelper";
+import { isSignedIn } from "../utils/authHelper.js";
 import { connect } from "react-redux";
 import { isLoadingPage } from "../actions/buddyActions";
 const AuthStack = props => {
@@ -14,7 +14,7 @@ const AuthStack = props => {
       .then(res => {
         setAuthorized(res);
         setCheckAuthorized(true);
-        console.log(res);
+        //console.log(res);
       })
       .catch(err => {
         console.log(err);

@@ -5,16 +5,17 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  AsyncStorage
 } from "react-native";
 import { connect } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import axios from "axios";
 import { addUser } from "../actions/buddyActions";
-import { storeToken } from "../utils/authHelper";
+import { storeToken, getToken } from "../utils/authHelper";
 //styles
-import Buttons from '../styles/Buttons';
-import Global from '../styles/Global';
+import Buttons from "../styles/Buttons";
+import Global from "../styles/Global";
 
 class SignUp extends ValidationComponent {
   state = {
@@ -33,7 +34,7 @@ class SignUp extends ValidationComponent {
     axios
       .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
       .then(response => {
-        console.log("sign up response", response.data);
+        //console.log("sign up response", response.data);
         const storedUser = {
           first_name: response.data.newUser.first_name,
           last_name: response.data.newUser.last_name,
@@ -41,8 +42,7 @@ class SignUp extends ValidationComponent {
         };
         this.props.addUser(storedUser);
         storeToken(response.data.token);
-        console.log(this.props.user, "user");
-        this.props.navigation.navigate("InterestsOnboard")
+        this.props.navigation.navigate("InterestOnboard");
       })
       .catch(error => {
         console.log("sign up error", error);
