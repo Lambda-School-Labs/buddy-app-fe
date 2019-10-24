@@ -43,7 +43,7 @@ const InterestsOnboard = (props) => {
     <View style={styles.container}>
       <Text style={styles.headerText}>Tell us more about yourself!</Text>
 
-      <Text style={styles.titleText}>i
+      <Text style={styles.titleText}>
         What are some of your interests or activities you like to do?
       </Text>
       {/* <FlatList
