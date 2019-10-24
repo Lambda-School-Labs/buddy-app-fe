@@ -28,7 +28,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    // initialRouteName: "InterestOnboard",
+    initialRouteName: "InterestOnboard",
     headerMode: "none"
   }
 );
