@@ -12,19 +12,28 @@ import Global from "../styles/Global";
 import Buttons from "../styles/Buttons";
 import { setRecoveryProps } from "expo/build/ErrorRecovery/ErrorRecovery";
 const InterestsOnboard = props => {
-  const [interests, setInterests] = useState([]);
+  const [interests, setInterests] = useState([
+    { name: "Sports" },
+    { name: "Film/TV" },
+    { name: "Outdoors" },
+    { name: "Eating" },
+    { name: "SportsSports" },
+    { name: "Film/TVFilm/TV" },
+    { name: "OutdoorsOutdoors" },
+    { name: "EatingEating" }
+  ]);
   const [userInterest, setUserInterest] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("https://buddy-app-be.herokuapp.com/interests")
-      .then(res => {
-        setInterests(res.data);
-      })
-      .catch(err => {
-        console.log("Error Message", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://buddy-app-be.herokuapp.com/interests")
+  //     .then(res => {
+  //       setInterests(res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log("Error Message", error);
+  //     });
+  // }, []);
 
   const toggleInterest = interest => {
     if (userInterest.includes(interest)) {
@@ -54,7 +63,7 @@ const InterestsOnboard = props => {
           <Text style={Buttons.backButton}>&larr; Back</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.headerText}>Tell us more about yourself!</Text>
+      <Text style={styles.headerText}>Tell us more about {"\n"} yourself!</Text>
 
       <Text style={styles.titleText}>
         What are some of your interests or activites you like to do?
@@ -74,10 +83,10 @@ const InterestsOnboard = props => {
         ))}
       </View>
       {/* test toggle */}
-      <Text style={styles.normalText}>
+      {/* <Text style={styles.normalText}>
         Your selected interests:
         <Text style={styles.textStyle}>{userInterest}</Text>
-      </Text>
+      </Text> */}
 
       <View style={Buttons.container}>
         <TouchableOpacity
@@ -104,7 +113,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 25,
-    fontWeight: "bold",
+    fontWeight: 450,
     width: 300
   },
   normalText: {
@@ -131,7 +140,7 @@ const styles = StyleSheet.create({
   },
   interestBtn: {
     marginVertical: 10,
-    marginHorizontal: 10,
+    marginRight: 10,
     borderColor: "black",
     borderWidth: 1,
     padding: 10,
@@ -139,6 +148,7 @@ const styles = StyleSheet.create({
   },
   interests: {
     flexDirection: "row",
+    width: "100%",
     flexWrap: "wrap"
   }
 });
