@@ -7,20 +7,21 @@ import {
   Button,
   TouchableOpacity
 } from "react-native";
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const InterestsOnboard = () => {
+const InterestsOnboard = (props) => {
   const [interests, setInterests] = useState([]);
   const [userInterest, setUserInterest] = useState([]);
 
   useEffect(() => {
-    axios
+    axiosWithAuth()
       .get("https://buddy-app-be.herokuapp.com/interests")
       .then(res => {
         setInterests(res.data);
       })
       .catch(err => {
-        console.log("Error Message", error);
+        console.log("Error Message", err.response);
+        props.navigation.navigate("SignIn")
       });
   }, []);
 
@@ -42,8 +43,8 @@ const InterestsOnboard = () => {
     <View style={styles.container}>
       <Text style={styles.headerText}>Tell us more about yourself!</Text>
 
-      <Text style={styles.titleText}>
-        What are some of your interests or activites you like to do?
+      <Text style={styles.titleText}>i
+        What are some of your interests or activities you like to do?
       </Text>
       {/* <FlatList
         keyExtractor={interests => interests.name}

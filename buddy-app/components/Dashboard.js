@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 //icons
 import bell from "../assets/icons/bell.png";
 import home from "../assets/icons/home.png";
-import profile from "../assets/icons/profile.png";
 
 //styles
 import Buttons from "../styles/Buttons";
