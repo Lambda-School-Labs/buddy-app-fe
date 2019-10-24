@@ -42,6 +42,7 @@ class SignUp extends ValidationComponent {
         this.props.addUser(storedUser);
         storeToken(response.data.token);
         console.log(this.props.user, "user");
+        this.props.navigation.navigate("InterestsOnboard")
       })
       .catch(error => {
         console.log("sign up error", error);
