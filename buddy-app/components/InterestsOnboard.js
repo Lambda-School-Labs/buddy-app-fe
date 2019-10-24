@@ -55,6 +55,12 @@ const InterestsOnboard = props => {
   const backButton = () => {
     props.navigation.navigate("Landing");
   };
+
+  const handleFinish = () => {
+    // sending interests!
+    props.navigation.navigate("Dashboard");
+  }
+
   return (
     <View style={Global.container}>
       <View style={Global.logoContainer}>
@@ -99,6 +105,7 @@ const InterestsOnboard = props => {
 
         <TouchableOpacity
           style={[Buttons.btn, Buttons.primary, { width: 130 }]}
+          onPress={() => handleFinish()}
         >
           <Text style={[Buttons.text, Buttons.textPrimary]}>Finish</Text>
         </TouchableOpacity>
