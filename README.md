@@ -1,22 +1,27 @@
 # Buddy App v1.0
+
 <p align="center">
     <img src="https://i.imgur.com/5whhrre.png"
         height="130">
 </p>
+
 Deloyed project in process.
 
 ##Contributors
-[Tommy Coleman](https://github.com/tommycoleman87) |[May Ng](https://github.com/mngmay)                |[Kevin Tou](https://github.com/KevinTou)                    |[Justine Lai](https://github.com/justinelai)| [Ya'Kauna Davis](https://github.com/yakuana)                    | [Richard Lawson](https://github.com/lawsonarichard)                    
+|[Tommy Coleman](https://github.com/tommycoleman87) |[May Ng](https://github.com/mngmay) |[Kevin Tou](https://github.com/KevinTou) |[Justine Lai](https://github.com/justinelai)| [Ya'Kauna Davis](https://github.com/yakuana) | [Richard Lawson](https://github.com/lawsonarichard)  
 :-----:|:-----:|:-----:|:-----:|:-----:|:-----:
 [<img src="https://avatars0.githubusercontent.com/u/50923422?s=460&v=4" width = "200" />](https://github.com/tommycoleman87)|[<img src="https://avatars2.githubusercontent.com/u/49328148?s=460&v=4" width = "200" />](https://github.com/mngmay)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/KevinTou)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/justinelai)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/yakuana)|[<img src="https://media.licdn.com/dms/image/C4E03AQEW1CPRPl-_pg/profile-displayphoto-shrink_200_200/0?e=1577318400&v=beta&t=Xd2wk7JzHQf1k3mM0LQ5XYfBdAP_g3ymjkRy8iYABkU" width = "200" />](https://github.com/lawsonarichard)
 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87) |[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mngmay)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KevinTou)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/justinelai)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/yakuana)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lawsonarichard)
-[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tommy-coleman-028151a4/)   |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mngmay)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevin-tou/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/justine-lai-943b02195/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lawsonarichard/)
+[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tommy-coleman-028151a4/) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mngmay)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevin-tou/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/justine-lai-943b02195/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lawsonarichard/)
 
 <br>
 <br>
-***
+
+---
+
 #<center>Project Overview</center>
-***
+
+---
 
 [Trello Board](https://trello.com/b/JoYYbVxb/labs17-buddy-app)
 
@@ -30,9 +35,12 @@ An alternative networking platform that we hope to bridge the gap of social medi
 
 A social platform connecting individuals to the World around them.
 
-***
+---
+
 #<center>Features Overview</center>
-***
+
+---
+
 ## Version 1.0
 
 - Sign Up
@@ -40,14 +48,20 @@ A social platform connecting individuals to the World around them.
 - Select Activities
 - Dashboard
 
-***
+---
+
 #<center>[Front-end]() Overview</center>
-***
+
+---
+
 - [React Native](https://facebook.github.io/react-native/)
 
-***
+---
+
 ### React Native Frameworks
-***
+
+---
+
 - [React Native Form Validator](https://github.com/perscrew/react-native-form-validator#readme) - Used to validate form fields
 
 - [React Native Gesture Handler](https://github.com/kmagiera/react-native-gesture-handler) - Provides native-driver gesture management APIs for building the best possible touch-based experiences
@@ -64,44 +78,52 @@ A social platform connecting individuals to the World around them.
 
 - [React Redux](https://react-redux.js.org/) - Lets React components read data from a Redux store and dispatch actions to the store to update data
 
-***    
+---
+
 ### Deployment
-***
+
+---
 
 - [Buddy App]()
 
+---
 
-
-***
 #<center>[Back-end]() Overview </center>
-***
+
+---
+
 - [Node JS](http://nodejs.org/)
 - [Heroku](http://heroku.com)
 
-***
+---
+
 ### Node.js Frameworks
-***
+
+---
 
 - [express](https://github.com/expressjs/express) - Web framework for Node
 
-- [cors](https://github.com/expressjs/cors) - Express middleware used to enable CORS (Cross-origin resource sharing) 
+- [cors](https://github.com/expressjs/cors) - Express middleware used to enable CORS (Cross-origin resource sharing)
 
+* [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) - Helps hash passwords
 
-- [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) - Helps hash passwords
+* [knex.js](http://knexjs.org/) - SQL query builder
+* [knex-cleaner](https://github.com/steven-ferguson/knex-cleaner#readme) - Helper library to clean databases using Knex
 
-- [knex.js](http://knexjs.org/) - SQL query builder
-- [knex-cleaner](https://github.com/steven-ferguson/knex-cleaner#readme) - Helper library to clean databases using Knex
+---
 
-***    
 ### Data Base
-***
+
+---
 
 - [SQLite3](https://github.com/mapbox/node-sqlite3)
 - [PostgREST](https://github.com/PostgREST/postgrest)
 
-***    
+---
+
 ### Deployed on Herkou
-***
+
+---
 
 - [Buddy App Heroku](https://buddy-app-be.herokuapp.com)
 
@@ -150,10 +172,10 @@ In order for the app to function correctly, the user must set up their own envir
 
 🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| N/A    | N/A  | N/A |
-| N/A    | N/A| N/A                            |
+| Image Filename | Source / Creator | License |
+| -------------- | ---------------- | ------- |
+| N/A            | N/A              | N/A     |
+| N/A            | N/A              | N/A     |
 
 # 4️⃣ Testing
 
@@ -176,7 +198,8 @@ npm install
 ```
 react-native run-android
 ```
-*Before run android build, setup [Android Studio](https://facebook.github.io/react-native/docs/android-setup.html)*
+
+_Before run android build, setup [Android Studio](https://facebook.github.io/react-native/docs/android-setup.html)_
 
 **Step 4:** If using iOS
 
@@ -184,7 +207,7 @@ react-native run-android
 react-native run-ios
 ```
 
-*Before running iOS build, Install [Xcode](https://developer.apple.com/xcode/download/)*
+_Before running iOS build, Install [Xcode](https://developer.apple.com/xcode/download/)_
 
 ## Other Scripts
 
