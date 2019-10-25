@@ -118,13 +118,13 @@ class SignUp extends ValidationComponent {
               </View>
               {this.isFieldInError("first_name") &&
                 this.getErrorsInField("first_name").map(errorMessage => (
-                  <Text style={su_styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
               {this.isFieldInError("last_name") &&
                 this.getErrorsInField("last_name").map(errorMessage => (
-                  <Text style={su_styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -138,7 +138,7 @@ class SignUp extends ValidationComponent {
               />
               {this.isFieldInError("email") &&
                 this.getErrorsInField("email").map(errorMessage => (
-                  <Text style={su_styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -153,7 +153,7 @@ class SignUp extends ValidationComponent {
               />
               {this.isFieldInError("password") &&
                 this.getErrorsInField("password").map(errorMessage => (
-                  <Text style={su_styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -166,7 +166,7 @@ class SignUp extends ValidationComponent {
               />
               {this.isFieldInError("location") &&
                 this.getErrorsInField("location").map(errorMessage => (
-                  <Text style={su_styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -223,11 +223,6 @@ const su_styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0
-  },
-  error: {
-    color: "#a80000",
-    fontFamily: "Nunito-Light",
-    fontSize: 12
   }
 });
 

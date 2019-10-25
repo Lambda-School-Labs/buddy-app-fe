@@ -87,7 +87,7 @@ class SignIn extends ValidationComponent {
             <Text style={Global.title}>Sign In</Text>
             <View style={Global.formContainer}>
               <TextInput
-                style={Global.input}
+                style={[Global.input, { marginTop: 0 }]}
                 placeholder="Email"
                 onChangeText={e => this.changeHandler(e, "email")}
                 value={this.state.email}
@@ -95,7 +95,7 @@ class SignIn extends ValidationComponent {
               />
               {this.isFieldInError("email") &&
                 this.getErrorsInField("email").map(errorMessage => (
-                  <Text style={styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -110,7 +110,7 @@ class SignIn extends ValidationComponent {
               />
               {this.isFieldInError("password") &&
                 this.getErrorsInField("password").map(errorMessage => (
-                  <Text style={styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -162,13 +162,11 @@ const styles = StyleSheet.create({
     color: "#6D6DFF",
     textDecorationLine: "underline",
     fontSize: 15,
-    fontFamily: "Nunito-Light"
+    fontFamily: "Nunito-Light",
   },
   fakeLinkContainer: {
-    alignSelf: "center"
-  },
-  error: {
-    color: "#a80000"
+    alignSelf: "center",
+    marginTop: 20
   }
 });
 

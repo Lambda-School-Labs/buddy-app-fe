@@ -44,6 +44,11 @@ const Global = StyleSheet.create({
         fontFamily: 'Nunito-Light',
         borderRadius: 5
     },
+    error: {
+        color: "#a80000",
+        fontFamily: "Nunito-Light",
+        fontSize: 12
+    }
     
 })
 
