@@ -17,6 +17,11 @@ const Global = StyleSheet.create({
         color: Colors.darkGray,
         fontFamily: 'Nunito-Regular',
     },
+    textNormal: {
+        fontSize: 25,
+        color: Colors.darkGray,
+        fontFamily: 'Nunito-Regular',
+    },
     container: {
         flex: 1,
         paddingHorizontal: 30,
@@ -34,7 +39,7 @@ const Global = StyleSheet.create({
         width: '100%',
         height: 40,
         paddingLeft: 10,
-        marginBottom: 20,
+        marginTop: 20,
         fontSize: 15,
         fontFamily: 'Nunito-Light',
         borderRadius: 5

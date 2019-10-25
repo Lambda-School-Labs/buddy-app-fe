@@ -68,11 +68,11 @@ const Dashboard = props => {
         <Text style={Global.logo}>BUDDY</Text>
       </View>
       <View>
-        <Text>
+        <Text style={Global.title}>
           Welcome {props.user.first_name} {props.user.last_name}
         </Text>
         <TouchableHighlight onPress={() => signOut()}>
-          <Text> Sign Out</Text>
+          <Text style={[Global.textNormal, { marginTop: 20} ]}>Sign Out</Text>
         </TouchableHighlight>
       </View>
       <View style={styles.bottomNav}>

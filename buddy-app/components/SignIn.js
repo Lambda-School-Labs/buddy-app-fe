@@ -127,13 +127,13 @@ class SignIn extends ValidationComponent {
               </View>
               <View style={Buttons.container}>
                 <TouchableOpacity onPress={this.cancelSignInHandler}>
-                  <Text style={[Buttons.text, Buttons.textAuth]}>Cancel</Text>
+                  <Text style={[Buttons.textAuth]}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={this.signInHandler}
-                  style={[Buttons.btn, Buttons.secondary, { width: 130 }]}
+                  style={[Buttons.btn, Buttons.secondary]}
                 >
-                  <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
+                  <Text style={[Buttons.textAuth]}>Sign In</Text>
                 </TouchableOpacity>
               </View>
             </View>

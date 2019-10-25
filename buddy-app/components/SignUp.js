@@ -16,6 +16,7 @@ import { storeToken, getToken } from "../utils/authHelper";
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
+import Colors from "../styles/Colors";
 
 class SignUp extends ValidationComponent {
   state = {
@@ -80,19 +81,38 @@ class SignUp extends ValidationComponent {
               <Text style={Global.logo}>BUDDY</Text>
             </View>
 
-            <Text style={Global.title}>Sign Up</Text>
-            <View style={Global.formContainer}>
+            <Text
+              style={
+                this.isFormValid()
+                  ? Global.title
+                  : {
+                      fontSize: 30,
+                      color: Colors.darkGray,
+                      fontFamily: "Nunito-Regular",
+                      marginTop: 20
+                    }
+              }
+            >
+              Sign Up
+            </Text>
+            <View
+              style={
+                this.isFormValid()
+                  ? Global.formContainer
+                  : { width: "100%", marginTop: 10 }
+              }
+            >
               <View style={su_styles.name}>
                 <TextInput
                   placeholder="First Name"
                   onChangeText={text => this.handleChange(text, "first_name")}
-                  style={[Global.input, { width: "47%" }]}
+                  style={[Global.input, { width: "47%", marginTop: 0 }]}
                   value={this.state.first_name}
                 />
                 <TextInput
                   placeholder="Last Name"
                   onChangeText={text => this.handleChange(text, "last_name")}
-                  style={[Global.input, { width: "47%" }]}
+                  style={[Global.input, { width: "47%", marginTop: 0 }]}
                   value={this.state.last_name}
                 />
               </View>
@@ -156,10 +176,10 @@ class SignUp extends ValidationComponent {
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate("Landing")}
               >
-                <Text style={[Buttons.text, Buttons.textAuth]}>Cancel</Text>
+                <Text style={[Buttons.textAuth]}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[Buttons.btn, Buttons.primary, { width: 130 }]}
+                style={[Buttons.btn, Buttons.primary]}
                 onPress={() => {
                   // run validation tests
                   this.onComplete();
@@ -178,9 +198,7 @@ class SignUp extends ValidationComponent {
                     : console.log("Form has errors");
                 }}
               >
-                <Text
-                  style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}
-                >
+                <Text style={[Buttons.textAuth, Buttons.textPrimary]}>
                   Sign Up
                 </Text>
               </TouchableOpacity>
@@ -207,7 +225,9 @@ const su_styles = StyleSheet.create({
     right: 0
   },
   error: {
-    color: "#a80000"
+    color: "#a80000",
+    fontFamily: "Nunito-Light",
+    fontSize: 12
   }
 });
 
