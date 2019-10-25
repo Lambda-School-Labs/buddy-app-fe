@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     color: "#6D6DFF",
     textDecorationLine: "underline",
     fontSize: 15,
-    fontFamily: "Nunito-Light",
+    fontFamily: "Nunito-Light"
   },
   fakeLinkContainer: {
     alignSelf: "center",

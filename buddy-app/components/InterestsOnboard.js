@@ -80,9 +80,11 @@ const InterestsOnboard = props => {
           <Text style={Buttons.backButton}>&larr; Back</Text>
         </TouchableOpacity>
       </View>
-      <Text style={[Global.textNormal, {fontSize:25}]}>Tell us more about {"\n"}yourself!</Text>
+      <Text style={[Global.textNormal, { fontSize: 25 }]}>
+        Tell us more about {"\n"}yourself!
+      </Text>
 
-      <Text style={[Global.textNormal, {fontSize: 18,marginVertical: 20}]}>
+      <Text style={[Global.textNormal, { fontSize: 18, marginVertical: 20 }]}>
         What are some of your interests or activities you like to do?
       </Text>
 
@@ -105,7 +107,7 @@ const InterestsOnboard = props => {
           </TouchableOpacity>
         ))}
       </View>
-    
+
       <View style={Buttons.container}>
         <TouchableOpacity
           style={[Buttons.btn, Buttons.secondary]}
