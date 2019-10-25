@@ -36,34 +36,36 @@ class SignIn extends ValidationComponent {
 
   signInHandler = () => {
     this.props.isLoadingPage(true);
-
-    axios
-      .post("https://buddy-app-be.herokuapp.com/auth/signin", this.state)
-      .then(res => {
-        storeToken(res.data.token);
-        this.props.addUser({
-          first_name: res.data.first_name,
-          last_name: res.data.last_name,
-          id: res.data.id
-        });
-        console.log(res.data.id);
-        AsyncStorage.setItem("id", `${res.data.id}`)
-          .then(res => {
-            this.props.navigation.navigate("AuthStack");
-          })
-          .catch(err => {
-            console.log(err);
+    if (this.onComplete()) {
+      axios
+        .post("https://buddy-app-be.herokuapp.com/auth/signin", this.state)
+        .then(res => {
+          storeToken(res.data.token);
+          this.props.addUser({
+            first_name: res.data.first_name,
+            last_name: res.data.last_name,
+            id: res.data.id
           });
-      })
-      .catch(err => {
-        this.props.isLoadingPage(false);
-        this.onComplete();
-        Alert.alert("Warning", "Invalid credentials.", [{ text: "OK" }]);
-      });
+          console.log(res.data.id);
+          AsyncStorage.setItem("id", `${res.data.id}`)
+            .then(res => {
+              this.props.navigation.navigate("AuthStack");
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        })
+        .catch(err => {
+          this.props.isLoadingPage(false);
+          Alert.alert("Warning", "Invalid credentials.", [{ text: "OK" }]);
+        });
+    } else {
+      this.props.isLoadingPage(false);
+    }
   };
 
   onComplete = () => {
-    this.validate({
+    return this.validate({
       email: {
         email: true,
         required: true
