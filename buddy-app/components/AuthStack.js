@@ -26,7 +26,7 @@ const AuthStack = props => {
   }
 
   if (authorized) {
-    return <Dashboard />;
+    return <Dashboard navigation={props.navigation} />;
   } else {
     return <SignIn />;
   }
