@@ -14,8 +14,9 @@ Deloyed project in process.
 
 <br>
 <br>
+
 ***
-#<center>Project Overview</center>
+# <center>Project Overview</center>
 ***
 
 [Trello Board](https://trello.com/b/JoYYbVxb/labs17-buddy-app)
