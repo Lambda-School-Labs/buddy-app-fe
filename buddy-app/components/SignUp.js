@@ -85,13 +85,13 @@ class SignUp extends ValidationComponent {
                 <TextInput
                   placeholder="First Name"
                   onChangeText={text => this.handleChange(text, "first_name")}
-                  style={[Global.input, { width: "45%" }]}
+                  style={[Global.input, { width: "47%" }]}
                   value={this.state.first_name}
                 />
                 <TextInput
                   placeholder="Last Name"
                   onChangeText={text => this.handleChange(text, "last_name")}
-                  style={[Global.input, { width: "45%" }]}
+                  style={[Global.input, { width: "47%" }]}
                   value={this.state.last_name}
                 />
               </View>

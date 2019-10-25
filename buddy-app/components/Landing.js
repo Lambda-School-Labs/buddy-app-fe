@@ -36,13 +36,13 @@ export default function Landing(props) {
         <View style={landing.buttonContainer}>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("SignIn")}
-            style={[Buttons.btn, Buttons.secondary, { width: 130 }]}
+            style={[Buttons.btn, Buttons.secondary]}
           >
             <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("SignUp")}
-            style={[Buttons.btn, Buttons.primary, { width: 130 }]}
+            style={[Buttons.btn, Buttons.primary]}
           >
             <Text style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}>
               Sign Up
