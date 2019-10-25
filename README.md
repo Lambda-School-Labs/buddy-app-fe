@@ -1,99 +1,115 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Buddy App v1.0
+<p align="center">
+    <img src="https://i.imgur.com/5whhrre.png"
+        height="130">
+</p>
+Deloyed project in process.
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
-# 1️⃣ Title of project goes here
-
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+##Contributors
+[Tommy Coleman](https://github.com/tommycoleman87) |[May Ng](https://github.com/mngmay)                |[Kevin Tou](https://github.com/KevinTou)                    |[Justine Lai](https://github.com/justinelai)| [Ya'Kauna Davis](https://github.com/yakuana)                    | [Richard Lawson](https://github.com/lawsonarichard)                    
+:-----:|:-----:|:-----:|:-----:|:-----:|:-----:
+[<img src="https://avatars0.githubusercontent.com/u/50923422?s=460&v=4" width = "200" />](https://github.com/tommycoleman87)|[<img src="https://avatars2.githubusercontent.com/u/49328148?s=460&v=4" width = "200" />](https://github.com/mngmay)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/KevinTou)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/justinelai)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/yakuana)|[<img src="https://media.licdn.com/dms/image/C4E03AQEW1CPRPl-_pg/profile-displayphoto-shrink_200_200/0?e=1577318400&v=beta&t=Xd2wk7JzHQf1k3mM0LQ5XYfBdAP_g3ymjkRy8iYABkU" width = "200" />](https://github.com/lawsonarichard)
+[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87) |[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mngmay)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KevinTou)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/justinelai)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/yakuana)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lawsonarichard)
+[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tommy-coleman-028151a4/)   |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mngmay)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevin-tou/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/justine-lai-943b02195/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lawsonarichard/)
 
 <br>
 <br>
+***
+#<center>Project Overview</center>
+***
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
+[Trello Board](https://trello.com/b/JoYYbVxb/labs17-buddy-app)
 
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[Product Canvas](https://www.notion.so/RC-v1-0-User-Homepage-13d03e36a40245eabf5f6dbf36a77de8)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
+[UX Design files](https://www.figma.com/file/pIS7XO1GapG3rWKF3CumT3/Labs17_Buddy%2C-Marlene?node-id=122%3A2)
 
-## Project Overview
+## Buddy App Description
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+An alternative networking platform that we hope to bridge the gap of social media isolation.
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+A social platform connecting individuals to the World around them.
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+***
+#<center>Features Overview</center>
+***
+## Version 1.0
 
-🚫 Replace lorem ipsum with a description of your project
+- Sign Up
+- Login
+- Select Activities
+- Dashboard
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+***
+#<center>[Front-end]() Overview</center>
+***
+- [React Native](https://facebook.github.io/react-native/)
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+***
+### React Native Frameworks
+***
+- [React Native Form Validator](https://github.com/perscrew/react-native-form-validator#readme) - Used to validate form fields
+
+- [React Native Gesture Handler](https://github.com/kmagiera/react-native-gesture-handler) - Provides native-driver gesture management APIs for building the best possible touch-based experiences
+
+- [React Native Keyboard Aware Scroll View](https://github.com/wix/react-native-keyboard-aware-scrollview) - Drop-in replacement for RN Scrollview which handles the ScrollView insets properly when the keyboard is shown or hides
+
+- [React Native Loading Spinner Overlay](https://github.com/joinspontaneous/react-native-loading-spinner-overlay) - Loading spinner overlay
+
+- [React Native Reanimated](https://github.com/kmagiera/react-native-reanimated) - React Native's Animated library reimplemented. Allows for greater flexibility with gesture based interactions
+
+- [React Native Navigation](https://github.com/wix/react-native-navigation) - Complete native navigation solution for React Native
+
+- [React Native Navigation Stack](https://reactnavigation.org/docs/en/stack-navigator.html) - Provides a way for the app to transition between screens, placing new screen on top of the stack
+
+- [React Redux](https://react-redux.js.org/) - Lets React components read data from a Redux store and dispatch actions to the store to update data
+
+***    
+### Deployment
+***
+
+- [Buddy App]()
 
 
-### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+***
+#<center>[Back-end]() Overview </center>
+***
+- [Node JS](http://nodejs.org/)
+- [Heroku](http://heroku.com)
 
-## 1️⃣ Tech Stack
+***
+### Node.js Frameworks
+***
 
-### Front end built using:
+- [express](https://github.com/expressjs/express) - Web framework for Node
 
-#### _Front end framework goes here_
+- [cors](https://github.com/expressjs/cors) - Express middleware used to enable CORS (Cross-origin resource sharing) 
 
-🚫 Why did you choose this framework?
 
--    point one
--    point two
--    point three
--    point four
+- [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) - Helps hash passwords
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+- [knex.js](http://knexjs.org/) - SQL query builder
+- [knex-cleaner](https://github.com/steven-ferguson/knex-cleaner#readme) - Helper library to clean databases using Knex
 
-#### Front end deployed to `🚫insert service here`
+***    
+### Data Base
+***
 
-#### [Back end](🚫link to back end repo here) built using:
+- [SQLite3](https://github.com/mapbox/node-sqlite3)
+- [PostgREST](https://github.com/PostgREST/postgrest)
 
-#### 🚫 back end framework goes here
+***    
+### Deployed on Herkou
+***
 
--    point one
--    point two
--    point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+- [Buddy App Heroku](https://buddy-app-be.herokuapp.com)
 
 # APIs
 
 ## 2️⃣ Authentication API here
 
-🚫Replace text below with a description of the API
-
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## 2️⃣ Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
 ## 3️⃣ Misc API here
 
@@ -136,16 +152,39 @@ In order for the app to function correctly, the user must set up their own envir
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+| N/A    | N/A  | N/A |
+| N/A    | N/A| N/A                            |
 
 # 4️⃣ Testing
 
 🚫Document what you used for testing and why
 
-# 4️⃣ Installation Instructions
+#Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+## Installation
+
+**Step 1:** Clone Repo
+
+**Step 2:** Install node modules
+
+```
+npm install
+```
+
+**Step 3:** If using Android
+
+```
+react-native run-android
+```
+*Before run android build, setup [Android Studio](https://facebook.github.io/react-native/docs/android-setup.html)*
+
+**Step 4:** If using iOS
+
+```
+react-native run-ios
+```
+
+*Before running iOS build, Install [Xcode](https://developer.apple.com/xcode/download/)*
 
 ## Other Scripts
 
@@ -163,12 +202,13 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ## Issue/Bug Request
-   
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
@@ -194,4 +234,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
