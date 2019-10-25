@@ -50,9 +50,6 @@ const InterestsOnboard = props => {
 
   const handleFinish = () => {
     // sending interests!
-<<<<<<< HEAD
-    props.navigation.navigate("Dashboard");
-=======
     AsyncStorage.getItem("@token")
       .then(token => {
         userInterest.map(interest => {
@@ -71,7 +68,6 @@ const InterestsOnboard = props => {
         props.navigation.navigate("AuthStack");
       })
       .catch();
->>>>>>> 73eb578029d518778c10d66998f18105977ae7cf
   };
 
   return (
@@ -94,12 +90,18 @@ const InterestsOnboard = props => {
         {interests.map(item => (
           <TouchableOpacity
             key={item.id}
-            style={styles.interestBtn}
+            style={
+              userInterest.includes(item.id)
+                ? styles.selectedBtn
+                : styles.interestBtn
+            }
             onPress={() => {
               toggleInterest(item.id);
             }}
           >
-            <Text>{item.name}</Text>
+            <Text style={userInterest.includes(item.id) && { color: "white" }}>
+              {item.name}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -111,13 +113,14 @@ const InterestsOnboard = props => {
 
       <View style={Buttons.container}>
         <TouchableOpacity
-          style={[Buttons.btn, Buttons.secondary, { width: 130 }]}
+          style={[Buttons.btn, Buttons.secondary]}
+          onPress={() => backButton()}
         >
           <Text style={[Buttons.text]}>Cancel</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[Buttons.btn, Buttons.primary, { width: 130 }]}
+          style={[Buttons.btn, Buttons.primary]}
           onPress={() => handleFinish()}
         >
           <Text style={[Buttons.text, Buttons.textPrimary]}>Finish</Text>
@@ -164,6 +167,15 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginRight: 10,
     borderColor: "black",
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 5
+  },
+  selectedBtn: {
+    marginVertical: 10,
+    marginRight: 10,
+    backgroundColor: "#6D6DFF",
+    borderColor: "#6D6DFF",
     borderWidth: 1,
     padding: 10,
     borderRadius: 5

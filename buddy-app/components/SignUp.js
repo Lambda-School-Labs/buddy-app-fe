@@ -42,10 +42,6 @@ class SignUp extends ValidationComponent {
         };
         this.props.addUser(storedUser);
         storeToken(response.data.token);
-<<<<<<< HEAD
-        console.log(this.props.user, "user");
-=======
->>>>>>> 73eb578029d518778c10d66998f18105977ae7cf
         this.props.navigation.navigate("InterestOnboard");
       })
       .catch(error => {
