@@ -28,6 +28,7 @@ class SignUp extends ValidationComponent {
 
   handleChange = (text, eventName) => {
     this.setState({ ...this.state, [eventName]: text });
+    console.log({[eventName]: text})
   };
 
   handleSubmit = () => {
@@ -163,9 +164,17 @@ class SignUp extends ValidationComponent {
                   // run validation tests
                   this.onComplete();
 
+                  const newUser = {
+                    first_name: this.state.first_name,
+                    last_name: this.state.last_name,
+                    email: this.state.email,
+                    password: this.state.password,
+                    location: this.state.location
+                  }
+
                   // if the form is valid, make the post request. else, errors will display
                   this.isFormValid()
-                    ? this.handleSubmit()
+                    ? this.handleSubmit(newUser)
                     : console.log("Form has errors");
                 }}
               >
