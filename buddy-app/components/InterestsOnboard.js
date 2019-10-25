@@ -13,16 +13,7 @@ import Global from "../styles/Global";
 import Buttons from "../styles/Buttons";
 
 const InterestsOnboard = props => {
-  const [interests, setInterests] = useState([
-    { name: "Sports" },
-    { name: "Film/TV" },
-    { name: "Outdoors" },
-    { name: "Eating" },
-    { name: "SportsSports" },
-    { name: "Film/TVFilm/TV" },
-    { name: "OutdoorsOutdoors" },
-    { name: "EatingEating" }
-  ]);
+  const [interests, setInterests] = useState([]);
   const [userInterest, setUserInterest] = useState([]);
 
   useEffect(() => {
@@ -59,7 +50,7 @@ const InterestsOnboard = props => {
   const handleFinish = () => {
     // sending interests!
     props.navigation.navigate("Dashboard");
-  }
+  };
 
   return (
     <View style={Global.container}>

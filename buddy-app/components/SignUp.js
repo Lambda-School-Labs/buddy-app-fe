@@ -13,8 +13,8 @@ import axios from "axios";
 import { addUser } from "../actions/buddyActions";
 import { storeToken } from "../utils/authHelper";
 //styles
-import Buttons from '../styles/Buttons';
-import Global from '../styles/Global';
+import Buttons from "../styles/Buttons";
+import Global from "../styles/Global";
 
 class SignUp extends ValidationComponent {
   state = {
@@ -42,7 +42,7 @@ class SignUp extends ValidationComponent {
         this.props.addUser(storedUser);
         storeToken(response.data.token);
         console.log(this.props.user, "user");
-        this.props.navigation.navigate("InterestsOnboard")
+        this.props.navigation.navigate("InterestOnboard");
       })
       .catch(error => {
         console.log("sign up error", error);
