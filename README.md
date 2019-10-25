@@ -16,7 +16,7 @@ Deloyed project in process.
 <br>
 
 ***
-# <center>Project Overview</center>
+# Project Overview
 ***
 
 [Trello Board](https://trello.com/b/JoYYbVxb/labs17-buddy-app)
@@ -32,8 +32,9 @@ An alternative networking platform that we hope to bridge the gap of social medi
 A social platform connecting individuals to the World around them.
 
 ***
-#<center>Features Overview</center>
+# Features Overview
 ***
+
 ## Version 1.0
 
 - Sign Up
@@ -42,8 +43,9 @@ A social platform connecting individuals to the World around them.
 - Dashboard
 
 ***
-#<center>[Front-end]() Overview</center>
+# [Front-end]() Overview
 ***
+
 - [React Native](https://facebook.github.io/react-native/)
 
 ***
@@ -74,7 +76,7 @@ A social platform connecting individuals to the World around them.
 
 
 ***
-#<center>[Back-end]() Overview </center>
+# [Back-end]() Overview 
 ***
 - [Node JS](http://nodejs.org/)
 - [Heroku](http://heroku.com)
@@ -160,7 +162,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 🚫Document what you used for testing and why
 
-#Installation Instructions
+# Installation Instructions
 
 ## Installation
 
