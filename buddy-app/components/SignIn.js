@@ -40,7 +40,7 @@ class SignIn extends ValidationComponent {
       axios
         .post("https://buddy-app-be.herokuapp.com/auth/signin", this.state)
         .then(res => {
-          storeToken(res.data.token);
+          storeToken(res.data.itoken);
           this.props.addUser({
             first_name: res.data.first_name,
             last_name: res.data.last_name,
