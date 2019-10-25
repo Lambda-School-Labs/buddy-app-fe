@@ -8,7 +8,7 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import AuthStack from "./AuthStack";
 import InterestOnboard from "./InterestsOnboard";
-
+import Dashboard from "./Dashboard";
 const AppNavigator = createStackNavigator(
   {
     Landing: {
@@ -25,6 +25,9 @@ const AppNavigator = createStackNavigator(
     },
     InterestOnboard: {
       screen: InterestOnboard
+    },
+    Dashboard: {
+      screen: Dashboard
     }
   },
   {
