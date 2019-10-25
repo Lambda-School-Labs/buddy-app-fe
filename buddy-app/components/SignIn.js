@@ -46,7 +46,14 @@ class SignIn extends ValidationComponent {
           last_name: res.data.last_name,
           id: res.data.id
         });
-        this.props.navigation.navigate("AuthStack");
+        console.log(res.data.id);
+        AsyncStorage.setItem("id", `${res.data.id}`)
+          .then(res => {
+            this.props.navigation.navigate("AuthStack");
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(err => {
         this.props.isLoadingPage(false);

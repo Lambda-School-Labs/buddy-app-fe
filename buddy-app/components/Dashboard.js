@@ -1,6 +1,8 @@
-import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet, Image, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
+import { addUser } from "../actions/buddyActions";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
 import bell from "../assets/icons/bell.png";
@@ -12,6 +14,29 @@ import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 
 const Dashboard = props => {
+  useEffect(() => {
+    AsyncStorage.getItem("id")
+      .then(res => {
+        AsyncStorage.getItem("@token")
+          .then(token => {
+            axiosWithAuth(token)
+              .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
+              .then(user => {
+                props.addUser(user.data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <View style={Global.container}>
       <View style={Global.logoContainer}>
@@ -63,5 +88,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { addUser }
 )(Dashboard);

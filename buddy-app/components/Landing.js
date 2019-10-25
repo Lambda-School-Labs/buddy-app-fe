@@ -7,13 +7,17 @@ import {
   ImageBackground,
   Image
 } from "react-native";
-import { onSignOut } from "../utils/authHelper";
+import { getToken } from "../utils/authHelper";
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 
 export default function Landing(props) {
   useEffect(() => {
-    onSignOut();
+    getToken().then(res => {
+      if (res !== null) {
+        props.navigation.navigate("AuthStack");
+      }
+    });
   }, []);
   return (
     <ImageBackground
