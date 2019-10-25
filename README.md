@@ -5,7 +5,7 @@
 </p>
 Deloyed project in process.
 
-##Contributors
+## Contributors
 [Tommy Coleman](https://github.com/tommycoleman87) |[May Ng](https://github.com/mngmay)                |[Kevin Tou](https://github.com/KevinTou)                    |[Justine Lai](https://github.com/justinelai)| [Ya'Kauna Davis](https://github.com/yakuana)                    | [Richard Lawson](https://github.com/lawsonarichard)                    
 :-----:|:-----:|:-----:|:-----:|:-----:|:-----:
 [<img src="https://avatars0.githubusercontent.com/u/50923422?s=460&v=4" width = "200" />](https://github.com/tommycoleman87)|[<img src="https://avatars2.githubusercontent.com/u/49328148?s=460&v=4" width = "200" />](https://github.com/mngmay)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/KevinTou)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/justinelai)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/yakuana)|[<img src="https://media.licdn.com/dms/image/C4E03AQEW1CPRPl-_pg/profile-displayphoto-shrink_200_200/0?e=1577318400&v=beta&t=Xd2wk7JzHQf1k3mM0LQ5XYfBdAP_g3ymjkRy8iYABkU" width = "200" />](https://github.com/lawsonarichard)
