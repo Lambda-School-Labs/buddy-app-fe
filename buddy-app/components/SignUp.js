@@ -28,12 +28,12 @@ class SignUp extends ValidationComponent {
 
   handleChange = (text, eventName) => {
     this.setState({ ...this.state, [eventName]: text });
-    console.log({[eventName]: text})
+    console.log({ [eventName]: text });
   };
 
-  handleSubmit = () => {
+  handleSubmit = newUser => {
     axios
-      .post("https://buddy-app-be.herokuapp.com/auth/signup", this.state)
+      .post("https://buddy-app-be.herokuapp.com/auth/signup", newUser)
       .then(response => {
         //console.log("sign up response", response.data);
         const storedUser = {
@@ -170,7 +170,7 @@ class SignUp extends ValidationComponent {
                     email: this.state.email,
                     password: this.state.password,
                     location: this.state.location
-                  }
+                  };
 
                   // if the form is valid, make the post request. else, errors will display
                   this.isFormValid()
