@@ -6,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  AsyncStorage
+  AsyncStorage,
+  Alert
 } from "react-native";
 import { connect } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -47,7 +48,9 @@ class SignUp extends ValidationComponent {
         this.props.navigation.navigate("InterestOnboard");
       })
       .catch(error => {
-        console.log("sign up error", error);
+        if (error.response.status == 400) {
+          Alert.alert("Warning", error.response.data.message, [{ text: "OK" }]);
+        } else PageTransitionEventconsole.log("sign up error", error.response);
       });
   };
 
