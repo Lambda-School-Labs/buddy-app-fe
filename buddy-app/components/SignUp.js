@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert,
   AsyncStorage
 } from "react-native";
 import { connect } from "react-redux";
@@ -29,7 +30,7 @@ class SignUp extends ValidationComponent {
 
   handleChange = (text, eventName) => {
     this.setState({ ...this.state, [eventName]: text });
-    console.log({ [eventName]: text });
+    // console.log({ [eventName]: text });
   };
 
   handleSubmit = newUser => {
@@ -47,7 +48,11 @@ class SignUp extends ValidationComponent {
         this.props.navigation.navigate("InterestOnboard");
       })
       .catch(error => {
-        console.log("sign up error", error);
+        if (error.response.status == 400) {
+          Alert.alert("Warning", error.response.data.message, [{ text: "OK" }]);
+        } else {
+          console.log("sign up error", error.response);
+        }
       });
   };
 
