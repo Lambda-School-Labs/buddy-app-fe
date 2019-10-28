@@ -9,6 +9,7 @@ import SignIn from "./SignIn";
 import AuthStack from "./AuthStack";
 import InterestOnboard from "./InterestsOnboard";
 import Dashboard from "./Dashboard";
+import Profile from "./Profile";
 const AppNavigator = createStackNavigator(
   {
     Landing: {
@@ -28,10 +29,13 @@ const AppNavigator = createStackNavigator(
     },
     Dashboard: {
       screen: Dashboard
+    },
+    Profile: {
+      screen: Profile
     }
   },
   {
-    initialRouteName: "Landing",
+    initialRouteName: "Dashboard",
     headerMode: "none"
   }
 );

@@ -49,6 +49,17 @@ const Global = StyleSheet.create({
     color: "#a80000",
     fontFamily: "Nunito-Light",
     fontSize: 14
+  },
+  bottomNav: {
+    backgroundColor: "#6d6dff",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    height: 96,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0
   }
 });
 
