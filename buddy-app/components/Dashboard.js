@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
+import Activity from "./Activity";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
@@ -74,6 +75,9 @@ const Dashboard = props => {
         <TouchableHighlight onPress={() => signOut()}>
           <Text style={[Global.textNormal, { marginTop: 20 }]}>Sign Out</Text>
         </TouchableHighlight>
+      </View>
+      <View>
+        <Activity />
       </View>
       <View style={styles.bottomNav}>
         <Image source={home} />

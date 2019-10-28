@@ -31,7 +31,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Landing",
+    initialRouteName: "Dashboard",
     headerMode: "none"
   }
 );
