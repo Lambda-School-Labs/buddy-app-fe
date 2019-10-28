@@ -28,7 +28,7 @@ class SignUp extends ValidationComponent {
 
   handleChange = (text, eventName) => {
     this.setState({ ...this.state, [eventName]: text });
-    console.log({[eventName]: text})
+    console.log({ [eventName]: text });
   };
 
   handleSubmit = () => {
@@ -170,7 +170,7 @@ class SignUp extends ValidationComponent {
                     email: this.state.email,
                     password: this.state.password,
                     location: this.state.location
-                  }
+                  };
 
                   // if the form is valid, make the post request. else, errors will display
                   this.isFormValid()

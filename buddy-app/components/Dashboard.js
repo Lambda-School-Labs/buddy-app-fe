@@ -51,11 +51,6 @@ const Dashboard = props => {
     console.log(props);
     onSignOut()
       .then(res => {
-        props.addUser({
-          first_name: "",
-          last_name: "",
-          id: ""
-        });
         props.navigation.navigate("Landing");
       })
       .catch(err => {
