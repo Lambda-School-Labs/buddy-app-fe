@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Image,
   AsyncStorage,
-  TouchableHighlight
+  TouchableHighlight,
+  TouchableOpacity
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
@@ -17,13 +18,14 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import bell from "../assets/icons/bell.png";
 import home from "../assets/icons/home.png";
 import profile from "../assets/icons/profile.png";
-
+import addActivity from "../assets/icons/add_activity_button.png";
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import { onSignOut } from "../utils/authHelper";
 
 const Dashboard = props => {
+  const [modalVisible, setModalVisible] = useState(false);
   useEffect(() => {
     if (props.user.first_name.length < 1) {
       AsyncStorage.getItem("id")
@@ -59,44 +61,45 @@ const Dashboard = props => {
         console.log(err);
       });
   };
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
   return (
     <View style={Global.container}>
-      <View style={Global.logoContainer}>
-        <Text style={Global.logo}>BUDDY</Text>
+      <View style={styles.dashBoardHeader}>
+        <View style={Global.logoContainer}>
+          <Text style={Global.logo}>BUDDY</Text>
+        </View>
+        <TouchableOpacity onPress={openModal}>
+          <Image source={addActivity} />
+        </TouchableOpacity>
       </View>
       <View>
         <Text style={Global.title}>
           Welcome {props.user.first_name} {props.user.last_name}
         </Text>
-        <TouchableHighlight onPress={() => signOut()}>
-          <Text style={[Global.textNormal, { marginTop: 20 }]}>Sign Out</Text>
-        </TouchableHighlight>
       </View>
       <View style={styles.activityView}>
         <ActivityCard />
-        <AddActivity />
+        <AddActivity isVisible={modalVisible} closeModal={closeModal} />
       </View>
-      <View style={styles.bottomNav}>
+      <View style={Global.bottomNav}>
         <Image source={home} />
         <Image source={bell} />
-        <Image source={profile} />
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+          <Image source={profile} />
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  bottomNav: {
-    backgroundColor: "#6d6dff",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    height: 96,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0
-  },
   fakeLink: {
     color: "#6D6DFF",
     textDecorationLine: "underline",
@@ -109,6 +112,12 @@ const styles = StyleSheet.create({
   activityView: {
     alignItems: "center",
     width: "100%"
+  },
+  dashBoardHeader: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
 
