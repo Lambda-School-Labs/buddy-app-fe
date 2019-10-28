@@ -49,13 +49,13 @@ function Landing(props) {
             onPress={() => props.navigation.navigate("SignIn")}
             style={[Buttons.btn, Buttons.secondary]}
           >
-            <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
+            <Text style={[Buttons.textAuth]}>Sign In</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("SignUp")}
             style={[Buttons.btn, Buttons.primary]}
           >
-            <Text style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}>
+            <Text style={[Buttons.textAuth, Buttons.textPrimary]}>
               Sign Up
             </Text>
           </TouchableOpacity>

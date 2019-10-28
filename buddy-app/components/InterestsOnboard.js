@@ -75,14 +75,16 @@ const InterestsOnboard = props => {
       <View style={Global.logoContainer}>
         <Text style={Global.logo}>BUDDY</Text>
       </View>
-      <View style={styles.backButton}>
+      <View style={styles.backButtonContainer}>
         <TouchableOpacity onPress={() => backButton()}>
           <Text style={Buttons.backButton}>&larr; Back</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.headerText}>Tell us more about {"\n"} yourself!</Text>
+      <Text style={[Global.textNormal, { fontSize: 25 }]}>
+        Tell us more about {"\n"}yourself!
+      </Text>
 
-      <Text style={styles.titleText}>
+      <Text style={[Global.textNormal, { fontSize: 18, marginVertical: 20 }]}>
         What are some of your interests or activities you like to do?
       </Text>
 
@@ -105,11 +107,6 @@ const InterestsOnboard = props => {
           </TouchableOpacity>
         ))}
       </View>
-      {/* test toggle */}
-      {/* <Text style={styles.normalText}>
-        Your selected interests:
-        <Text style={styles.textStyle}>{userInterest}</Text>
-      </Text> */}
 
       <View style={Buttons.container}>
         <TouchableOpacity
@@ -132,20 +129,7 @@ const InterestsOnboard = props => {
 };
 
 const styles = StyleSheet.create({
-  backButton: {
-    marginTop: 20,
-    marginBottom: 20
-  },
-  headerText: {
-    fontSize: 25,
-    fontWeight: "400",
-    width: 300
-  },
-  normalText: {
-    fontSize: 20
-  },
-  titleText: {
-    fontSize: 18,
+  backButtonContainer: {
     marginVertical: 20
   },
   bottomNav: {
@@ -155,13 +139,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0
-  },
-  finishButton: {
-    color: "white",
-    width: 130,
-    height: 40,
-    fontSize: 18,
-    backgroundColor: "#6D6DFF"
   },
   interestBtn: {
     marginVertical: 10,

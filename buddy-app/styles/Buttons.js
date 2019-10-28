@@ -26,7 +26,9 @@ const Buttons = StyleSheet.create({
     borderColor: Colors.darkGray
   },
   textAuth: {
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: "Nunito-Regular",
+    color: Colors.darkGray
   },
   textPrimary: {
     color: "#FFF"
@@ -39,7 +41,9 @@ const Buttons = StyleSheet.create({
     marginTop: 30
   },
   backButton: {
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: "Nunito-Regular",
+    color: Colors.darkGray
   }
 });
 
