@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
-import Activity from "./Activity";
+import ActivityCard from "./ActivityCard";
+import AddActivity from "./AddActivity";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
@@ -76,8 +77,9 @@ const Dashboard = props => {
           <Text style={[Global.textNormal, { marginTop: 20 }]}>Sign Out</Text>
         </TouchableHighlight>
       </View>
-      <View>
-        <Activity />
+      <View style={styles.activityView}>
+        <ActivityCard />
+        <AddActivity />
       </View>
       <View style={styles.bottomNav}>
         <Image source={home} />
@@ -108,6 +110,10 @@ const styles = StyleSheet.create({
   },
   fakeLinkContainer: {
     alignSelf: "center"
+  },
+  activityView: {
+    alignItems: "center",
+    width: "100%"
   }
 });
 

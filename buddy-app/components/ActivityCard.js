@@ -4,8 +4,9 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 // styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
+import Colors from "../styles/Colors";
 
-export default function Activity(props) {
+export default function ActivityCard(props) {
   const [activity, setActivity] = useState({
     first_name: "Marlene",
     activity_name: "Tennis",
@@ -15,15 +16,15 @@ export default function Activity(props) {
 
   return (
     <View style={styles.activityCard}>
-      <View style={styles.activityText}>
-        <Text>
-          {activity.first_name} is {activity.activity_name} at {activity.date}{" "}
-          {activity.activity_time}
+      <View style={styles.activityView}>
+        <Text style={styles.activityText}>
+          {activity.first_name} is {activity.activity_name} on {activity.date}{" "}
+          at {activity.activity_time}
         </Text>
       </View>
       <View style={styles.joinBtn}>
         <TouchableOpacity>
-          <Text>Ask to Join</Text>
+          <Text style={Buttons.text}>Ask to Join</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -34,10 +35,13 @@ const styles = StyleSheet.create({
   activityCard: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
-    width: "100%",
-    paddingBottom: 20
+    borderBottomColor: Colors.lightGray,
+    width: "95%",
+    marginTop: 20,
+    paddingBottom: 20,
+    height: 60
   },
 
   joinBtn: {
@@ -50,7 +54,14 @@ const styles = StyleSheet.create({
     height: 40
   },
 
+  activityView: {
+    width: "60%",
+    height: "150%"
+  },
+
   activityText: {
-    width: "60%"
+    fontSize: 16,
+    color: Colors.darkGray,
+    fontFamily: "Nunito-Bold"
   }
 });
