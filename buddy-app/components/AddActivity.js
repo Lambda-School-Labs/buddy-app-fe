@@ -25,13 +25,12 @@ import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
 const today = moment(Date.now()).format("MM/D/YY");
-const now = moment(Date.now()).format("h:mm a");
+const now = moment(Date.now()).format("HH:mm");
 
 export default function AddActivity(props) {
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
 
-  console.log(today, now);
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
       <View style={styles.viewContainer}>
@@ -58,7 +57,7 @@ export default function AddActivity(props) {
                 date={activityDate}
                 mode="date"
                 format="MM/DD/YY"
-                minDate="10/29/19"
+                minDate={today}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 showIcon={false}
