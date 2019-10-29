@@ -31,7 +31,9 @@ export default function AddActivity(props) {
       <View style={styles.viewContainer}>
         <View style={styles.addView}>
           <View style={{ alignSelf: "flex-end" }}>
+          <TouchableOpacity onPress={props.closeModal}>
             <Image source={x} />
+            </TouchableOpacity>
           </View>
           <View>
             <Text style={styles.addHeader}>Add an Activity</Text>
