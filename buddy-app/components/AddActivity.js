@@ -22,26 +22,37 @@ import Colors from "../styles/Colors";
 export default function AddActivity(props) {
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
-      <View style={styles.addView}>
-        <View>
-          <Text style={styles.addHeader}>Add an Activity</Text>
-        </View>
-        <View>
-          <Text style={styles.addText}>What Do You Want To Do?</Text>
-          <TextInput style={Global.input} placeholder="Activity"></TextInput>
-          <Text style={styles.addText}>When Do You Want To Go?</Text>
-          <TextInput style={Global.input} placeholder="Activity"></TextInput>
-          <Text style={styles.addText}>Where?</Text>
-          <TextInput style={Global.input} placeholder="Activity"></TextInput>
-          <Text style={styles.addText}>Don't Forget A Note!</Text>
-          <TextInput
-            style={[Global.input, { height: 77 }]}
-            placeholder="This lets people know what to look out for!"
-          ></TextInput>
+      <View style={styles.viewContainer}>
+        <View style={styles.addView}>
           <View>
-            <TouchableOpacity onPress={props.closeModal}>
-              <Image source={addButton} />
-            </TouchableOpacity>
+            <Text style={styles.addHeader}>Add an Activity</Text>
+          </View>
+          <View style={styles.addInputContainer}>
+            <Text style={styles.addText}>What Do You Want To Do?</Text>
+            <TextInput
+              style={[Global.input, styles.addInput]}
+              placeholder="Activity"
+            ></TextInput>
+            <Text style={styles.addText}>When Do You Want To Go?</Text>
+            <TextInput
+              style={[Global.input, styles.addInput]}
+              placeholder="Activity"
+            ></TextInput>
+            <Text style={styles.addText}>Where?</Text>
+            <TextInput
+              style={[Global.input, styles.addInput]}
+              placeholder="Activity"
+            ></TextInput>
+            <Text style={styles.addText}>Don't Forget A Note!</Text>
+            <TextInput
+              style={[Global.input, { height: 77 }, styles.addInput]}
+              placeholder="This lets people know what to look out for!"
+            ></TextInput>
+            <View>
+              <TouchableOpacity onPress={props.closeModal}>
+                <Image source={addButton} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -50,8 +61,13 @@ export default function AddActivity(props) {
 }
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    width: "100%",
+    alignItems: "center"
+  },
   addView: {
-    width: "100%"
+    width: "75%",
+    marginTop: 55
   },
   addHeader: {
     fontSize: 25,
@@ -63,5 +79,14 @@ const styles = StyleSheet.create({
     color: Colors.darkGray,
     fontFamily: "Nunito-Regular",
     marginBottom: -15
+  },
+
+  addInputContainer: {
+    height: "80%"
+    // justifyContent: "space-between"
+  },
+
+  addInput: {
+    marginBottom: 25
   }
 });
