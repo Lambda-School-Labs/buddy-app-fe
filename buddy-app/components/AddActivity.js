@@ -73,6 +73,8 @@ export default function AddActivity(props) {
             <Text style={styles.addText}>Don't Forget A Note!</Text>
             <TextInput
               style={[Global.input, { height: 77 }, styles.addInput]}
+              multiline={true}
+              textAlignVertical={"top"}
               placeholder="This lets people know what to look out for!"
             ></TextInput>
             <View style={styles.addBtn}>
