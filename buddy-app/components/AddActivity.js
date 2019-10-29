@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
-import TimePicker from "react-native-simple-time-picker";
 import {
   View,
   Text,
