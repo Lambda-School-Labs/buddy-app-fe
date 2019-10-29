@@ -2,6 +2,7 @@ import React from "react";
 
 import Global from "../styles/Global";
 import { onSignOut } from "../utils/authHelper";
+import { connect } from "react-redux";
 import {
   View,
   TouchableHighlight,
@@ -12,13 +13,19 @@ import {
 import bell from "../assets/icons/bell.png";
 import home from "../assets/icons/home.png";
 import profile from "../assets/icons/profile.png";
+
 const Profile = props => {
   return (
     <View style={Global.container}>
       <View style={Global.logoContainer}>
         <Text style={Global.logo}>BUDDY</Text>
       </View>
-      <TouchableHighlight onPress={() => signOut()}>
+      <TouchableHighlight
+        onPress={() => {
+          onSignOut();
+          props.navigation.navigate("Landing");
+        }}
+      >
         <Text style={[Global.textNormal, { marginTop: 20 }]}>Sign Out</Text>
       </TouchableHighlight>
 
@@ -35,4 +42,14 @@ const Profile = props => {
   );
 };
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    ...state,
+    user: state.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Profile);

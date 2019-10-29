@@ -24,10 +24,10 @@ import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
-const today = moment(Date.now()).format("MM/D/YY");
-const now = moment(Date.now()).format("HH:mm");
-
 export default function AddActivity(props) {
+  const today = moment(Date.now()).format("MM/D/YY");
+  const now = moment(Date.now()).format("HH:mm");
+
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
 
