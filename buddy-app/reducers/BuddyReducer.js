@@ -2,7 +2,8 @@ import {
   ADD_TOKEN,
   ADD_USER,
   IS_LOADING,
-  ADD_INTEREST
+  ADD_INTEREST,
+  GET_INTERESTS
 } from "../actions/buddyActions";
 const initialState = {
   token: null,
@@ -12,6 +13,7 @@ const initialState = {
     id: "",
     interests: []
   },
+  interests: [],
   isLoading: false
 };
 
@@ -44,6 +46,12 @@ export const buddyReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload
+      };
+    }
+    case GET_INTERESTS: {
+      return {
+        ...state,
+        interests: [...action.payload]
       };
     }
     default:
