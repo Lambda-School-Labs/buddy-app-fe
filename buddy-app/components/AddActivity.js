@@ -15,13 +15,14 @@ import {
 
 //icons
 import addButton from "../assets/icons/add_button.png";
+import calendar from "../assets/icons/calendar.png";
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
 export default function AddActivity(props) {
-  const [activityDate, setActivityDate] = useState("10-29-19");
+  const [activityDate, setActivityDate] = useState("10/29/19");
   const [activityTime, setActivityTime] = useState("10:30");
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
@@ -38,16 +39,19 @@ export default function AddActivity(props) {
             ></TextInput>
             <Text style={styles.addText}>When Do You Want To Go?</Text>
             <View style={[styles.datePicker, styles.addInput]}>
+              <Image source={calendar} />
               <DatePicker
                 placeholder="Select Date"
                 date={activityDate}
                 mode="date"
-                format="MM-DD-YY"
-                minDate="10-29-19"
+                format="MM/DD/YY"
+                minDate="10/29/19"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 showIcon={false}
                 onDateChange={date => setActivityDate(`${date}`)}
+                style={styles.date}
+                customStyles={{ dateInput: { borderRadius: 5 } }}
               />
 
               <DatePicker
@@ -57,7 +61,10 @@ export default function AddActivity(props) {
                 showIcon={false}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
+                is24Hour={false} // only works for Android view
                 onDateChange={date => setActivityTime(`${date}`)}
+                style={styles.time}
+                customStyles={{ dateInput: { borderRadius: 5 } }}
               />
             </View>
             <Text style={styles.addText}>Where?</Text>
@@ -105,7 +112,6 @@ const styles = StyleSheet.create({
 
   addInputContainer: {
     height: "80%"
-    // justifyContent: "space-between"
   },
 
   addInput: {
@@ -119,5 +125,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between"
+  },
+
+  date: {
+    width: "45%"
+  },
+
+  time: {
+    width: "35%"
   }
 });
