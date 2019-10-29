@@ -41,7 +41,7 @@ export default function AddActivity(props) {
             <Text style={styles.addText}>Where?</Text>
             <TextInput
               style={[Global.input, styles.addInput]}
-              placeholder="Activity"
+              placeholder="Add Location"
             ></TextInput>
             <Text style={styles.addText}>Don't Forget A Note!</Text>
             <TextInput
