@@ -48,7 +48,7 @@ export default function AddActivity(props) {
               style={[Global.input, { height: 77 }, styles.addInput]}
               placeholder="This lets people know what to look out for!"
             ></TextInput>
-            <View>
+            <View style={styles.addBtn}>
               <TouchableOpacity onPress={props.closeModal}>
                 <Image source={addButton} />
               </TouchableOpacity>
@@ -88,5 +88,9 @@ const styles = StyleSheet.create({
 
   addInput: {
     marginBottom: 25
+  },
+
+  addBtn: {
+    alignSelf: "flex-end"
   }
 });
