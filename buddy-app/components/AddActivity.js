@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
-import TimePicker from "react-native-simple-time-picker";
 import {
   View,
   Text,
@@ -56,6 +55,8 @@ export default function AddActivity(props) {
                 placeholder="Select Time"
                 date={activityTime}
                 showIcon={false}
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
                 onDateChange={date => setActivityTime(`${date}`)}
               />
             </View>
