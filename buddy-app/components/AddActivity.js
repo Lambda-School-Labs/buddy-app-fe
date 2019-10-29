@@ -16,6 +16,8 @@ import {
 //icons
 import addButton from "../assets/icons/add_button.png";
 import calendar from "../assets/icons/calendar.png";
+import x from "../assets/icons/x.png";
+
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
@@ -28,6 +30,9 @@ export default function AddActivity(props) {
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
       <View style={styles.viewContainer}>
         <View style={styles.addView}>
+          <View style={{ alignSelf: "flex-end" }}>
+            <Image source={x} />
+          </View>
           <View>
             <Text style={styles.addHeader}>Add an Activity</Text>
           </View>
