@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import DatePicker from "react-native-datepicker";
+import TimePicker from "react-native-simple-time-picker";
 import {
   View,
   Text,
@@ -20,6 +22,8 @@ import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
 export default function AddActivity(props) {
+  const [activityDate, setActivityDate] = useState("10-29-19");
+  const [activityTime, setActivityTime] = useState("10:30");
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
       <View style={styles.viewContainer}>
@@ -34,10 +38,27 @@ export default function AddActivity(props) {
               placeholder="Activity"
             ></TextInput>
             <Text style={styles.addText}>When Do You Want To Go?</Text>
-            <TextInput
-              style={[Global.input, styles.addInput]}
-              placeholder="Activity"
-            ></TextInput>
+            <View style={[styles.datePicker, styles.addInput]}>
+              <DatePicker
+                placeholder="Select Date"
+                date={activityDate}
+                mode="date"
+                format="MM-DD-YY"
+                minDate="10-29-19"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                showIcon={false}
+                onDateChange={date => setActivityDate(`${date}`)}
+              />
+
+              <DatePicker
+                mode="time"
+                placeholder="Select Time"
+                date={activityTime}
+                showIcon={false}
+                onDateChange={date => setActivityTime(`${date}`)}
+              />
+            </View>
             <Text style={styles.addText}>Where?</Text>
             <TextInput
               style={[Global.input, styles.addInput]}
@@ -92,5 +113,10 @@ const styles = StyleSheet.create({
 
   addBtn: {
     alignSelf: "flex-end"
+  },
+  datePicker: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-between"
   }
 });
