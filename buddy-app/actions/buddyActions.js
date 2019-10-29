@@ -2,6 +2,8 @@ export const ADD_TOKEN = "ADD_TOKEN";
 export const ADD_USER = "ADD_USER";
 export const IS_LOADING = "IS_LOADING";
 export const ADD_INTEREST = "ADD_INTEREST";
+export const GET_INTERESTS = "GET_INTERESTS";
+
 export const addToken = token => {
   return { type: ADD_TOKEN, payload: token };
 };
@@ -16,4 +18,11 @@ export const isLoadingPage = value => {
 
 export const addInterest = interest => {
   return { type: ADD_INTEREST, payload: interest };
+};
+
+export const getInterests = interests => {
+  return {
+    type: GET_INTERESTS,
+    payload: interests
+  };
 };

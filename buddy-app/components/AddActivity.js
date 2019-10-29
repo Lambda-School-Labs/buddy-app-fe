@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
 import {
@@ -9,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  Picker,
   Modal,
   Image
 } from "react-native";
@@ -21,9 +21,15 @@ import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
-export default function AddActivity(props) {
+function AddActivity(props) {
   const [activityDate, setActivityDate] = useState("10/29/19");
   const [activityTime, setActivityTime] = useState("10:30");
+  const [interests, setInterests] = useState([...props.interests]);
+  const [activityInterest, setActivityInterest] = useState({ name: "" });
+
+  const updateActivityInterest = value => {
+    setActivityInterest({ name: value });
+  };
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
       <View style={styles.viewContainer}>
@@ -37,6 +43,25 @@ export default function AddActivity(props) {
               style={[Global.input, styles.addInput]}
               placeholder="Activity"
             ></TextInput>
+            <Picker
+              selectedValue={activityInterest.name}
+              onValueChange={itemValue => {
+                updateActivityInterest(itemValue);
+                console.log(activityInterest, "ai");
+                console.log(itemValue);
+              }}
+              style={{ height: 50, width: "75%" }}
+            >
+              {interests.map(interest => {
+                return (
+                  <Picker.Item
+                    label={`${interest.name}`}
+                    value={`${interest.name}`}
+                    key={interest.id}
+                  />
+                );
+              })}
+            </Picker>
             <Text style={styles.addText}>When Do You Want To Go?</Text>
             <View style={[styles.datePicker, styles.addInput]}>
               <Image source={calendar} />
@@ -72,6 +97,7 @@ export default function AddActivity(props) {
               style={[Global.input, styles.addInput]}
               placeholder="Add Location"
             ></TextInput>
+
             <Text style={styles.addText}>Don't Forget A Note!</Text>
             <TextInput
               style={[Global.input, { height: 77 }, styles.addInput]}
@@ -137,3 +163,15 @@ const styles = StyleSheet.create({
     width: "35%"
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    ...state,
+    interests: state.interests
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(AddActivity);
