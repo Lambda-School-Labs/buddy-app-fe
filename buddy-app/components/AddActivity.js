@@ -12,7 +12,8 @@ import {
   Modal,
   Image
 } from "react-native";
-
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { getToken } from "../utils/authHelper";
 //icons
 import addButton from "../assets/icons/add_button.png";
 import calendar from "../assets/icons/calendar.png";
@@ -25,10 +26,48 @@ function AddActivity(props) {
   const [activityDate, setActivityDate] = useState("10/29/19");
   const [activityTime, setActivityTime] = useState("10:30");
   const [interests, setInterests] = useState([...props.interests]);
-  const [activityInterest, setActivityInterest] = useState({ name: "" });
-
+  const [activityInterest, setActivityInterest] = useState({ name: "Sports" });
+  const [newActivity, setNewActivity] = useState({
+    name: "",
+    notes: "",
+    location: "",
+    organizer_id: props.user.id
+  });
   const updateActivityInterest = value => {
     setActivityInterest({ name: value });
+  };
+
+  const saveActivity = () => {
+    console.log(newActivity);
+    getToken()
+      .then(token => {
+        axiosWithAuth(token)
+          .post("https://buddy-app-be.herokuapp.com/activities", newActivity)
+          .then(res => {
+            props.closeModal();
+            console.log(res, "res");
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const activityChangeHandler = (value, name) => {
+    const interestId = interests.filter(
+      interest => interest.name === activityInterest.name
+    )[0].id;
+
+    setNewActivity({
+      ...newActivity,
+      [name]: value,
+      date: activityDate,
+      time: activityTime,
+      interest_id: interestId
+    });
   };
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
@@ -42,6 +81,7 @@ function AddActivity(props) {
             <TextInput
               style={[Global.input, styles.addInput]}
               placeholder="Activity"
+              onChangeText={e => activityChangeHandler(e, "name")}
             ></TextInput>
             <Picker
               selectedValue={activityInterest.name}
@@ -94,6 +134,7 @@ function AddActivity(props) {
             <TextInput
               style={[Global.input, styles.addInput]}
               placeholder="Add Location"
+              onChangeText={e => activityChangeHandler(e, "location")}
             ></TextInput>
 
             <Text style={styles.addText}>Don't Forget A Note!</Text>
@@ -102,9 +143,10 @@ function AddActivity(props) {
               multiline={true} // moves placeholder text to top for iOS
               textAlignVertical={"top"} // for Android
               placeholder="This lets people know what to look out for!"
+              onChangeText={e => activityChangeHandler(e, "notes")}
             ></TextInput>
             <View style={styles.addBtn}>
-              <TouchableOpacity onPress={props.closeModal}>
+              <TouchableOpacity onPress={saveActivity}>
                 <Image source={addButton} />
               </TouchableOpacity>
             </View>
@@ -165,7 +207,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     ...state,
-    interests: state.interests
+    interests: state.interests,
+    user: state.user
   };
 };
 
