@@ -47,8 +47,6 @@ function AddActivity(props) {
               selectedValue={activityInterest.name}
               onValueChange={itemValue => {
                 updateActivityInterest(itemValue);
-                console.log(activityInterest, "ai");
-                console.log(itemValue);
               }}
               style={{ height: 50, width: "75%" }}
             >
