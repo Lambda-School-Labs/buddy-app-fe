@@ -8,11 +8,9 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Alert,
   Modal,
   Image
 } from "react-native";
-
 import InterestPicker from "./InterestPicker";
 
 //icons
@@ -31,12 +29,7 @@ function AddActivity(props) {
 
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
-  const [interests, setInterests] = useState([...props.interests]);
-  const [activityInterest, setActivityInterest] = useState({ name: "" });
 
-  const updateActivityInterest = value => {
-    setActivityInterest({ name: value });
-  };
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
       <View style={styles.viewContainer}>

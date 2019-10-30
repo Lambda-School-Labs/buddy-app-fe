@@ -21,6 +21,7 @@ function InterestPicker(props) {
   return (
     <View>
       {Platform.OS !== "ios" ? (
+        // android selector for interest category
         <Picker
           selectedValue={activityInterest.name}
           onValueChange={itemValue => {
@@ -41,6 +42,7 @@ function InterestPicker(props) {
           })}
         </Picker>
       ) : (
+        // iOS selector for interest category
         <SelectInput
           value={`${selectedInterest}`}
           options={options}
