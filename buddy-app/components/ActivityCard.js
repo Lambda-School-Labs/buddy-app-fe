@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 
+import { getToken } from "../utils/authHelper";
+import axiosWithAuth from "../utils/axiosWithAuth";
 // styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
 export default function ActivityCard(props) {
-  const [activity, setActivity] = useState({
-    first_name: "Marlene",
-    activity_name: "Tennis",
-    activity_time: "1:00PM",
-    date: "10/28/2019"
-  });
-
+  const [activity] = useState(props.activity);
   return (
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
         <Text style={styles.activityText}>
-          {activity.first_name} is {activity.activity_name} on {activity.date}{" "}
-          at {activity.activity_time}
+          {activity.organizer_id} is {activity.name} at {activity.time} on{" "}
+          {activity.date}
         </Text>
       </View>
       <View style={styles.joinBtn}>

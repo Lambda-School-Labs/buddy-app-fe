@@ -6,7 +6,8 @@ import {
   Image,
   AsyncStorage,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
@@ -26,6 +27,7 @@ import { onSignOut } from "../utils/authHelper";
 
 const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [activities, setActivities] = useState([]);
   useEffect(() => {
     if (props.user.first_name.length < 1) {
       AsyncStorage.getItem("id")
@@ -36,6 +38,15 @@ const Dashboard = props => {
                 .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
                 .then(user => {
                   props.addUser(user.data);
+                  axiosWithAuth(token)
+                    .get("https://buddy-app-be.herokuapp.com/activities")
+                    .then(res => {
+                      setActivities(res.data);
+                      console.log(res.data);
+                    })
+                    .catch(err => {
+                      console.log(err);
+                    });
                 })
                 .catch(err => {
                   console.log(err);
@@ -50,17 +61,6 @@ const Dashboard = props => {
         });
     }
   }, []);
-
-  const signOut = () => {
-    console.log(props);
-    onSignOut()
-      .then(res => {
-        props.navigation.navigate("Landing");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
 
   const openModal = () => {
     setModalVisible(true);
@@ -84,10 +84,15 @@ const Dashboard = props => {
           Welcome {props.user.first_name} {props.user.last_name}
         </Text>
       </View>
-      <View style={styles.activityView}>
-        <ActivityCard />
-        <AddActivity isVisible={modalVisible} closeModal={closeModal} />
-      </View>
+      <ScrollView>
+        <View style={styles.activityView}>
+          {activities.map(activity => {
+            return <ActivityCard activity={activity} key={activity.id} />;
+          })}
+
+          <AddActivity isVisible={modalVisible} closeModal={closeModal} />
+        </View>
+      </ScrollView>
       <View style={Global.bottomNav}>
         <Image source={home} />
         <Image source={bell} />
