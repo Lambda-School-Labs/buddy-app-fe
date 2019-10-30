@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import { View, StyleSheet, Picker, Platform } from "react-native";
 import SelectInput from "react-native-select-input-ios";
 
 function InterestPicker(props) {
-  const [interests, setInterests] = useState([...props.interests]);
-  const [activityInterest, setActivityInterest] = useState({ name: "" });
-  const [selectedInterest, setSelectedInterest] = useState(interests[0].name);
-
   const updateActivityInterest = value => {
-    setActivityInterest({ name: value });
+    props.setActivityInterest({ name: value });
   };
 
-  const options = interests.map(interest => {
+  const options = props.interests.map(interest => {
     return { value: interest.name, label: `${interest.name}` };
   });
 
-  console.log("Options", options);
+  //   console.log("Options", options);
 
   return (
     <View>
       {Platform.OS !== "ios" ? (
         // android selector for interest category
         <Picker
-          selectedValue={activityInterest.name}
+          selectedValue={props.activityInterest.name}
           onValueChange={itemValue => {
             updateActivityInterest(itemValue);
             //   console.log(activityInterest, "ai");
@@ -31,7 +26,7 @@ function InterestPicker(props) {
           }}
           style={styles.androidPicker}
         >
-          {interests.map(interest => {
+          {props.interests.map(interest => {
             return (
               <Picker.Item
                 label={`${interest.name}`}
@@ -44,11 +39,11 @@ function InterestPicker(props) {
       ) : (
         // iOS selector for interest category
         <SelectInput
-          value={`${selectedInterest}`}
+          value={`${props.activityInterest}`}
           options={options}
           onValueChange={selected => {
             console.log(selected);
-            setSelectedInterest(selected);
+            props.setActivityInterest(selected);
           }}
           style={styles.iosPicker}
           labelStyle={{ fontSize: 15 }}
@@ -70,14 +65,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    ...state,
-    interests: state.interests
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {}
-)(InterestPicker);
+export default InterestPicker;
