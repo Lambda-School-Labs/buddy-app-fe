@@ -56,7 +56,7 @@ function AddActivity(props) {
               placeholder="Activity"
             ></TextInput>
 
-            <Text>Select A Category</Text>
+            <Text style={styles.addText}>Select A Category</Text>
             <InterestPicker />
 
             <Text style={styles.addText}>When Do You Want To Go?</Text>

@@ -20,7 +20,7 @@ function InterestPicker(props) {
 
   return (
     <View>
-      {Platform.OS === "android" ? (
+      {Platform.OS !== "ios" ? (
         <Picker
           selectedValue={activityInterest.name}
           onValueChange={itemValue => {
@@ -28,7 +28,7 @@ function InterestPicker(props) {
             //   console.log(activityInterest, "ai");
             //   console.log(itemValue);
           }}
-          style={styles.picker}
+          style={styles.androidPicker}
         >
           {interests.map(interest => {
             return (
@@ -41,26 +41,30 @@ function InterestPicker(props) {
           })}
         </Picker>
       ) : (
-        <View>
-          <SelectInput
-            value={`${selectedInterest}`}
-            options={options}
-            onValueChange={selected => {
-              console.log(selected);
-              setSelectedInterest(selected);
-            }}
-          />
-        </View>
+        <SelectInput
+          value={`${selectedInterest}`}
+          options={options}
+          onValueChange={selected => {
+            console.log(selected);
+            setSelectedInterest(selected);
+          }}
+          style={styles.iosPicker}
+          labelStyle={{ fontSize: 15 }}
+        />
       )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  picker: {
-    height: Platform.OS === "ios" ? 190 : 50,
-    width: Platform.OS === "ios" ? "100%" : "75%"
-    // borderWidth: 1
+  androidPicker: {
+    height: 50,
+    width: "75%"
+  },
+  iosPicker: {
+    height: 40,
+    paddingTop: 10,
+    marginTop: 10
   }
 });
 
