@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import SignIn from "./SignIn";
-import { isSignedIn } from "../utils/authHelper.js";
+import { isSignedIn, getToken } from "../utils/authHelper.js";
 import { connect } from "react-redux";
-import { isLoadingPage } from "../actions/buddyActions";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { isLoadingPage, getInterests } from "../actions/buddyActions";
 const AuthStack = props => {
   const [authorized, setAuthorized] = useState(false);
   const [checkAuthorized, setCheckAuthorized] = useState(false);
 
   useEffect(() => {
     props.isLoadingPage(false);
+
     isSignedIn()
       .then(res => {
-        setAuthorized(res);
-        setCheckAuthorized(true);
+        getToken()
+          .then(token => {
+            axiosWithAuth(token)
+              .get("https://buddy-app-be.herokuapp.com/interests")
+              .then(results => {
+                props.getInterests(results.data);
+                console.log(results.data);
+                setAuthorized(res);
+                setCheckAuthorized(true);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
         //console.log(res);
       })
       .catch(err => {
@@ -39,5 +57,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { isLoadingPage }
+  { isLoadingPage, getInterests }
 )(AuthStack);

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
 import moment from "moment";
@@ -14,6 +13,8 @@ import {
   Image
 } from "react-native";
 
+import InterestPicker from "./InterestPicker";
+
 //icons
 import addButton from "../assets/icons/add_button.png";
 import calendar from "../assets/icons/calendar.png";
@@ -24,13 +25,18 @@ import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
-export default function AddActivity(props) {
+function AddActivity(props) {
   const today = moment(Date.now()).format("MM/D/YY");
   const now = moment(Date.now()).format("HH:mm");
 
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
+  const [interests, setInterests] = useState([...props.interests]);
+  const [activityInterest, setActivityInterest] = useState({ name: "" });
 
+  const updateActivityInterest = value => {
+    setActivityInterest({ name: value });
+  };
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
       <View style={styles.viewContainer}>
@@ -49,6 +55,10 @@ export default function AddActivity(props) {
               style={[Global.input, styles.addInput]}
               placeholder="Activity"
             ></TextInput>
+
+            <Text>Select A Category</Text>
+            <InterestPicker />
+
             <Text style={styles.addText}>When Do You Want To Go?</Text>
             <View style={[styles.datePicker, styles.addInput]}>
               <Image source={calendar} />
@@ -84,6 +94,7 @@ export default function AddActivity(props) {
               style={[Global.input, styles.addInput]}
               placeholder="Add Location"
             ></TextInput>
+
             <Text style={styles.addText}>Don't Forget A Note!</Text>
             <TextInput
               style={[Global.input, { height: 77 }, styles.addInput]}
@@ -149,3 +160,15 @@ const styles = StyleSheet.create({
     width: "35%"
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    ...state,
+    interests: state.interests
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(AddActivity);
