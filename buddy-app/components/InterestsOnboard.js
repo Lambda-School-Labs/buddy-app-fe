@@ -7,6 +7,7 @@ import {
   AsyncStorage
 } from "react-native";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { addUser } from "../actions/buddyActions";
 import { connect } from "react-redux";
 import Global from "../styles/Global";
 import Buttons from "../styles/Buttons";
@@ -45,6 +46,7 @@ const InterestsOnboard = props => {
   };
 
   const backButton = () => {
+    props.addUser({ first_name: "", last_name: "", id: "" });
     props.navigation.navigate("Landing");
   };
 
@@ -172,5 +174,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  {}
+  { addUser }
 )(InterestsOnboard);
