@@ -1,41 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
+import moment from "moment";
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Alert,
-  Picker,
   Modal,
   Image
 } from "react-native";
+import InterestPicker from "./InterestPicker";
+
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { getToken } from "../utils/authHelper";
 //icons
 import addButton from "../assets/icons/add_button.png";
 import calendar from "../assets/icons/calendar.png";
+import x from "../assets/icons/x.png";
+
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
 function AddActivity(props) {
-  const [activityDate, setActivityDate] = useState("10/29/19");
-  const [activityTime, setActivityTime] = useState("10:30");
+  const today = moment(Date.now()).format("MM/D/YY");
+  const now = moment(Date.now()).format("HH:mm");
+
   const [interests, setInterests] = useState([...props.interests]);
-  const [activityInterest, setActivityInterest] = useState({ name: "Sports" });
+  const [activityInterest, setActivityInterest] = useState(interests[0].name);
+  const [activityDate, setActivityDate] = useState(today);
+  const [activityTime, setActivityTime] = useState(now);
+
   const [newActivity, setNewActivity] = useState({
     name: "",
     notes: "",
     location: "",
     organizer_id: props.user.id
   });
-  const updateActivityInterest = value => {
-    setActivityInterest({ name: value });
-  };
 
   const saveActivity = () => {
     console.log(newActivity);
@@ -73,6 +77,11 @@ function AddActivity(props) {
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
       <View style={styles.viewContainer}>
         <View style={styles.addView}>
+          <View style={{ alignSelf: "flex-end" }}>
+            <TouchableOpacity onPress={props.closeModal}>
+              <Image source={x} />
+            </TouchableOpacity>
+          </View>
           <View>
             <Text style={styles.addHeader}>Add an Activity</Text>
           </View>
@@ -83,23 +92,14 @@ function AddActivity(props) {
               placeholder="Activity"
               onChangeText={e => activityChangeHandler(e, "name")}
             ></TextInput>
-            <Picker
-              selectedValue={activityInterest.name}
-              onValueChange={itemValue => {
-                updateActivityInterest(itemValue);
-              }}
-              style={{ height: 50, width: "75%" }}
-            >
-              {interests.map(interest => {
-                return (
-                  <Picker.Item
-                    label={`${interest.name}`}
-                    value={`${interest.name}`}
-                    key={interest.id}
-                  />
-                );
-              })}
-            </Picker>
+
+            <Text style={styles.addText}>Select A Category</Text>
+            <InterestPicker
+              activityInterest={activityInterest}
+              setActivityInterest={setActivityInterest}
+              interests={interests}
+            />
+
             <Text style={styles.addText}>When Do You Want To Go?</Text>
             <View style={[styles.datePicker, styles.addInput]}>
               <Image source={calendar} />
@@ -108,7 +108,7 @@ function AddActivity(props) {
                 date={activityDate}
                 mode="date"
                 format="MM/DD/YY"
-                minDate="10/29/19"
+                minDate={today}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 showIcon={false}
