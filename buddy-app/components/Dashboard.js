@@ -1,27 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Image,
   AsyncStorage,
-  TouchableHighlight
+  TouchableHighlight,
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
+import ActivityCard from "./ActivityCard";
+import AddActivity from "./AddActivity";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
 import bell from "../assets/icons/bell.png";
 import home from "../assets/icons/home.png";
 import profile from "../assets/icons/profile.png";
-
+import addActivity from "../assets/icons/add_activity_button.png";
 //styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import { onSignOut } from "../utils/authHelper";
 
 const Dashboard = props => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [activities, setActivities] = useState([]);
   useEffect(() => {
     if (props.user.first_name.length < 1) {
       AsyncStorage.getItem("id")
@@ -32,6 +38,15 @@ const Dashboard = props => {
                 .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
                 .then(user => {
                   props.addUser(user.data);
+                  axiosWithAuth(token)
+                    .get("https://buddy-app-be.herokuapp.com/activities")
+                    .then(res => {
+                      setActivities(res.data);
+                      console.log(res.data);
+                    })
+                    .catch(err => {
+                      console.log(err);
+                    });
                 })
                 .catch(err => {
                   console.log(err);
@@ -47,55 +62,49 @@ const Dashboard = props => {
     }
   }, []);
 
-  const signOut = () => {
-    console.log(props);
-    onSignOut()
-      .then(res => {
-        props.addUser({
-          first_name: "",
-          last_name: "",
-          id: ""
-        });
-        props.navigation.navigate("Landing");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
   };
   return (
     <View style={Global.container}>
-      <View style={Global.logoContainer}>
-        <Text style={Global.logo}>BUDDY</Text>
+      <View style={styles.dashBoardHeader}>
+        <View style={Global.logoContainer}>
+          <Text style={Global.logo}>BUDDY</Text>
+        </View>
+        <TouchableOpacity onPress={openModal}>
+          <Image source={addActivity} />
+        </TouchableOpacity>
       </View>
       <View>
-        <Text>
+        <Text style={Global.title}>
           Welcome {props.user.first_name} {props.user.last_name}
         </Text>
-        <TouchableHighlight onPress={() => signOut()}>
-          <Text> Sign Out</Text>
-        </TouchableHighlight>
       </View>
-      <View style={styles.bottomNav}>
+      <ScrollView>
+        <View style={styles.activityView}>
+          {activities.map(activity => {
+            return <ActivityCard activity={activity} key={activity.id} />;
+          })}
+
+          <AddActivity isVisible={modalVisible} closeModal={closeModal} />
+        </View>
+      </ScrollView>
+      <View style={Global.bottomNav}>
         <Image source={home} />
         <Image source={bell} />
-        <Image source={profile} />
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+          <Image source={profile} />
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  bottomNav: {
-    backgroundColor: "#6d6dff",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    height: 96,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0
-  },
   fakeLink: {
     color: "#6D6DFF",
     textDecorationLine: "underline",
@@ -104,6 +113,16 @@ const styles = StyleSheet.create({
   },
   fakeLinkContainer: {
     alignSelf: "center"
+  },
+  activityView: {
+    alignItems: "center",
+    width: "100%"
+  },
+  dashBoardHeader: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
 

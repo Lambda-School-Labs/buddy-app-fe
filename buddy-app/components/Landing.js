@@ -7,18 +7,29 @@ import {
   ImageBackground,
   Image
 } from "react-native";
+
+import { connect } from "react-redux";
 import { getToken } from "../utils/authHelper";
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
+import { addUser } from "../actions/buddyActions";
 
-export default function Landing(props) {
+function Landing(props) {
   useEffect(() => {
+    console.log(props.user, "user");
     getToken().then(res => {
       if (res !== null) {
         props.navigation.navigate("AuthStack");
+      } else {
+        props.addUser({
+          first_name: "",
+          last_name: "",
+          id: ""
+        });
       }
     });
   }, []);
+
   return (
     <ImageBackground
       style={landing.background}
@@ -38,13 +49,13 @@ export default function Landing(props) {
             onPress={() => props.navigation.navigate("SignIn")}
             style={[Buttons.btn, Buttons.secondary]}
           >
-            <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
+            <Text style={[Buttons.textAuth]}>Sign In</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("SignUp")}
             style={[Buttons.btn, Buttons.primary]}
           >
-            <Text style={[Buttons.text, Buttons.textAuth, Buttons.textPrimary]}>
+            <Text style={[Buttons.textAuth, Buttons.textPrimary]}>
               Sign Up
             </Text>
           </TouchableOpacity>
@@ -96,3 +107,14 @@ const landing = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    ...state,
+    user: state.user
+  };
+};
+export default connect(
+  mapStateToProps,
+  { addUser }
+)(Landing);

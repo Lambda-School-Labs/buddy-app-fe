@@ -40,7 +40,7 @@ class SignIn extends ValidationComponent {
       axios
         .post("https://buddy-app-be.herokuapp.com/auth/signin", this.state)
         .then(res => {
-          storeToken(res.data.itoken);
+          storeToken(res.data.token);
           this.props.addUser({
             first_name: res.data.first_name,
             last_name: res.data.last_name,
@@ -87,7 +87,7 @@ class SignIn extends ValidationComponent {
             <Text style={Global.title}>Sign In</Text>
             <View style={Global.formContainer}>
               <TextInput
-                style={Global.input}
+                style={[Global.input, { marginTop: 0 }]}
                 placeholder="Email"
                 onChangeText={e => this.changeHandler(e, "email")}
                 value={this.state.email}
@@ -95,7 +95,7 @@ class SignIn extends ValidationComponent {
               />
               {this.isFieldInError("email") &&
                 this.getErrorsInField("email").map(errorMessage => (
-                  <Text style={styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -110,7 +110,7 @@ class SignIn extends ValidationComponent {
               />
               {this.isFieldInError("password") &&
                 this.getErrorsInField("password").map(errorMessage => (
-                  <Text style={styles.error} key={errorMessage}>
+                  <Text style={Global.error} key={errorMessage}>
                     {errorMessage}
                   </Text>
                 ))}
@@ -127,13 +127,13 @@ class SignIn extends ValidationComponent {
               </View>
               <View style={Buttons.container}>
                 <TouchableOpacity onPress={this.cancelSignInHandler}>
-                  <Text style={[Buttons.text, Buttons.textAuth]}>Cancel</Text>
+                  <Text style={[Buttons.textAuth]}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={this.signInHandler}
-                  style={[Buttons.btn, Buttons.secondary, { width: 130 }]}
+                  style={[Buttons.btn, Buttons.secondary]}
                 >
-                  <Text style={[Buttons.text, Buttons.textAuth]}>Sign In</Text>
+                  <Text style={[Buttons.textAuth]}>Sign In</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -165,10 +165,8 @@ const styles = StyleSheet.create({
     fontFamily: "Nunito-Light"
   },
   fakeLinkContainer: {
-    alignSelf: "center"
-  },
-  error: {
-    color: "#a80000"
+    alignSelf: "center",
+    marginTop: 20
   }
 });
 
