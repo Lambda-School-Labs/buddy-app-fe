@@ -14,6 +14,7 @@ const AuthStack = props => {
 
     isSignedIn()
       .then(res => {
+        console.log("res", res);
         getToken()
           .then(token => {
             axiosWithAuth(token)

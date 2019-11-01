@@ -16,7 +16,6 @@ import { addUser } from "../actions/buddyActions";
 
 function Landing(props) {
   useEffect(() => {
-    console.log(props.user, "user");
     getToken().then(res => {
       if (res !== null) {
         props.navigation.navigate("AuthStack");
@@ -55,9 +54,7 @@ function Landing(props) {
             onPress={() => props.navigation.navigate("SignUp")}
             style={[Buttons.btn, Buttons.primary]}
           >
-            <Text style={[Buttons.textAuth, Buttons.textPrimary]}>
-              Sign Up
-            </Text>
+            <Text style={[Buttons.textAuth, Buttons.textPrimary]}>Sign Up</Text>
           </TouchableOpacity>
         </View>
 

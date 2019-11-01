@@ -4,7 +4,7 @@ import SelectInput from "react-native-select-input-ios";
 
 function InterestPicker(props) {
   const updateActivityInterest = value => {
-    props.setActivityInterest({ name: value });
+    props.setActivityInterest(value);
   };
 
   const options = props.interests.map(interest => {

@@ -14,7 +14,7 @@ export default function ActivityCard(props) {
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
         <Text style={styles.activityText}>
-          {activity.organizer_id} is {activity.name} at {activity.time} on{" "}
+          {activity.organizer_name} is {activity.name} at {activity.time} on{" "}
           {activity.date}
         </Text>
       </View>

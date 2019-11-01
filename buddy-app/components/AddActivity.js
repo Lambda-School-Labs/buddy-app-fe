@@ -52,7 +52,7 @@ function AddActivity(props) {
             console.log(res, "res");
           })
           .catch(err => {
-            console.log(err.message);
+            console.log(err);
           });
       })
       .catch(err => {
@@ -62,7 +62,7 @@ function AddActivity(props) {
 
   const activityChangeHandler = (value, name) => {
     const interestId = interests.filter(
-      interest => interest.name === activityInterest.name
+      interest => interest.name === activityInterest
     )[0].id;
 
     setNewActivity({
