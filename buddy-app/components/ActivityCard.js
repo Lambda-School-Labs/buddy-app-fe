@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 
-import { getToken } from "../utils/authHelper";
-import axiosWithAuth from "../utils/axiosWithAuth";
 // styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
@@ -14,7 +12,7 @@ export default function ActivityCard(props) {
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
         <Text style={styles.activityText}>
-          {activity.organizer_id} is {activity.name} at {activity.time} on{" "}
+          {activity.organizer_name} is {activity.name} at {activity.time} on{" "}
           {activity.date}
         </Text>
       </View>

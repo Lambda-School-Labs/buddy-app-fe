@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
 import moment from "moment";
@@ -21,7 +21,6 @@ import calendar from "../assets/icons/calendar.png";
 import x from "../assets/icons/x.png";
 
 //styles
-import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
@@ -52,7 +51,7 @@ function AddActivity(props) {
             console.log(res, "res");
           })
           .catch(err => {
-            console.log(err.message);
+            console.log(err);
           });
       })
       .catch(err => {
@@ -62,7 +61,7 @@ function AddActivity(props) {
 
   const activityChangeHandler = (value, name) => {
     const interestId = interests.filter(
-      interest => interest.name === activityInterest.name
+      interest => interest.name === activityInterest
     )[0].id;
 
     setNewActivity({

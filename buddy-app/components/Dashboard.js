@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Image,
   AsyncStorage,
-  TouchableHighlight,
   TouchableOpacity,
   ScrollView
 } from "react-native";
@@ -21,32 +20,60 @@ import home from "../assets/icons/home.png";
 import profile from "../assets/icons/profile.png";
 import addActivity from "../assets/icons/add_activity_button.png";
 //styles
-import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
-import { onSignOut } from "../utils/authHelper";
+import { getToken } from "../utils/authHelper";
 
 const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   useEffect(() => {
+    getToken()
+      .then(token => {
+        axiosWithAuth(token)
+          .get("https://buddy-app-be.herokuapp.com/activities")
+          .then(res => {
+            axiosWithAuth(token)
+              .get(
+                `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
+              )
+              .then(user_interests => {
+                let filteredActivities = [];
+
+                user_interests.data.forEach(user_interest => {
+                  filteredActivities = [
+                    ...filteredActivities,
+                    ...res.data.filter(activities => {
+                      return (
+                        activities.interest_id == user_interest.interests_id
+                      );
+                    })
+                  ];
+                });
+
+                setActivities(filteredActivities);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            //setActivities(res.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      }); // Renders activities
+
     if (props.user.first_name.length < 1) {
       AsyncStorage.getItem("id")
         .then(res => {
-          AsyncStorage.getItem("@token")
+          getToken()
             .then(token => {
               axiosWithAuth(token)
                 .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
                 .then(user => {
                   props.addUser(user.data);
-                  axiosWithAuth(token)
-                    .get("https://buddy-app-be.herokuapp.com/activities")
-                    .then(res => {
-                      setActivities(res.data);
-                      console.log(res.data);
-                    })
-                    .catch(err => {
-                      console.log(err);
-                    });
                 })
                 .catch(err => {
                   console.log(err);
