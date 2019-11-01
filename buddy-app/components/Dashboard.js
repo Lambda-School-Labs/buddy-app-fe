@@ -23,7 +23,7 @@ import addActivity from "../assets/icons/add_activity_button.png";
 import Global from "../styles/Global";
 import { getToken } from "../utils/authHelper";
 
-const Dashboard = props => {
+export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   useEffect(() => {
