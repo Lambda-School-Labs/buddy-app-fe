@@ -25,7 +25,7 @@ import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import { onSignOut } from "../utils/authHelper";
 
-const Dashboard = props => {
+export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   useEffect(() => {

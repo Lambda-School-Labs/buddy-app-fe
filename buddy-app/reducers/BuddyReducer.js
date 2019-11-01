@@ -5,7 +5,7 @@ import {
   ADD_INTEREST,
   GET_INTERESTS
 } from "../actions/buddyActions";
-const initialState = {
+export const initialState = {
   token: null,
   user: {
     first_name: "",
