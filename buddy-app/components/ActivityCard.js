@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 
-import { getToken } from "../utils/authHelper";
-import axiosWithAuth from "../utils/axiosWithAuth";
 // styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";

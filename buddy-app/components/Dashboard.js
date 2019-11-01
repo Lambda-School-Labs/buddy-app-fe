@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Image,
   AsyncStorage,
-  TouchableHighlight,
   TouchableOpacity,
   ScrollView
 } from "react-native";
@@ -22,20 +21,41 @@ import profile from "../assets/icons/profile.png";
 import addActivity from "../assets/icons/add_activity_button.png";
 //styles
 import Global from "../styles/Global";
-import { onSignOut, getToken } from "../utils/authHelper";
+import { getToken } from "../utils/authHelper";
 
 const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   useEffect(() => {
-    console.log("dashboard");
     getToken()
       .then(token => {
         axiosWithAuth(token)
           .get("https://buddy-app-be.herokuapp.com/activities")
           .then(res => {
-            setActivities(res.data);
-            console.log(res.data);
+            axiosWithAuth(token)
+              .get(
+                `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
+              )
+              .then(user_interests => {
+                let filteredActivities = [];
+
+                user_interests.data.forEach(user_interest => {
+                  filteredActivities = [
+                    ...filteredActivities,
+                    ...res.data.filter(activities => {
+                      return (
+                        activities.interest_id == user_interest.interests_id
+                      );
+                    })
+                  ];
+                });
+
+                setActivities(filteredActivities);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            //setActivities(res.data);
           })
           .catch(err => {
             console.log(err);

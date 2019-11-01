@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
 import moment from "moment";
@@ -21,7 +21,6 @@ import calendar from "../assets/icons/calendar.png";
 import x from "../assets/icons/x.png";
 
 //styles
-import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 

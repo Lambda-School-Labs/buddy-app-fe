@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, StyleSheet, Picker, Platform } from "react-native";
 import SelectInput from "react-native-select-input-ios";
 
