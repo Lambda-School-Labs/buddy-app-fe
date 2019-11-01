@@ -28,6 +28,7 @@ const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   useEffect(() => {
+    console.log("dashboard");
     getToken()
       .then(token => {
         axiosWithAuth(token)

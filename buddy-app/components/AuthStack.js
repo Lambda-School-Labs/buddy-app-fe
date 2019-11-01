@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import SignIn from "./SignIn";
-import { isSignedIn, getToken } from "../utils/authHelper.js";
+import { isSignedIn, getToken, onSignOut } from "../utils/authHelper.js";
 import { connect } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { isLoadingPage, getInterests } from "../actions/buddyActions";
@@ -26,7 +26,14 @@ const AuthStack = props => {
                 setCheckAuthorized(true);
               })
               .catch(err => {
-                console.log(err);
+                onSignOut()
+                  .then(logout => {
+                    props.navigation.navigate("Landing");
+                  })
+                  .catch(error => {
+                    console.log(error);
+                  });
+                console.log(err.message);
               });
           })
           .catch(err => {
