@@ -31,24 +31,23 @@ export const Dashboard = props => {
       .then(token => {
         axiosWithAuth(token)
           .get("https://buddy-app-be.herokuapp.com/activities")
-          .then(res => {
+          .then(allActivities => {
             axiosWithAuth(token)
               .get(
                 `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
               )
               .then(user_interests => {
-                let filteredActivities = [];
-
-                user_interests.data.forEach(user_interest => {
-                  filteredActivities = [
-                    ...filteredActivities,
-                    ...res.data.filter(activities => {
-                      return (
-                        activities.interest_id == user_interest.interests_id
-                      );
-                    })
-                  ];
-                });
+                const filteredActivities = [];
+                for (let i = 0; i < allActivities.data.length; i++) {
+                  for (let j = 0; j < user_interests.data.length; j++) {
+                    if (
+                      user_interests.data[j].interests_id ==
+                      allActivities.data[i].interest_id
+                    ) {
+                      filteredActivities.push(allActivities.data[i]);
+                    }
+                  }
+                }
 
                 setActivities(filteredActivities);
               })
