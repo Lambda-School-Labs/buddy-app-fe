@@ -5,6 +5,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
+import { nominalTypeHack } from "prop-types";
 
 export default function ActivityCard(props) {
   const [activity] = useState(props.activity);
@@ -12,13 +13,13 @@ export default function ActivityCard(props) {
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
         <Text style={styles.activityText}>
-          {activity.organizer_name} is {activity.name} at {activity.time} on{" "}
+          {activity.name} with {activity.organizer_name} at {activity.time} on{" "}
           {activity.date}
         </Text>
       </View>
       <View style={styles.joinBtn}>
         <TouchableOpacity>
-          <Text style={Buttons.text}>Ask to Join</Text>
+          <Text style={/*Buttons.text*/ { color: "white" }}>Ask to Join</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -35,13 +36,13 @@ const styles = StyleSheet.create({
     width: "95%",
     marginTop: 20,
     paddingBottom: 20,
-    height: 60
+    height: "auto"
   },
 
   joinBtn: {
     width: "33%",
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "white",
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
@@ -49,8 +50,7 @@ const styles = StyleSheet.create({
   },
 
   activityView: {
-    width: "60%",
-    height: "150%"
+    width: "60%"
   },
 
   activityText: {
