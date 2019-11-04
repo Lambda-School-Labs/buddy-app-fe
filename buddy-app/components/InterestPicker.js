@@ -18,7 +18,7 @@ function InterestPicker(props) {
       {Platform.OS !== "ios" ? (
         // android selector for interest category
         <Picker
-          selectedValue={props.activityInterest.name}
+          selectedValue={props.activityInterest}
           onValueChange={itemValue => {
             updateActivityInterest(itemValue);
             //   console.log(activityInterest, "ai");
