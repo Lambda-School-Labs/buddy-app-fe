@@ -1,0 +1,20 @@
+{
+    "appName": "buddyapp",
+    "roleName": "pinpointLambdaRoled0ebefa4",
+    "cloudWatchPolicyName": "cloudWatchPolicyd0ebefa4",
+    "pinpointPolicyName": "pinpointPolicyd0ebefa4",
+    "authPolicyName": "pinpoint_amplify_d0ebefa4",
+    "unauthPolicyName": "pinpoint_amplify_d0ebefa4",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

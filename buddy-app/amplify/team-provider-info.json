@@ -1,0 +1,19 @@
+{
+    "mobile": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-buddyapp-mobile-164436-authRole",
+            "UnauthRoleArn": "arn:aws:iam::401980807180:role/amplify-buddyapp-mobile-164436-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::401980807180:role/amplify-buddyapp-mobile-164436-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-buddyapp-mobile-164436-deployment",
+            "UnauthRoleName": "amplify-buddyapp-mobile-164436-unauthRole",
+            "StackName": "amplify-buddyapp-mobile-164436",
+            "StackId": "arn:aws:cloudformation:us-west-2:401980807180:stack/amplify-buddyapp-mobile-164436/46b0b590-fe9c-11e9-ba21-02e34c33f014"
+        },
+        "categories": {
+            "auth": {
+                "buddyapp6dd90fa7": {}
+            }
+        }
+    }
+}
