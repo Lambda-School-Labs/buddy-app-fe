@@ -42,6 +42,7 @@ class SignIn extends ValidationComponent {
         .post("https://buddy-app-be.herokuapp.com/auth/signin", this.state)
         .then(res => {
           storeToken(res.data.token);
+          this.setState({ ...this.state, invalid: false });
           this.props.addUser({
             first_name: res.data.first_name,
             last_name: res.data.last_name,
