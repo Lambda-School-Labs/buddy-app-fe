@@ -9,7 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   Modal,
-  Image
+  Image,
+  Platform
 } from "react-native";
 import InterestPicker from "./InterestPicker";
 
@@ -124,7 +125,7 @@ function AddActivity(props) {
                 showIcon={false}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
-                format={"h:mm: a"}
+                format={"h:mm A"}
                 is24Hour={false} // only works for Android view
                 onDateChange={date => setActivityTime(`${date}`)}
                 style={styles.time}
@@ -139,13 +140,23 @@ function AddActivity(props) {
             ></TextInput>
 
             <Text style={styles.addText}>Don't Forget A Note!</Text>
-            <TextInput
-              style={[Global.input, { height: 77 }, styles.addInput]}
-              multiline={true} // moves placeholder text to top for iOS
-              textAlignVertical={"top"} // for Android
-              placeholder="This lets people know what to look out for!"
-              onChangeText={e => activityChangeHandler(e, "notes")}
-            ></TextInput>
+            {Platform.OS === "ios" ? (
+              <TextInput
+                style={[Global.input, { height: 77 }, styles.addInput]}
+                multiline={true} // moves placeholder text to top for iOS
+                textAlignVertical={"top"} // for Android
+                placeholder="This lets people know what to look out for!"
+                onChangeText={e => activityChangeHandler(e, "notes")}
+              ></TextInput>
+            ) : (
+              <TextInput
+                style={[Global.input, { height: 77 }, styles.addInput]}
+                textAlignVertical={"top"} // for Android
+                placeholder="This lets people know what to look out for!"
+                onChangeText={e => activityChangeHandler(e, "notes")}
+              ></TextInput>
+            )}
+
             <View style={styles.addBtn}>
               <TouchableOpacity onPress={saveActivity}>
                 <Image source={addButton} />
