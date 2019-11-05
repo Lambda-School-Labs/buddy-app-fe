@@ -25,17 +25,18 @@ import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 import Buttons from "../styles/Buttons";
 
-function EditActivity({
-  id,
-  name,
-  notes,
-  date,
-  time,
-  organizer_id,
-  interest_id,
-  location
-}) {
+function EditActivity(props) {
   const today = moment(Date.now()).format("MM/D/YY"); // set today
+  const {
+    id,
+    name,
+    notes,
+    date,
+    time,
+    organizer_id,
+    interest_id,
+    location
+  } = props.activity;
 
   const [newActivity, setNewActivity] = useState({
     id: id,
@@ -52,31 +53,21 @@ function EditActivity({
   const [activityInterest, setActivityInterest] = useState(
     interests[interest_id - 1].name
   ); // set activityInterest (name string) in the InterestPicker component based on the ID number
-  const [activityDate, setActivityDate] = useState(date); // set state from date picker
-  const [activityTime, setActivityTime] = useState(time); // set state from date picker
 
   const saveActivity = () => {
     const interestId = interests.filter(
       interest => interest.name === activityInterest
     )[0].id; // match picker string to the list of interests and return ID
-    console.log("activityDate", activityDate);
-    console.log("activityTime", activityTime);
-
-    setNewActivity({
+    const submitted = {
       ...newActivity,
-      date: activityDate,
-      time: activityTime,
       interest_id: interestId
-    }); // final update of non-input form components? NOT WORKING
-
+    }; // final update of non-input form components? */
+    console.log("submitted", submitted);
     console.log(newActivity);
-    /* getToken()
+    getToken()
       .then(token => {
         axiosWithAuth(token)
-          .put(
-            `https://buddy-app-be.herokuapp.com/activities/${id}`,
-            newActivity
-          )
+          .put(`https://buddy-app-be.herokuapp.com/activities/${id}`, submitted)
           .then(res => {
             props.toggleModal();
             console.log(res, "res");
@@ -87,20 +78,23 @@ function EditActivity({
       })
       .catch(err => {
         console.log(err);
-      }); */
+      });
   };
 
   const activityChangeHandler = (value, name) => {
+    const interestId = interests.filter(
+      interest => interest.name === activityInterest
+    )[0].id; // match picker string to the list of interests and return ID
+
     setNewActivity({
       ...newActivity,
       [name]: value,
-      date: activityDate,
-      time: activityTime,
+      /* date: activityDate,
+      time: activityTime, */
       interest_id: interestId
     });
     // this reliably handles changes in text inputs ONLY.
-    // it doesn't seem to update properly if the pickers are the last object touched before submitting form.
-    // we're attempting a second spread/update upon the submit (saveActivity), but it's not working yet.
+    // it doesn't update properly if the pickers are the last object touched before submitting form.
   };
 
   const cancelHandler = () => {
@@ -147,6 +141,8 @@ function EditActivity({
             <InterestPicker
               activityInterest={activityInterest}
               setActivityInterest={setActivityInterest}
+              //activityInterest={interests[interest_id - 1].name}
+              //setNewActivity={setNewActivity}
               interests={interests}
             />
 
@@ -155,15 +151,19 @@ function EditActivity({
               <Image source={calendar} />
               <DatePicker
                 placeholder="Select Date"
-                date={activityDate}
+                date={newActivity.date}
                 mode="date"
                 format="MM/DD/YY"
                 minDate={today}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 showIcon={false}
-                onDateChange={date => setActivityDate(`${date}`)}
-                // onCloseModal={console.log("Modal closed", activityDate)}
+                onDateChange={date => {
+                  setNewActivity({
+                    ...newActivity,
+                    date: date
+                  });
+                }}
                 style={styles.date}
                 customStyles={{ dateInput: { borderRadius: 5 } }}
               />
@@ -171,13 +171,17 @@ function EditActivity({
               <DatePicker
                 mode="time"
                 placeholder="Select Time"
-                date={activityTime}
+                date={newActivity.time}
                 showIcon={false}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 is24Hour={false} // only works for Android view
-                onDateChange={date => setActivityTime(`${date}`)}
-                // onCloseModal={console.log("Modal closed", activityTime)}
+                onDateChange={date => {
+                  setNewActivity({
+                    ...newActivity,
+                    time: date
+                  });
+                }}
                 style={styles.time}
                 customStyles={{ dateInput: { borderRadius: 5 } }}
               />
