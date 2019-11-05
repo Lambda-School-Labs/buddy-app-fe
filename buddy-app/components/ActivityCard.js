@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
-import EditActivity from "./EditActivity"; // temp import - working on the modify activity modal - replacing "add activity" for now
+import EditActivity from "./EditActivity";
 
 // styles
 import Buttons from "../styles/Buttons";
