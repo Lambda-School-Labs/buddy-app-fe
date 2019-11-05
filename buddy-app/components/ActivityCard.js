@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import EditActivity from "./EditActivity"; // temp import - working on the modify activity modal - replacing "add activity" for now
 
 // styles
 import Buttons from "../styles/Buttons";
@@ -8,6 +9,14 @@ import Colors from "../styles/Colors";
 
 export default function ActivityCard(props) {
   const [activity] = useState(props.activity);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    console.log(props);
+    setIsModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
@@ -18,9 +27,16 @@ export default function ActivityCard(props) {
       </View>
       <View style={styles.joinBtn}>
         <TouchableOpacity>
-          <Text style={Buttons.text}>Ask to Join</Text>
+          <Text style={Buttons.text} onPress={toggleModal}>
+            Ask to Join
+          </Text>
         </TouchableOpacity>
       </View>
+      <EditActivity
+        activity={activity}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+      />
     </View>
   );
 }
