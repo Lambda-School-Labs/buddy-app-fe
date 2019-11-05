@@ -27,7 +27,7 @@ import Colors from "../styles/Colors";
 
 function AddActivity(props) {
   const today = moment(Date.now()).format("MM/D/YY");
-  const now = moment(Date.now()).format("HH:mm");
+  const now = moment(Date.now()).format("HH:mm A");
 
   const [interests, setInterests] = useState([...props.interests]);
   const [activityInterest, setActivityInterest] = useState(interests[0].name);
@@ -128,7 +128,7 @@ function AddActivity(props) {
                   cancelBtnText="Cancel"
                   format={"h:mm A"}
                   is24Hour={false} // only works for Android view
-                  onDateChange={date => setActivityTime(`${date}`)}
+                  onDateChange={time => setActivityTime(`${time}`)}
                   style={styles.time}
                   customStyles={{ dateInput: { borderRadius: 5 } }}
                 />

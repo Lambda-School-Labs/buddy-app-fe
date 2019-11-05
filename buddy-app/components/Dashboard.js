@@ -78,6 +78,8 @@ export const Dashboard = props => {
   const closeModal = () => {
     setModalVisible(false);
   };
+
+  console.log("activities", activities);
   return (
     <View style={Global.container}>
       <View style={styles.dashBoardHeader}>
