@@ -194,6 +194,7 @@ function EditActivity(props) {
                 showIcon={false}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
+                format={"h:mm: a"}
                 is24Hour={false} // only works for Android view
                 onDateChange={date => {
                   setNewActivity({
