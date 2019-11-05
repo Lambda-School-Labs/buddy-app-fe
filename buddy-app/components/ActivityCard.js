@@ -28,7 +28,12 @@ export default function ActivityCard(props) {
       </View>
       <View style={styles.joinBtn}>
         <TouchableOpacity>
-          <Text style={/*Buttons.text*/ { color: "white" }}>Ask to Join</Text>
+          <Text
+            style={/*Buttons.text*/ { color: "white" }}
+            onPress={toggleModal}
+          >
+            Ask to Join
+          </Text>
         </TouchableOpacity>
       </View>
       <EditActivity
