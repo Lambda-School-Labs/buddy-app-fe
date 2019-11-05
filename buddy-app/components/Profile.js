@@ -31,7 +31,7 @@ const Profile = props => {
 
       <View style={Global.bottomNav}>
         <TouchableOpacity
-          onPress={() => props.navigation.navigate("Dashboard")}
+          onPress={() => props.navigation.navigate("AuthStack")}
         >
           <Image source={home} />
         </TouchableOpacity>
