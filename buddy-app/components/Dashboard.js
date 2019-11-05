@@ -27,6 +27,8 @@ export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   useEffect(() => {
+    console.log(props.user);
+
     getToken()
       .then(token => {
         axiosWithAuth(token)
@@ -63,29 +65,6 @@ export const Dashboard = props => {
       .catch(err => {
         console.log(err);
       }); // Renders activities
-
-    if (props.user.first_name.length < 1) {
-      AsyncStorage.getItem("id")
-        .then(res => {
-          getToken()
-            .then(token => {
-              axiosWithAuth(token)
-                .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
-                .then(user => {
-                  props.addUser(user.data);
-                })
-                .catch(err => {
-                  console.log(err);
-                });
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
   }, []);
 
   const openModal = () => {
