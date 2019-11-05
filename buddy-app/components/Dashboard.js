@@ -6,7 +6,8 @@ import {
   Image,
   AsyncStorage,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  BackHandler
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
@@ -21,11 +22,18 @@ import profile from "../assets/icons/profile.png";
 import addActivity from "../assets/icons/add_activity_button.png";
 //styles
 import Global from "../styles/Global";
-import { getToken } from "../utils/authHelper";
+import { getToken, onSignOut } from "../utils/authHelper";
 
 export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
+  BackHandler.addEventListener("hardwareBackPress", () => {
+    onSignOut().then(res => {
+      props.addUser({ first_name: "", last_name: "", id: "" });
+      AsyncStorage.removeItem("id");
+      props.navigation.navigate("Landing");
+    });
+  });
   useEffect(() => {
     console.log(props.user);
 
@@ -51,6 +59,7 @@ export const Dashboard = props => {
                         allActivities.data[i].interest_id &&
                       !filteredActivities.includes(allActivities.data[i])
                     ) {
+                      console.log(allActivities.data[i].interests_id);
                       filteredActivities.push(allActivities.data[i]);
                     }
                   }

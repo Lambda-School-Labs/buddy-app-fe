@@ -7,6 +7,7 @@ import {
   AsyncStorage
 } from "react-native";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { onSignOut } from "../utils/authHelper";
 import { addUser } from "../actions/buddyActions";
 import { connect } from "react-redux";
 import Global from "../styles/Global";
@@ -47,7 +48,13 @@ const InterestsOnboard = props => {
 
   const backButton = () => {
     props.addUser({ first_name: "", last_name: "", id: "" });
-    props.navigation.navigate("Landing");
+    onSignOut()
+      .then(res => {
+        this.props.navigation.navigate("Landing");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const handleFinish = () => {

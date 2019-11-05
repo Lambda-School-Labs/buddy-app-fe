@@ -37,7 +37,7 @@ class SignUp extends ValidationComponent {
     axios
       .post("https://buddy-app-be.herokuapp.com/auth/signup", newUser)
       .then(response => {
-        //console.log("sign up response", response.data);
+        console.log("sign up response", response.data);
         const storedUser = {
           first_name: response.data.newUser.first_name,
           last_name: response.data.newUser.last_name,
@@ -45,6 +45,7 @@ class SignUp extends ValidationComponent {
         };
         this.props.addUser(storedUser);
         storeToken(response.data.token);
+        AsyncStorage.setItem("id", response.data.newUser.id);
         this.props.navigation.navigate("InterestOnboard");
       })
       .catch(error => {
