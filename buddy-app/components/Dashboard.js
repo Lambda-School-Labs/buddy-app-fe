@@ -39,6 +39,7 @@ export const Dashboard = props => {
                 `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
               )
               .then(user_interests => {
+
                 console.log(user_interests.data);
                 const filteredActivities = [];
                 for (let i = 0; i < allActivities.data.length; i++) {
@@ -52,11 +53,14 @@ export const Dashboard = props => {
                       !filteredActivities.includes(allActivities.data[i])
                     ) {
                       filteredActivities.push(allActivities.data[i]);
+
                     }
                   }
-                }
 
-                setActivities(filteredActivities);
+                  setActivities(filteredActivities);
+                } else {
+                  setActivities(allActivities.data);
+                }
               })
               .catch(err => {
                 console.log(err);
