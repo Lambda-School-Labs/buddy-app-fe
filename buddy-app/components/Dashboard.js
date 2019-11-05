@@ -39,25 +39,28 @@ export const Dashboard = props => {
                 `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
               )
               .then(user_interests => {
-
-                console.log(user_interests.data);
-                const filteredActivities = [];
-                for (let i = 0; i < allActivities.data.length; i++) {
-                  if (allActivities.data[i].organizer_id == props.user.id) {
-                    filteredActivities.push(allActivities.data[i]);
-                  }
-                  for (let j = 0; j < user_interests.data.length; j++) {
-                    if (
-                      user_interests.data[j].interests_id ==
-                        allActivities.data[i].interest_id &&
-                      !filteredActivities.includes(allActivities.data[i])
-                    ) {
-                      filteredActivities.push(allActivities.data[i]);
-
+                if (user_interests.data.length >= 1) {
+                  console.log(user_interests.data);
+                  for (let i = 0; i < allActivities.data.length; i++) {
+                    if (allActivities.data[i].organizer_id == props.user.id) {
+                      setActivities(oldActivities => [
+                        ...oldActivities,
+                        allActivities.data[i]
+                      ]);
+                    }
+                    for (let j = 0; j < user_interests.data.length; j++) {
+                      if (
+                        user_interests.data[j].interests_id ==
+                          allActivities.data[i].interest_id &&
+                        !activities.includes(allActivities.data[i])
+                      ) {
+                        setActivities(oldActivities => [
+                          ...oldActivities,
+                          allActivities.data[i]
+                        ]);
+                      }
                     }
                   }
-
-                  setActivities(filteredActivities);
                 } else {
                   setActivities(allActivities.data);
                 }
@@ -108,7 +111,10 @@ export const Dashboard = props => {
         </View>
       </ScrollView>
       <View style={Global.bottomNav}>
-        <Image source={home} />
+        <Image
+          source={home}
+          onPress={() => props.naviation.navigate("Dashboard")}
+        />
         <Image source={bell} />
         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
           <Image source={profile} />

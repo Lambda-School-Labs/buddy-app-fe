@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import moment from "moment";
 import {
   View,
@@ -27,7 +28,7 @@ import Colors from "../styles/Colors";
 
 function AddActivity(props) {
   const today = moment(Date.now()).format("MM/D/YY");
-  const now = moment(Date.now()).format("HH:mm");
+  const now = moment(Date.now()).format("HH:mm A");
 
   const [interests, setInterests] = useState([...props.interests]);
   const [activityInterest, setActivityInterest] = useState(interests[0].name);
@@ -76,95 +77,96 @@ function AddActivity(props) {
   };
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
-      <View style={styles.viewContainer}>
-        <View style={styles.addView}>
-          <View style={{ alignSelf: "flex-end" }}>
-            <TouchableOpacity onPress={props.closeModal}>
-              <Image source={x} />
-            </TouchableOpacity>
-          </View>
-          <View>
-            <Text style={styles.addHeader}>Add an Activity</Text>
-          </View>
-          <View style={styles.addInputContainer}>
-            <Text style={styles.addText}>What Do You Want To Do?</Text>
-            <TextInput
-              style={[Global.input, styles.addInput]}
-              placeholder="Activity"
-              onChangeText={e => activityChangeHandler(e, "name")}
-            ></TextInput>
-
-            <Text style={styles.addText}>Select A Category</Text>
-            <InterestPicker
-              activityInterest={activityInterest}
-              setActivityInterest={setActivityInterest}
-              interests={interests}
-            />
-
-            <Text style={styles.addText}>When Do You Want To Go?</Text>
-            <View style={[styles.datePicker, styles.addInput]}>
-              <Image source={calendar} />
-              <DatePicker
-                placeholder="Select Date"
-                date={activityDate}
-                mode="date"
-                format="MM/DD/YY"
-                minDate={today}
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                showIcon={false}
-                onDateChange={date => setActivityDate(`${date}`)}
-                style={styles.date}
-                customStyles={{ dateInput: { borderRadius: 5 } }}
-              />
-
-              <DatePicker
-                mode="time"
-                placeholder="Select Time"
-                date={activityTime}
-                showIcon={false}
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                format={"h:mm A"}
-                is24Hour={false} // only works for Android view
-                onDateChange={date => setActivityTime(`${date}`)}
-                style={styles.time}
-                customStyles={{ dateInput: { borderRadius: 5 } }}
-              />
-            </View>
-            <Text style={styles.addText}>Where?</Text>
-            <TextInput
-              style={[Global.input, styles.addInput]}
-              placeholder="Add Location"
-              onChangeText={e => activityChangeHandler(e, "location")}
-            ></TextInput>
-
-            <Text style={styles.addText}>Don't Forget A Note!</Text>
-            {Platform.OS === "ios" ? (
-              <TextInput
-                style={[Global.input, { height: 77 }, styles.addInput]}
-                multiline={true} // moves placeholder text to top for iOS
-                textAlignVertical={"top"} // for Android
-                placeholder="This lets people know what to look out for!"
-                onChangeText={e => activityChangeHandler(e, "notes")}
-              ></TextInput>
-            ) : (
-              <TextInput
-                style={[Global.input, { height: 77 }, styles.addInput]}
-                textAlignVertical={"top"} // for Android
-                placeholder="This lets people know what to look out for!"
-                onChangeText={e => activityChangeHandler(e, "notes")}
-              ></TextInput>
-            )}
-
-            <View style={styles.addBtn}>
-              <TouchableOpacity onPress={saveActivity}>
-                <Image source={addButton} />
+      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.viewContainer}>
+          <View style={styles.addView}>
+            <View style={{ alignSelf: "flex-end" }}>
+              <TouchableOpacity onPress={props.closeModal}>
+                <Image source={x} />
               </TouchableOpacity>
+            </View>
+            <View>
+              <Text style={styles.addHeader}>Add an Activity</Text>
+            </View>
+            <View style={styles.addInputContainer}>
+              <Text style={styles.addText}>What Do You Want To Do?</Text>
+              <TextInput
+                style={[Global.input, styles.addInput]}
+                placeholder="Activity"
+                onChangeText={e => activityChangeHandler(e, "name")}
+              ></TextInput>
+
+              <Text style={styles.addText}>Select A Category</Text>
+              <InterestPicker
+                activityInterest={activityInterest}
+                setActivityInterest={setActivityInterest}
+                interests={interests}
+              />
+
+              <Text style={styles.addText}>When Do You Want To Go?</Text>
+              <View style={[styles.datePicker, styles.addInput]}>
+                <Image source={calendar} />
+                <DatePicker
+                  placeholder="Select Date"
+                  date={activityDate}
+                  mode="date"
+                  format="MM/DD/YY"
+                  minDate={today}
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  showIcon={false}
+                  onDateChange={date => setActivityDate(`${date}`)}
+                  style={styles.date}
+                  customStyles={{ dateInput: { borderRadius: 5 } }}
+                />
+
+                <DatePicker
+                  mode="time"
+                  placeholder="Select Time"
+                  date={activityTime}
+                  showIcon={false}
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  format={"h:mm A"}
+                  is24Hour={false} // only works for Android view
+                  onDateChange={date => setActivityTime(`${date}`)}
+                  style={styles.time}
+                  customStyles={{ dateInput: { borderRadius: 5 } }}
+                />
+              </View>
+              <Text style={styles.addText}>Where?</Text>
+              <TextInput
+                style={[Global.input, styles.addInput]}
+                placeholder="Add Location"
+                onChangeText={e => activityChangeHandler(e, "location")}
+              ></TextInput>
+
+              <Text style={styles.addText}>Don't Forget A Note!</Text>
+              {Platform.OS === "ios" ? (
+                <TextInput
+                  style={[Global.input, { height: 77 }, styles.addInput]}
+                  multiline={true} // moves placeholder text to top for iOS
+                  textAlignVertical={"top"} // for Android
+                  placeholder="This lets people know what to look out for!"
+                  onChangeText={e => activityChangeHandler(e, "notes")}
+                ></TextInput>
+              ) : (
+                <TextInput
+                  style={[Global.input, { height: 77 }, styles.addInput]}
+                  textAlignVertical={"top"} // for Android
+                  placeholder="This lets people know what to look out for!"
+                  onChangeText={e => activityChangeHandler(e, "notes")}
+                ></TextInput>
+              )}
+              <View style={styles.addBtn}>
+                <TouchableOpacity onPress={saveActivity}>
+                  <Image source={addButton} />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     </Modal>
   );
 }
