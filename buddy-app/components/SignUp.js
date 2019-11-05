@@ -45,8 +45,13 @@ class SignUp extends ValidationComponent {
         };
         this.props.addUser(storedUser);
         storeToken(response.data.token);
-        AsyncStorage.setItem("id", response.data.newUser.id);
-        this.props.navigation.navigate("InterestOnboard");
+        AsyncStorage.setItem("id", `${response.data.newUser.id}`)
+          .then(id => {
+            this.props.navigation.navigate("InterestOnboard");
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(error => {
         if (error.response.status == 400) {

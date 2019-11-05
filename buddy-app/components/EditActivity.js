@@ -9,7 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   Modal,
-  Image
+  Image,
+  Platform
 } from "react-native";
 import InterestPicker from "./InterestPicker";
 
@@ -81,6 +82,25 @@ function EditActivity(props) {
       });
   };
 
+  const deleteActivity = () => {
+    getToken()
+      .then(token => {
+        axiosWithAuth(token)
+          .delete(`https://buddy-app-be.herokuapp.com/activities/${id}`)
+          .then(res => {
+            props.toggleModal();
+            console.log(res, "res");
+            // delete notification
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const activityChangeHandler = (value, name) => {
     const interestId = interests.filter(
       interest => interest.name === activityInterest
@@ -121,7 +141,7 @@ function EditActivity(props) {
       <View style={styles.viewContainer}>
         <View style={styles.addView}>
           <View style={{ alignSelf: "flex-end" }}>
-            <TouchableOpacity onPress={props.toggleModal}>
+            <TouchableOpacity onPress={cancelHandler}>
               <Image source={x} />
             </TouchableOpacity>
           </View>
@@ -175,6 +195,7 @@ function EditActivity(props) {
                 showIcon={false}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
+                format={"h:mm: A"}
                 is24Hour={false} // only works for Android view
                 onDateChange={date => {
                   setNewActivity({
@@ -195,20 +216,30 @@ function EditActivity(props) {
             ></TextInput>
 
             <Text style={styles.addText}>Don't Forget A Note!</Text>
-            <TextInput
-              style={[Global.input, { height: 77 }, styles.addInput]}
-              multiline={true} // moves placeholder text to top for iOS
-              textAlignVertical={"top"} // for Android
-              placeholder="This lets people know what to look out for!"
-              value={newActivity.notes}
-              onChangeText={e => activityChangeHandler(e, "notes")}
-            ></TextInput>
+            {Platform.OS === "ios" ? (
+              <TextInput
+                style={[Global.input, { height: 77 }, styles.addInput]}
+                multiline={true} // moves placeholder text to top for iOS
+                placeholder="This lets people know what to look out for!"
+                value={newActivity.notes}
+                onChangeText={e => activityChangeHandler(e, "notes")}
+              ></TextInput>
+            ) : (
+              <TextInput
+                style={[Global.input, { height: 77 }, styles.addInput]}
+                multiline={true} // moves placeholder text to top for iOS
+                textAlignVertical={"top"} // for Android
+                placeholder="This lets people know what to look out for!"
+                value={newActivity.notes}
+                onChangeText={e => activityChangeHandler(e, "notes")}
+              ></TextInput>
+            )}
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                onPress={cancelHandler}
+                onPress={deleteActivity}
                 style={[Buttons.btn, Buttons.secondary]}
               >
-                <Text style={[Buttons.textAuth]}>Cancel</Text>
+                <Text style={[Buttons.textAuth]}>Delete</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={saveActivity}

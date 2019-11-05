@@ -18,17 +18,22 @@ const InterestsOnboard = props => {
   const [userInterest, setUserInterest] = useState([]);
 
   useEffect(() => {
-    AsyncStorage.getItem("@token").then(token => {
-      axiosWithAuth(token)
-        .get("https://buddy-app-be.herokuapp.com/interests")
-        .then(res => {
-          setInterests(res.data);
-        })
-        .catch(err => {
-          console.log("Error Message", err.response);
-          props.navigation.navigate("SignIn");
-        });
-    });
+    AsyncStorage.getItem("@token")
+      .then(token => {
+        axiosWithAuth(token)
+          .get("https://buddy-app-be.herokuapp.com/interests")
+          .then(res => {
+            console.log(res, token);
+            setInterests(res.data);
+          })
+          .catch(err => {
+            console.log("Error Message", err.response);
+            props.navigation.navigate("SignIn");
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   const toggleInterest = interest => {
@@ -43,7 +48,7 @@ const InterestsOnboard = props => {
       setUserInterest([...userInterest, interest]);
       //console.log("adding", userInterest);
     }
-    console.log(userInterest);
+    console.log(userInterest, "ui");
   };
 
   const backButton = () => {
@@ -76,7 +81,9 @@ const InterestsOnboard = props => {
         });
         props.navigation.navigate("AuthStack");
       })
-      .catch();
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (

@@ -22,8 +22,10 @@ export default function ActivityCard(props) {
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
         <Text style={styles.activityText}>
-          {activity.name} with {activity.organizer_name} at {activity.time} on{" "}
-          {activity.date}
+          <Text style={{ fontFamily: "Nunito-Bold" }}>{activity.name}</Text> on{" "}
+          <Text style={{ fontFamily: "Nunito-Bold" }}>{activity.date}</Text> at{" "}
+          <Text style={{ fontFamily: "Nunito-Bold" }}>{activity.time}</Text>{" "}
+          with {activity.organizer_name}
         </Text>
       </View>
       <View style={styles.joinBtn}>
@@ -75,6 +77,6 @@ const styles = StyleSheet.create({
   activityText: {
     fontSize: 16,
     color: Colors.darkGray,
-    fontFamily: "Nunito-Bold"
+    fontFamily: "Nunito-Regular"
   }
 });
