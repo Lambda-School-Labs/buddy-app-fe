@@ -30,6 +30,7 @@ function AddActivity(props) {
 
   const [interests, setInterests] = useState([...props.interests]);
   const [activityInterest, setActivityInterest] = useState(interests[0].name);
+  console.log("Activity Interest", activityInterest);
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
 
@@ -55,7 +56,7 @@ function AddActivity(props) {
           });
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
