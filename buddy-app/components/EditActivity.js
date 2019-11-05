@@ -25,28 +25,27 @@ import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 import Buttons from "../styles/Buttons";
 
-function EditActivity(props) {
+function EditActivity({
+  id,
+  name,
+  notes,
+  date,
+  time,
+  organizer_id,
+  interest_id,
+  location
+}) {
   const today = moment(Date.now()).format("MM/D/YY"); // set today
 
-  const {
-    id,
-    name,
-    notes,
-    date,
-    time,
-    organizer_id,
-    interest_id,
-    location
-  } = props.activity; // destructure the activity passed in as props
-
   const [newActivity, setNewActivity] = useState({
+    id: id,
     name: name,
     notes: notes,
     date: date,
     time: time,
     interest_id: interest_id,
     location: location,
-    organizer_id: organizer_id // also props.user.id
+    organizer_id: organizer_id // technically also props.user.id
   }); // set initial state as the activity to be edited
 
   const [interests, setInterests] = useState([...props.interests]); // GET all interests, mapped to props from redux store
@@ -60,12 +59,16 @@ function EditActivity(props) {
     const interestId = interests.filter(
       interest => interest.name === activityInterest
     )[0].id; // match picker string to the list of interests and return ID
+    console.log("activityDate", activityDate);
+    console.log("activityTime", activityTime);
+
     setNewActivity({
       ...newActivity,
       date: activityDate,
       time: activityTime,
       interest_id: interestId
-    }); // final update of non-input form components
+    }); // final update of non-input form components? NOT WORKING
+
     console.log(newActivity);
     /* getToken()
       .then(token => {
@@ -90,11 +93,14 @@ function EditActivity(props) {
   const activityChangeHandler = (value, name) => {
     setNewActivity({
       ...newActivity,
-      [name]: value
+      [name]: value,
+      date: activityDate,
+      time: activityTime,
+      interest_id: interestId
     });
-    // handle changes in text inputs ONLY - we were originally including the date and time pickers,
-    // it wasn't updating properly if the pickers were the last object touched before submitting form.
-    // therefore we do a second spread/update upon the submit (saveActivity)
+    // this reliably handles changes in text inputs ONLY.
+    // it doesn't seem to update properly if the pickers are the last object touched before submitting form.
+    // we're attempting a second spread/update upon the submit (saveActivity), but it's not working yet.
   };
 
   const cancelHandler = () => {
@@ -157,7 +163,7 @@ function EditActivity(props) {
                 cancelBtnText="Cancel"
                 showIcon={false}
                 onDateChange={date => setActivityDate(`${date}`)}
-                onCloseModal={console.log(activityDate)}
+                // onCloseModal={console.log("Modal closed", activityDate)}
                 style={styles.date}
                 customStyles={{ dateInput: { borderRadius: 5 } }}
               />
@@ -171,7 +177,7 @@ function EditActivity(props) {
                 cancelBtnText="Cancel"
                 is24Hour={false} // only works for Android view
                 onDateChange={date => setActivityTime(`${date}`)}
-                onCloseModal={console.log(activityTime)}
+                // onCloseModal={console.log("Modal closed", activityTime)}
                 style={styles.time}
                 customStyles={{ dateInput: { borderRadius: 5 } }}
               />
