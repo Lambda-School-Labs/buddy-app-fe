@@ -81,6 +81,25 @@ function EditActivity(props) {
       });
   };
 
+  const deleteActivity = () => {
+    getToken()
+      .then(token => {
+        axiosWithAuth(token)
+          .delete(`https://buddy-app-be.herokuapp.com/activities/${id}`)
+          .then(res => {
+            props.toggleModal();
+            console.log(res, "res");
+            // delete notification
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const activityChangeHandler = (value, name) => {
     const interestId = interests.filter(
       interest => interest.name === activityInterest
@@ -121,7 +140,7 @@ function EditActivity(props) {
       <View style={styles.viewContainer}>
         <View style={styles.addView}>
           <View style={{ alignSelf: "flex-end" }}>
-            <TouchableOpacity onPress={props.toggleModal}>
+            <TouchableOpacity onPress={cancelHandler}>
               <Image source={x} />
             </TouchableOpacity>
           </View>
@@ -205,10 +224,10 @@ function EditActivity(props) {
             ></TextInput>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                onPress={cancelHandler}
+                onPress={deleteActivity}
                 style={[Buttons.btn, Buttons.secondary]}
               >
-                <Text style={[Buttons.textAuth]}>Cancel</Text>
+                <Text style={[Buttons.textAuth]}>Delete</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={saveActivity}
