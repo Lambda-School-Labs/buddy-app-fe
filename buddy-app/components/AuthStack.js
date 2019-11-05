@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { AsyncStorage } from "react-native";
 import Dashboard from "./Dashboard";
 import SignIn from "./SignIn";
 import { isSignedIn, getToken, onSignOut } from "../utils/authHelper.js";
 import { connect } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { isLoadingPage, getInterests } from "../actions/buddyActions";
+import { isLoadingPage, getInterests, addUser } from "../actions/buddyActions";
 const AuthStack = props => {
   const [authorized, setAuthorized] = useState(false);
   const [checkAuthorized, setCheckAuthorized] = useState(false);
@@ -22,8 +23,34 @@ const AuthStack = props => {
               .then(results => {
                 props.getInterests(results.data);
                 console.log(results.data);
-                setAuthorized(res);
-                setCheckAuthorized(true);
+                AsyncStorage.getItem("id")
+                  .then(res => {
+                    getToken()
+                      .then(token => {
+                        axiosWithAuth(token)
+                          .get(
+                            `https://buddy-app-be.herokuapp.com/users/${res}`
+                          )
+                          .then(user => {
+                            props.addUser({
+                              first_name: user.data.first_name,
+                              last_name: user.data.last_name,
+                              id: user.data.id
+                            });
+                            setAuthorized(res);
+                            setCheckAuthorized(true);
+                          })
+                          .catch(err => {
+                            console.log(err);
+                          });
+                      })
+                      .catch(err => {
+                        console.log(err);
+                      });
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  });
               })
               .catch(err => {
                 onSignOut()
@@ -65,5 +92,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { isLoadingPage, getInterests }
+  { isLoadingPage, getInterests, addUser }
 )(AuthStack);
