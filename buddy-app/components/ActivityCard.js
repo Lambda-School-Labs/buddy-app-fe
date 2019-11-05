@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import EditActivity from "./EditActivity";
 
 // styles
 import Buttons from "../styles/Buttons";
@@ -9,6 +10,14 @@ import { nominalTypeHack } from "prop-types";
 
 export default function ActivityCard(props) {
   const [activity] = useState(props.activity);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    console.log(props);
+    setIsModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
@@ -22,6 +31,11 @@ export default function ActivityCard(props) {
           <Text style={/*Buttons.text*/ { color: "white" }}>Ask to Join</Text>
         </TouchableOpacity>
       </View>
+      <EditActivity
+        activity={activity}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+      />
     </View>
   );
 }
