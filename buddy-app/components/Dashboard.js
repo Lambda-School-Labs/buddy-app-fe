@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
 import ActivityCard from "./ActivityCard";
 import AddActivity from "./AddActivity";
+import { NavBar } from "./NavBar";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
@@ -109,25 +110,18 @@ export const Dashboard = props => {
           Welcome {props.user.first_name} {props.user.last_name}
         </Text>
       </View>
-      <ScrollView>
-        <View style={styles.activityView}>
-          {activities.map(activity => {
-            return <ActivityCard activity={activity} key={activity.id} />;
-          })}
+      <View style={{ height: "70%" }}>
+        <ScrollView>
+          <View style={styles.activityView}>
+            {activities.map(activity => {
+              return <ActivityCard activity={activity} key={activity.id} />;
+            })}
 
-          <AddActivity isVisible={modalVisible} closeModal={closeModal} />
-        </View>
-      </ScrollView>
-      <View style={Global.bottomNav}>
-        <Image
-          source={home}
-          onPress={() => props.naviation.navigate("Dashboard")}
-        />
-        <Image source={bell} />
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
-          <Image source={profile} />
-        </TouchableOpacity>
+            <AddActivity isVisible={modalVisible} closeModal={closeModal} />
+          </View>
+        </ScrollView>
       </View>
+      <NavBar />
     </View>
   );
 };
