@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Image,
   AsyncStorage,
-  TouchableHighlight,
   TouchableOpacity,
   ScrollView
 } from "react-native";
@@ -21,45 +20,63 @@ import home from "../assets/icons/home.png";
 import profile from "../assets/icons/profile.png";
 import addActivity from "../assets/icons/add_activity_button.png";
 //styles
-import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
-import { onSignOut } from "../utils/authHelper";
+import { getToken } from "../utils/authHelper";
 
-const Dashboard = props => {
+export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   useEffect(() => {
-    if (props.user.first_name.length < 1) {
-      AsyncStorage.getItem("id")
-        .then(res => {
-          AsyncStorage.getItem("@token")
-            .then(token => {
-              axiosWithAuth(token)
-                .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
-                .then(user => {
-                  props.addUser(user.data);
-                  axiosWithAuth(token)
-                    .get("https://buddy-app-be.herokuapp.com/activities")
-                    .then(res => {
-                      setActivities(res.data);
-                      console.log(res.data);
-                    })
-                    .catch(err => {
-                      console.log(err);
-                    });
-                })
-                .catch(err => {
-                  console.log(err);
-                });
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+    console.log(props.user);
+
+    getToken()
+      .then(token => {
+        axiosWithAuth(token)
+          .get("https://buddy-app-be.herokuapp.com/activities")
+          .then(allActivities => {
+            axiosWithAuth(token)
+              .get(
+                `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
+              )
+              .then(user_interests => {
+                if (user_interests.data.length >= 1) {
+                  console.log(user_interests.data);
+                  for (let i = 0; i < allActivities.data.length; i++) {
+                    if (allActivities.data[i].organizer_id == props.user.id) {
+                      setActivities(oldActivities => [
+                        ...oldActivities,
+                        allActivities.data[i]
+                      ]);
+                    }
+                    for (let j = 0; j < user_interests.data.length; j++) {
+                      if (
+                        user_interests.data[j].interests_id ==
+                          allActivities.data[i].interest_id &&
+                        !activities.includes(allActivities.data[i])
+                      ) {
+                        setActivities(oldActivities => [
+                          ...oldActivities,
+                          allActivities.data[i]
+                        ]);
+                      }
+                    }
+                  }
+                } else {
+                  setActivities(allActivities.data);
+                }
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            //setActivities(res.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      }); // Renders activities
   }, []);
 
   const openModal = () => {
@@ -94,7 +111,10 @@ const Dashboard = props => {
         </View>
       </ScrollView>
       <View style={Global.bottomNav}>
-        <Image source={home} />
+        <Image
+          source={home}
+          onPress={() => props.naviation.navigate("Dashboard")}
+        />
         <Image source={bell} />
         <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
           <Image source={profile} />

@@ -23,7 +23,8 @@ import Global from "../styles/Global";
 class SignIn extends ValidationComponent {
   state = {
     email: "",
-    password: ""
+    password: "",
+    invalid: false
   };
 
   changeHandler = (value, name) => {
@@ -41,6 +42,7 @@ class SignIn extends ValidationComponent {
         .post("https://buddy-app-be.herokuapp.com/auth/signin", this.state)
         .then(res => {
           storeToken(res.data.token);
+          this.setState({ ...this.state, invalid: false });
           this.props.addUser({
             first_name: res.data.first_name,
             last_name: res.data.last_name,
@@ -57,7 +59,7 @@ class SignIn extends ValidationComponent {
         })
         .catch(err => {
           this.props.isLoadingPage(false);
-          Alert.alert("Warning", "Invalid credentials.", [{ text: "OK" }]);
+          this.setState({ ...this.state, invalid: true });
         });
     } else {
       this.props.isLoadingPage(false);
@@ -86,6 +88,9 @@ class SignIn extends ValidationComponent {
             </View>
             <Text style={Global.title}>Sign In</Text>
             <View style={Global.formContainer}>
+              {this.state.invalid && (
+                <Text style={{ color: "red" }}>Invalid Credentials</Text>
+              )}
               <TextInput
                 style={[Global.input, { marginTop: 0 }]}
                 placeholder="Email"

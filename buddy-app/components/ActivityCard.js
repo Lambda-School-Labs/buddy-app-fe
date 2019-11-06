@@ -1,28 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import EditActivity from "./EditActivity";
 
-import { getToken } from "../utils/authHelper";
-import axiosWithAuth from "../utils/axiosWithAuth";
 // styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
+import { nominalTypeHack } from "prop-types";
 
 export default function ActivityCard(props) {
   const [activity] = useState(props.activity);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    console.log(props);
+    setIsModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.activityCard}>
       <View style={styles.activityView}>
         <Text style={styles.activityText}>
-          {activity.organizer_id} is {activity.name} at {activity.time} on{" "}
-          {activity.date}
+          <Text style={{ fontFamily: "Nunito-Bold" }}>{activity.name}</Text> on{" "}
+          <Text style={{ fontFamily: "Nunito-Bold" }}>{activity.date}</Text> at{" "}
+          <Text style={{ fontFamily: "Nunito-Bold" }}>{activity.time}</Text>{" "}
+          with {activity.organizer_name}
         </Text>
       </View>
       <View style={styles.joinBtn}>
         <TouchableOpacity>
-          <Text style={Buttons.text}>Ask to Join</Text>
+          <Text
+            style={/*Buttons.text*/ { color: "white" }}
+            onPress={toggleModal}
+          >
+            Ask to Join
+          </Text>
         </TouchableOpacity>
       </View>
+      <EditActivity
+        activity={activity}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+      />
     </View>
   );
 }
@@ -37,13 +57,13 @@ const styles = StyleSheet.create({
     width: "95%",
     marginTop: 20,
     paddingBottom: 20,
-    height: 60
+    height: "auto"
   },
 
   joinBtn: {
     width: "33%",
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "white",
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
@@ -51,13 +71,12 @@ const styles = StyleSheet.create({
   },
 
   activityView: {
-    width: "60%",
-    height: "150%"
+    width: "60%"
   },
 
   activityText: {
     fontSize: 16,
     color: Colors.darkGray,
-    fontFamily: "Nunito-Bold"
+    fontFamily: "Nunito-Regular"
   }
 });
