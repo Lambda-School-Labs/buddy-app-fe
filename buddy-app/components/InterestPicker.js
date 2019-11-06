@@ -46,7 +46,13 @@ function InterestPicker(props) {
             props.setActivityInterest(selected);
           }}
           style={styles.iosPicker}
-          labelStyle={{ fontSize: 15 }}
+          labelStyle={{
+            fontSize: 15,
+            fontFamily: "Nunito-Light",
+            color: "#2E2F38",
+            paddingVertical: 5,
+            paddingLeft: 10
+          }}
         />
       )}
     </View>
@@ -59,9 +65,10 @@ const styles = StyleSheet.create({
     width: "75%"
   },
   iosPicker: {
-    height: 40,
-    paddingTop: 10,
-    marginTop: 10
+    width: "100%",
+    marginVertical: 20,
+    borderWidth: 1,
+    borderColor: "#B0B0B0"
   }
 });
 
