@@ -34,9 +34,8 @@ export const Dashboard = props => {
       props.navigation.navigate("Landing");
     });
   });
-  useEffect(() => {
-    console.log(props.user);
 
+  useEffect(() => {
     getToken()
       .then(token => {
         axiosWithAuth(token)
