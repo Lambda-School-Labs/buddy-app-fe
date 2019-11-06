@@ -80,7 +80,7 @@ function AddActivity(props) {
   };
   return (
     <Modal animationType="slide" transparent={false} visible={props.isVisible}>
-      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+      <KeyboardAwareScrollView enableOnAndroid extraScrollHeight={130}>
         <View style={styles.viewContainer}>
           <View style={styles.addView}>
             <View style={{ alignSelf: "flex-end" }}>
