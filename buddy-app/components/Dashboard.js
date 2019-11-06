@@ -121,7 +121,7 @@ export const Dashboard = props => {
           </View>
         </ScrollView>
       </View>
-      <NavBar />
+      <NavBar navigation={props.navigation} />
     </View>
   );
 };
