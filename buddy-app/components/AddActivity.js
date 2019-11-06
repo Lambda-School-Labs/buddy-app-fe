@@ -29,15 +29,16 @@ import Colors from "../styles/Colors";
 function AddActivity(props) {
   const [interests, setInterests] = useState([...props.interests]);
   const [activityInterest, setActivityInterest] = useState(interests[0].name);
-  console.log("Activity Interest", activityInterest);
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
   const today = moment(Date.now()).format("MM/D/YY");
   const now = moment(Date.now()).format("HH:mm A");
+
   useEffect(() => {
     setActivityDate(today);
     setActivityTime(now);
-  }, [now]);
+  }, [props.isVisible]);
+
   const [newActivity, setNewActivity] = useState({
     name: "",
     notes: "",
