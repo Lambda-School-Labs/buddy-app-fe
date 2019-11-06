@@ -106,7 +106,7 @@ export const Dashboard = props => {
       </View>
       <View>
         <Text style={Global.title}>
-          Welcome {props.user.first_name} {props.user.last_name}
+          Welcome, {props.user.first_name} {props.user.last_name}
         </Text>
       </View>
       <View style={{ height: "70%" }}>
