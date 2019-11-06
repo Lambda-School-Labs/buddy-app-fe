@@ -18,8 +18,8 @@ function ActivityCard(props) {
     setIsModalVisible(!isModalVisible);
   };
 
-  console.log("User", props.user);
-  console.log("props", props);
+  // console.log("User", props.user);
+  // console.log("props", props);
 
   return (
     <View style={styles.activityCard}>
@@ -34,10 +34,16 @@ function ActivityCard(props) {
 
       {props.user.id === props.activity.organizer_id ? (
         <View style={[Buttons.activityBtn, Buttons.primary, Buttons.editBtn]}>
-          <TouchableOpacity>
-            <Text style={Buttons.textWhite} onPress={toggleModal}>
-              Edit
-            </Text>
+          <TouchableOpacity
+            onPress={toggleModal}
+            style={{
+              width: "100%",
+              height: 40,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Text style={Buttons.textWhite}>Edit</Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -52,6 +58,7 @@ function ActivityCard(props) {
         activity={activity}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
+        toggleState={props.setRerender}
       />
     </View>
   );

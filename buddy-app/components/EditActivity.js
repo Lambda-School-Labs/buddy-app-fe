@@ -72,7 +72,8 @@ function EditActivity(props) {
           .put(`https://buddy-app-be.herokuapp.com/activities/${id}`, submitted)
           .then(res => {
             props.toggleModal();
-            console.log(res, "res");
+            props.toggleState();
+            console.log(res.data, "res");
           })
           .catch(err => {
             console.log(err);
@@ -90,7 +91,9 @@ function EditActivity(props) {
           .delete(`https://buddy-app-be.herokuapp.com/activities/${id}`)
           .then(res => {
             props.toggleModal();
-            console.log(res, "res");
+            props.toggleState();
+
+            console.log(res.data, "res");
             // delete notification
           })
           .catch(err => {
@@ -130,6 +133,7 @@ function EditActivity(props) {
       location
     });
     props.toggleModal();
+    props.toggleState();
     // resets values to the initial activity, closes the modal using toggle function passed through ActivityCard
   };
 
