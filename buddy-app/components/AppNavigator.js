@@ -10,6 +10,7 @@ import AuthStack from "./AuthStack";
 import InterestOnboard from "./InterestsOnboard";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
+
 const AppNavigator = createStackNavigator(
   {
     Landing: {
