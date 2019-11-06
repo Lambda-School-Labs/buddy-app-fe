@@ -5,7 +5,8 @@ import {
   Text,
   View,
   ImageBackground,
-  Image
+  Image,
+  AsyncStorage
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -16,16 +17,19 @@ import { addUser } from "../actions/buddyActions";
 
 function Landing(props) {
   useEffect(() => {
-    getToken().then(res => {
-      if (res !== null) {
-        props.navigation.navigate("AuthStack");
-      } else {
-        props.addUser({
-          first_name: "",
-          last_name: "",
-          id: ""
-        });
-      }
+    getToken().then(token => {
+      AsyncStorage.getItem("id").then(id => {
+        if ((token !== null) & (id !== null)) {
+          props.navigation.navigate("AuthStack");
+        } else {
+          AsyncStorage.removeItem("id");
+          props.addUser({
+            first_name: "",
+            last_name: "",
+            id: ""
+          });
+        }
+      });
     });
   }, []);
 

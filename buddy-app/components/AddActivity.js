@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-native-datepicker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -27,15 +27,17 @@ import Global from "../styles/Global";
 import Colors from "../styles/Colors";
 
 function AddActivity(props) {
-  const today = moment(Date.now()).format("MM/D/YY");
-  const now = moment(Date.now()).format("HH:mm A");
-
   const [interests, setInterests] = useState([...props.interests]);
   const [activityInterest, setActivityInterest] = useState(interests[0].name);
   console.log("Activity Interest", activityInterest);
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
-
+  const today = moment(Date.now()).format("MM/D/YY");
+  const now = moment(Date.now()).format("HH:mm A");
+  useEffect(() => {
+    setActivityDate(today);
+    setActivityTime(now);
+  }, [now]);
   const [newActivity, setNewActivity] = useState({
     name: "",
     notes: "",
