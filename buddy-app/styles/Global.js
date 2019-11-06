@@ -55,7 +55,7 @@ const Global = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    height: 96,
+    height: "12%",
     position: "absolute",
     bottom: 0,
     left: 0,

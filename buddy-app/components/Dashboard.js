@@ -6,12 +6,14 @@ import {
   Image,
   AsyncStorage,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  BackHandler
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
 import ActivityCard from "./ActivityCard";
 import AddActivity from "./AddActivity";
+import { NavBar } from "./NavBar";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
@@ -21,11 +23,18 @@ import profile from "../assets/icons/profile.png";
 import addActivity from "../assets/icons/add_activity_button.png";
 //styles
 import Global from "../styles/Global";
-import { getToken } from "../utils/authHelper";
+import { getToken, onSignOut } from "../utils/authHelper";
 
 export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
+  BackHandler.addEventListener("hardwareBackPress", () => {
+    onSignOut().then(res => {
+      props.addUser({ first_name: "", last_name: "", id: "" });
+      AsyncStorage.removeItem("id");
+      props.navigation.navigate("Landing");
+    });
+  });
 
   useEffect(() => {
     getToken()
@@ -112,16 +121,7 @@ export const Dashboard = props => {
           </View>
         </ScrollView>
       </View>
-      <View style={Global.bottomNav}>
-        <Image
-          source={home}
-          onPress={() => props.naviation.navigate("Dashboard")}
-        />
-        <Image source={bell} />
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
-          <Image source={profile} />
-        </TouchableOpacity>
-      </View>
+      <NavBar />
     </View>
   );
 };
