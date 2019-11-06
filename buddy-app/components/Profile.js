@@ -8,7 +8,8 @@ import {
   TouchableHighlight,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from "react-native";
 import bell from "../assets/icons/bell.png";
 import home from "../assets/icons/home.png";
@@ -17,6 +18,7 @@ const Profile = props => {
   const signOut = () => {
     onSignOut().then(res => {
       props.addUser({ first_name: "", last_name: "", id: "" });
+      AsyncStorage.removeItem("id");
       props.navigation.navigate("Landing");
     });
   };

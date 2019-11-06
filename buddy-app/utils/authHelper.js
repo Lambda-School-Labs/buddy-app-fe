@@ -13,7 +13,8 @@ export const getToken = async () => {
   return token;
 }; //This is how you retrieve the token
 
-export const onSignOut = () => AsyncStorage.removeItem("@token"); //use this function to sign out and delete token
+export const onSignOut = () => AsyncStorage.removeItem("@token");
+//use this function to sign out and delete token
 
 export const isSignedIn = () => {
   return new Promise((resolve, reject) => {

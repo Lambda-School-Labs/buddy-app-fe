@@ -7,6 +7,7 @@ import {
   AsyncStorage
 } from "react-native";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { onSignOut } from "../utils/authHelper";
 import { addUser } from "../actions/buddyActions";
 import { connect } from "react-redux";
 import Global from "../styles/Global";
@@ -17,17 +18,22 @@ const InterestsOnboard = props => {
   const [userInterest, setUserInterest] = useState([]);
 
   useEffect(() => {
-    AsyncStorage.getItem("@token").then(token => {
-      axiosWithAuth(token)
-        .get("https://buddy-app-be.herokuapp.com/interests")
-        .then(res => {
-          setInterests(res.data);
-        })
-        .catch(err => {
-          console.log("Error Message", err.response);
-          props.navigation.navigate("SignIn");
-        });
-    });
+    AsyncStorage.getItem("@token")
+      .then(token => {
+        axiosWithAuth(token)
+          .get("https://buddy-app-be.herokuapp.com/interests")
+          .then(res => {
+            console.log(res, token);
+            setInterests(res.data);
+          })
+          .catch(err => {
+            console.log("Error Message", err.response);
+            props.navigation.navigate("SignIn");
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   const toggleInterest = interest => {
@@ -42,12 +48,18 @@ const InterestsOnboard = props => {
       setUserInterest([...userInterest, interest]);
       //console.log("adding", userInterest);
     }
-    console.log(userInterest);
+    console.log(userInterest, "ui");
   };
 
   const backButton = () => {
     props.addUser({ first_name: "", last_name: "", id: "" });
-    props.navigation.navigate("Landing");
+    onSignOut()
+      .then(res => {
+        this.props.navigation.navigate("Landing");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const handleFinish = () => {
@@ -69,7 +81,9 @@ const InterestsOnboard = props => {
         });
         props.navigation.navigate("AuthStack");
       })
-      .catch();
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (

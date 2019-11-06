@@ -6,7 +6,8 @@ import {
   Image,
   AsyncStorage,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  BackHandler
 } from "react-native";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
@@ -21,14 +22,20 @@ import profile from "../assets/icons/profile.png";
 import addActivity from "../assets/icons/add_activity_button.png";
 //styles
 import Global from "../styles/Global";
-import { getToken } from "../utils/authHelper";
+import { getToken, onSignOut } from "../utils/authHelper";
 
 export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
-  useEffect(() => {
-    console.log(props.user);
+  BackHandler.addEventListener("hardwareBackPress", () => {
+    onSignOut().then(res => {
+      props.addUser({ first_name: "", last_name: "", id: "" });
+      AsyncStorage.removeItem("id");
+      props.navigation.navigate("Landing");
+    });
+  });
 
+  useEffect(() => {
     getToken()
       .then(token => {
         axiosWithAuth(token)
@@ -39,28 +46,29 @@ export const Dashboard = props => {
                 `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
               )
               .then(user_interests => {
+                let filteredActivities = [];
                 if (user_interests.data.length >= 1) {
                   console.log(user_interests.data);
                   for (let i = 0; i < allActivities.data.length; i++) {
                     if (allActivities.data[i].organizer_id == props.user.id) {
-                      setActivities(oldActivities => [
-                        ...oldActivities,
-                        allActivities.data[i]
-                      ]);
+                      filteredActivities.unshift(allActivities.data[i]);
                     }
                     for (let j = 0; j < user_interests.data.length; j++) {
                       if (
                         user_interests.data[j].interests_id ==
                           allActivities.data[i].interest_id &&
-                        !activities.includes(allActivities.data[i])
+                        !filteredActivities.includes(allActivities.data[i])
                       ) {
-                        setActivities(oldActivities => [
-                          ...oldActivities,
-                          allActivities.data[i]
-                        ]);
+                        filteredActivities.push(allActivities.data[i]);
                       }
                     }
                   }
+                  filteredActivities = filteredActivities.filter(activity => {
+                    if (!activities.includes(activity)) {
+                      return activity;
+                    }
+                  });
+                  setActivities(filteredActivities);
                 } else {
                   setActivities(allActivities.data);
                 }
@@ -77,7 +85,7 @@ export const Dashboard = props => {
       .catch(err => {
         console.log(err);
       }); // Renders activities
-  }, []);
+  }, [modalVisible]);
 
   const openModal = () => {
     setModalVisible(true);

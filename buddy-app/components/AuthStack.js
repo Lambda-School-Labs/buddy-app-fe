@@ -25,24 +25,17 @@ const AuthStack = props => {
                 console.log(results.data);
                 AsyncStorage.getItem("id")
                   .then(res => {
-                    getToken()
-                      .then(token => {
-                        axiosWithAuth(token)
-                          .get(
-                            `https://buddy-app-be.herokuapp.com/users/${res}`
-                          )
-                          .then(user => {
-                            props.addUser({
-                              first_name: user.data.first_name,
-                              last_name: user.data.last_name,
-                              id: user.data.id
-                            });
-                            setAuthorized(res);
-                            setCheckAuthorized(true);
-                          })
-                          .catch(err => {
-                            console.log(err);
-                          });
+                    console.log("id", res);
+                    axiosWithAuth(token)
+                      .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
+                      .then(user => {
+                        props.addUser({
+                          first_name: user.data.first_name,
+                          last_name: user.data.last_name,
+                          id: user.data.id
+                        });
+                        setAuthorized(res);
+                        setCheckAuthorized(true);
                       })
                       .catch(err => {
                         console.log(err);
