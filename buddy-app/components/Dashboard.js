@@ -100,7 +100,7 @@ export const Dashboard = props => {
           <Text style={Global.logo}>BUDDY</Text>
         </View>
         <TouchableOpacity onPress={openModal}>
-          <Image source={addActivity} />
+          <Image source={addActivity} style={styles.activityButton} />
         </TouchableOpacity>
       </View>
       <View>
@@ -143,6 +143,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
+  },
+  activityButton: {
+    width: 100,
+    height: 40
   }
 });
 
