@@ -3,8 +3,11 @@ import { View, Image, TouchableOpacity } from "react-native";
 
 //icons
 import bell from "../assets/icons/bell.png";
-import home from "../assets/icons/home.png";
-import profile from "../assets/icons/profile.png";
+// import home from "../assets/icons/home.png";
+// import profile from "../assets/icons/profile.png";
+
+import { Feather } from "@expo/vector-icons";
+
 
 //styles
 import Global from "../styles/Global";
@@ -13,7 +16,7 @@ export const NavBar = props => {
   return (
     <View style={Global.bottomNav}>
       <TouchableOpacity onPress={() => props.navigation.navigate("Dashboard")}>
-        <Image source={home} />
+        <Feather name="home" size={30} color="#FFF" />
       </TouchableOpacity>
 
       {/*       Will reinstate once functionality is ready
@@ -22,7 +25,7 @@ export const NavBar = props => {
       </TouchableOpacity> */}
 
       <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
-        <Image source={profile} />
+        <Feather name="user" size={30} color="#FFF" />
       </TouchableOpacity>
     </View>
   );
