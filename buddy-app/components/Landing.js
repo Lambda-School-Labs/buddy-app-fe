@@ -82,11 +82,11 @@ const landing = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: "15%",
-    paddingTop: "20%",
+    paddingTop: "15%",
     paddingBottom: "10%",
     width: "100%",
     alignItems: "flex-start",
-    justifyContent: "space-around"
+    justifyContent: "space-between"
   },
   subtitle: {
     fontSize: 20,
