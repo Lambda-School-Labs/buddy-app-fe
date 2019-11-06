@@ -38,11 +38,11 @@ export default function ActivityCard(props) {
           </Text>
         </TouchableOpacity>
       </View>
-      <EditActivity
+      {/* <EditActivity
         activity={activity}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
-      />
+      /> */}
     </View>
   );
 }

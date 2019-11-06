@@ -117,11 +117,11 @@ export const Dashboard = props => {
               return <ActivityCard activity={activity} key={activity.id} />;
             })}
 
-            <AddActivity isVisible={modalVisible} closeModal={closeModal} />
+            {/* <AddActivity isVisible={modalVisible} closeModal={closeModal} /> */}
           </View>
         </ScrollView>
       </View>
-      <NavBar />
+      {/*  <NavBar /> */}
     </View>
   );
 };
