@@ -67,6 +67,7 @@ export const Dashboard = props => {
                   setActivities([]);
                   setActivities(filteredActivities);
                 } else {
+                  setActivities([]);
                   setActivities(allActivities.data);
                 }
               })
