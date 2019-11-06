@@ -47,7 +47,7 @@ export const Dashboard = props => {
               .then(user_interests => {
                 let filteredActivities = [];
                 if (user_interests.data.length >= 1) {
-                  console.log(user_interests.data);
+                  // console.log(user_interests.data);
                   for (let i = 0; i < allActivities.data.length; i++) {
                     if (allActivities.data[i].organizer_id == props.user.id) {
                       filteredActivities.unshift(allActivities.data[i]);
