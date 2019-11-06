@@ -26,9 +26,8 @@ import { getToken } from "../utils/authHelper";
 export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
-  useEffect(() => {
-    console.log(props.user);
 
+  useEffect(() => {
     getToken()
       .then(token => {
         axiosWithAuth(token)
@@ -39,28 +38,29 @@ export const Dashboard = props => {
                 `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
               )
               .then(user_interests => {
+                let filteredActivities = [];
                 if (user_interests.data.length >= 1) {
                   console.log(user_interests.data);
                   for (let i = 0; i < allActivities.data.length; i++) {
                     if (allActivities.data[i].organizer_id == props.user.id) {
-                      setActivities(oldActivities => [
-                        ...oldActivities,
-                        allActivities.data[i]
-                      ]);
+                      filteredActivities.unshift(allActivities.data[i]);
                     }
                     for (let j = 0; j < user_interests.data.length; j++) {
                       if (
                         user_interests.data[j].interests_id ==
                           allActivities.data[i].interest_id &&
-                        !activities.includes(allActivities.data[i])
+                        !filteredActivities.includes(allActivities.data[i])
                       ) {
-                        setActivities(oldActivities => [
-                          ...oldActivities,
-                          allActivities.data[i]
-                        ]);
+                        filteredActivities.push(allActivities.data[i]);
                       }
                     }
                   }
+                  filteredActivities = filteredActivities.filter(activity => {
+                    if (!activities.includes(activity)) {
+                      return activity;
+                    }
+                  });
+                  setActivities(filteredActivities);
                 } else {
                   setActivities(allActivities.data);
                 }
@@ -77,7 +77,7 @@ export const Dashboard = props => {
       .catch(err => {
         console.log(err);
       }); // Renders activities
-  }, []);
+  }, [modalVisible]);
 
   const openModal = () => {
     setModalVisible(true);
@@ -101,15 +101,17 @@ export const Dashboard = props => {
           Welcome {props.user.first_name} {props.user.last_name}
         </Text>
       </View>
-      <ScrollView>
-        <View style={styles.activityView}>
-          {activities.map(activity => {
-            return <ActivityCard activity={activity} key={activity.id} />;
-          })}
+      <View style={{ height: "70%" }}>
+        <ScrollView>
+          <View style={styles.activityView}>
+            {activities.map(activity => {
+              return <ActivityCard activity={activity} key={activity.id} />;
+            })}
 
-          <AddActivity isVisible={modalVisible} closeModal={closeModal} />
-        </View>
-      </ScrollView>
+            <AddActivity isVisible={modalVisible} closeModal={closeModal} />
+          </View>
+        </ScrollView>
+      </View>
       <View style={Global.bottomNav}>
         <Image
           source={home}
