@@ -15,17 +15,17 @@ const AuthStack = props => {
 
     isSignedIn()
       .then(res => {
-        console.log("res", res);
+        // console.log("res", res);
         getToken()
           .then(token => {
             axiosWithAuth(token)
               .get("https://buddy-app-be.herokuapp.com/interests")
               .then(results => {
                 props.getInterests(results.data);
-                console.log(results.data);
+                // console.log(results.data);
                 AsyncStorage.getItem("id")
                   .then(res => {
-                    console.log("id", res);
+                    // console.log("id", res);
                     axiosWithAuth(token)
                       .get(`https://buddy-app-be.herokuapp.com/users/${res}`)
                       .then(user => {
