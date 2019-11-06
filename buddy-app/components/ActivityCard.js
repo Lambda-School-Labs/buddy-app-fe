@@ -34,10 +34,8 @@ function ActivityCard(props) {
 
       {props.user.id === props.activity.organizer_id ? (
         <View style={[Buttons.activityBtn, Buttons.primary, Buttons.editBtn]}>
-          <TouchableOpacity>
-            <Text style={Buttons.textWhite} onPress={toggleModal}>
-              Edit
-            </Text>
+          <TouchableOpacity onPress={toggleModal}>
+            <Text style={Buttons.textWhite}>Edit</Text>
           </TouchableOpacity>
         </View>
       ) : (
