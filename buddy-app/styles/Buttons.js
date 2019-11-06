@@ -10,11 +10,33 @@ const Buttons = StyleSheet.create({
     height: 40,
     borderRadius: 5
   },
+  activityBtn: {
+    width: "33%",
+    borderWidth: 1,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 40
+  },
+
+  joinBtn: {
+    borderColor: "white"
+  },
+
+  editBtn: { borderColor: Colors.purple },
+
   text: {
     fontSize: 15,
     fontFamily: "Nunito-Regular",
     color: Colors.darkGray
   },
+
+  textWhite: {
+    fontSize: 15,
+    fontFamily: "Nunito-Regular",
+    color: "white"
+  },
+
   primary: {
     backgroundColor: Colors.purple,
     color: "#FFFFFF",

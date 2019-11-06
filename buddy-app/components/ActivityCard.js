@@ -33,18 +33,16 @@ function ActivityCard(props) {
       </View>
 
       {props.user.id === props.activity.organizer_id ? (
-        <View style={styles.activityBtn}>
+        <View style={[Buttons.activityBtn, Buttons.primary, Buttons.editBtn]}>
           <TouchableOpacity>
-            <Text
-              style={/*Buttons.text*/ { color: "purple" }}
-              onPress={toggleModal}
-            >
+            <Text style={Buttons.textWhite} onPress={toggleModal}>
               Edit
             </Text>
           </TouchableOpacity>
         </View>
       ) : (
-        <View style={styles.activityBtn}>
+        // remove borderColor and color when ready to activate Join
+        <View style={[Buttons.activityBtn, { borderColor: "white" }]}>
           <TouchableOpacity>
             <Text style={/*Buttons.text*/ { color: "white" }}>Ask to Join</Text>
           </TouchableOpacity>
@@ -70,24 +68,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingBottom: 20,
     height: "auto"
-  },
-
-  activityBtn: {
-    width: "33%",
-    borderWidth: 1,
-    borderColor: "white",
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center",
-    height: 40
-  },
-
-  joinBtn: {
-    borderColor: "white"
-  },
-
-  editBtn: {
-    borderColor: "purple"
   },
 
   activityView: {
