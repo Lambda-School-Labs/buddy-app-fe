@@ -13,7 +13,7 @@ const Global = StyleSheet.create({
     borderBottomColor: "black"
   },
   title: {
-    marginTop: 60,
+    marginTop: "5%",
     fontSize: 30,
     color: Colors.darkGray,
     fontFamily: "Nunito-Regular"
