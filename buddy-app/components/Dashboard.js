@@ -17,10 +17,8 @@ import { NavBar } from "./NavBar";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
-import bell from "../assets/icons/bell.png";
-import home from "../assets/icons/home.png";
-import profile from "../assets/icons/profile.png";
 import addActivity from "../assets/icons/add_activity_button.png";
+
 //styles
 import Global from "../styles/Global";
 import { getToken, onSignOut } from "../utils/authHelper";
@@ -121,7 +119,7 @@ export const Dashboard = props => {
           </View>
         </ScrollView>
       </View>
-      <NavBar />
+      <NavBar navigation={props.navigation} />
     </View>
   );
 };
