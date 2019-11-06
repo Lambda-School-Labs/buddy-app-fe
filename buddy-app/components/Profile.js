@@ -31,7 +31,7 @@ const Profile = props => {
         <Text style={[Global.textNormal, { marginTop: 20 }]}>Sign Out</Text>
       </TouchableHighlight>
 
-      <NavBar />
+      <NavBar navigation={props.navigation} />
     </View>
   );
 };

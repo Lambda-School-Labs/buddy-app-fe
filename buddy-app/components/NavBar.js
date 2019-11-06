@@ -9,10 +9,10 @@ import profile from "../assets/icons/profile.png";
 //styles
 import Global from "../styles/Global";
 
-export const NavBar = () => {
+export const NavBar = props => {
   return (
     <View style={Global.bottomNav}>
-      <TouchableOpacity onPress={() => props.naviation.navigate("Dashboard")}>
+      <TouchableOpacity onPress={() => props.navigation.navigate("Dashboard")}>
         <Image source={home} />
       </TouchableOpacity>
 
