@@ -9,6 +9,7 @@ import {
   ScrollView,
   BackHandler
 } from "react-native";
+import moment from "moment";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
 import ActivityCard from "./ActivityCard";
@@ -35,7 +36,27 @@ export const Dashboard = props => {
     });
   });
 
+  function timeConvertor(time) {
+    var PM = time.match("PM") ? true : false;
+
+    time = time.split(":");
+
+    if (PM) {
+      var hour = 12 + parseInt(time[0], 10);
+      var min = time[1].replace("PM", "");
+    } else {
+      var hour = time[0];
+      var min = time[1].replace("AM", "");
+    }
+
+    return `${hour}:${min}`;
+  }
+
   useEffect(() => {
+    const now = moment(Date.now()).format("MM/D/YY");
+    const time = moment(Date.now()).format("HH:mm");
+    console.log(time);
+    console.log(now);
     getToken()
       .then(token => {
         axiosWithAuth(token)
@@ -50,24 +71,47 @@ export const Dashboard = props => {
                 console.log(editRerender);
                 if (user_interests.data.length >= 1) {
                   // console.log(user_interests.data);
+
                   for (let i = 0; i < allActivities.data.length; i++) {
-                    if (allActivities.data[i].organizer_id == props.user.id) {
-                      filteredActivities.unshift(allActivities.data[i]);
-                    }
-                    for (let j = 0; j < user_interests.data.length; j++) {
+                    let activityTime = timeConvertor(
+                      allActivities.data[i].time
+                    );
+                    if (
+                      Date.parse(now) <= Date.parse(allActivities.data[i].date)
+                    ) {
                       if (
-                        user_interests.data[j].interests_id ==
-                          allActivities.data[i].interest_id &&
-                        !filteredActivities.includes(allActivities.data[i])
+                        Date.parse(now) ==
+                          Date.parse(allActivities.data[i].date) &&
+                        Date.parse(
+                          `${allActivities.data[i].date} ${activityTime}`
+                        ) < Date.parse(`${allActivities.data[i].date} ${time}`)
                       ) {
-                        filteredActivities.push(allActivities.data[i]);
+                        console.log(activityTime);
+                      } else {
+                        if (
+                          allActivities.data[i].organizer_id == props.user.id
+                        ) {
+                          filteredActivities.unshift(allActivities.data[i]);
+                        }
+                        for (let j = 0; j < user_interests.data.length; j++) {
+                          if (
+                            user_interests.data[j].interests_id ==
+                              allActivities.data[i].interest_id &&
+                            !filteredActivities.includes(allActivities.data[i])
+                          ) {
+                            filteredActivities.push(allActivities.data[i]);
+                          }
+                        }
                       }
                     }
                   }
+                  filteredActivities = filteredActivities.sort(function(a, b) {
+                    return new Date(a.date) - new Date(b.date);
+                  });
                   setActivities([]);
                   setActivities(filteredActivities);
                 } else {
-                  setActivities(allActivities.data);
+                  props.navigation.navigate("InterestOnboard");
                 }
               })
               .catch(err => {
