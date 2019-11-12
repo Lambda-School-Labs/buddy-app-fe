@@ -111,7 +111,7 @@ export const Dashboard = props => {
                   setActivities([]);
                   setActivities(filteredActivities);
                 } else {
-                  setActivities(allActivities.data);
+                  props.navigation.navigate("InterestOnboard");
                 }
               })
               .catch(err => {

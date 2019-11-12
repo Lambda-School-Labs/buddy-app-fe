@@ -32,7 +32,7 @@ function AddActivity(props) {
   const [activityDate, setActivityDate] = useState(today);
   const [activityTime, setActivityTime] = useState(now);
   const today = moment(Date.now()).format("MM/D/YY");
-  const now = moment(Date.now()).format("HH:mm A");
+  const now = moment(Date.now()).format("h:mm A");
 
   useEffect(() => {
     setActivityDate(today);
