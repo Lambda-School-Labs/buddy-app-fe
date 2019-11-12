@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
 import Global from "../styles/Global";
@@ -9,32 +9,62 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  ScrollView,
+  StyleSheet
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
+import ProfileModal from "./ProfileModal";
 import { NavBar } from "./NavBar";
 
 const Profile = props => {
-  const signOut = () => {
-    onSignOut().then(res => {
-      props.addUser({ first_name: "", last_name: "", id: "" });
-      AsyncStorage.removeItem("id");
-      props.navigation.navigate("Landing");
-    });
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
   };
+
+  const sendToLanding = () => {
+    props.navigation.navigate("Landing");
+  };
+
   return (
     <View style={Global.container}>
-      <View style={Global.logoContainer}>
-        <Text style={Global.logo}>BUDDY</Text>
+      <View style={styles.profileHeader}>
+        <View style={Global.logoContainer}>
+          <Text style={Global.logo}>BUDDY</Text>
+        </View>
+        <TouchableOpacity onPress={toggleModal}>
+          <Feather name="user" size={30} color="#000" />
+        </TouchableOpacity>
       </View>
-      <TouchableHighlight onPress={() => signOut()}>
-        <Text style={[Global.textNormal, { marginTop: 20 }]}>Sign Out</Text>
-      </TouchableHighlight>
-
+      <View>
+        <Text style={[Global.textNormal, { marginTop: 20 }]}>
+          Hi, {props.user.firstname}
+        </Text>
+        <View style={{ height: "70%" }}>
+          <ScrollView></ScrollView>
+        </View>
+      </View>
       <NavBar navigation={props.navigation} />
+      <ProfileModal
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        sendToLanding={sendToLanding}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  profileHeader: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }
+});
 
 const mapStateToProps = state => {
   return {
