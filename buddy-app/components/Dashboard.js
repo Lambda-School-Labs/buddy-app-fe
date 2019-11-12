@@ -105,6 +105,9 @@ export const Dashboard = props => {
                       }
                     }
                   }
+                  filteredActivities = filteredActivities.sort(function(a, b) {
+                    return new Date(a.date) - new Date(b.date);
+                  });
                   setActivities([]);
                   setActivities(filteredActivities);
                 } else {
