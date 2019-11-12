@@ -2,24 +2,48 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import EditActivity from "./EditActivity";
 import { connect } from "react-redux";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 // styles
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import Colors from "../styles/Colors";
+import { getToken } from "../utils/authHelper";
 
 function ActivityCard(props) {
   const [activity] = useState(props.activity);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const joinedActivity = {
+    user_id: props.user.id,
+    activity_id: activity.id
+  };
+
   const toggleModal = () => {
     // console.log(props);
     setIsModalVisible(!isModalVisible);
   };
 
-  console.log("User", props.user);
+  // post the activity to user's activities table
+  handleJoin = () => {
+    getToken().then(token => {
+      axiosWithAuth(token)
+        .post(
+          "https://buddy-app-be.herokuapp.com/useractivities",
+          joinedActivity
+        )
+        .then(res => {
+          console.log("posted", res.data);
+        })
+        .catch(err => console.log(err));
+    });
+  };
+
+  // console.log("activity", activity);
+  // console.log("User", props.user);
   console.log("props", props);
+  console.log("joinedActivity", joinedActivity);
 
   return (
     <View style={styles.activityCard}>
@@ -34,15 +58,22 @@ function ActivityCard(props) {
 
       {props.user.id === props.activity.organizer_id ? (
         <View style={[Buttons.activityBtn, Buttons.primary, Buttons.editBtn]}>
-          <TouchableOpacity onPress={toggleModal}>
+          <TouchableOpacity
+            onPress={toggleModal}
+            style={{
+              width: "100%",
+              height: 40,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
             <Text style={Buttons.textWhite}>Edit</Text>
           </TouchableOpacity>
         </View>
       ) : (
-        // remove borderColor and color when ready to activate Join
-        <View style={[Buttons.activityBtn, { borderColor: "white" }]}>
-          <TouchableOpacity>
-            <Text style={/*Buttons.text*/ { color: "white" }}>Ask to Join</Text>
+        <View style={[Buttons.activityBtn]}>
+          <TouchableOpacity onPress={() => handleJoin()}>
+            <Text style={Buttons.text}>Ask to Join</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -50,6 +81,7 @@ function ActivityCard(props) {
         activity={activity}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
+        toggleState={props.setRerender}
       />
     </View>
   );

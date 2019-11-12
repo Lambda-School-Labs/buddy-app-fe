@@ -26,6 +26,7 @@ import { getToken, onSignOut } from "../utils/authHelper";
 export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
+  const [editRerender, setEditRerender] = useState(true);
   BackHandler.addEventListener("hardwareBackPress", () => {
     onSignOut().then(res => {
       props.addUser({ first_name: "", last_name: "", id: "" });
@@ -46,6 +47,7 @@ export const Dashboard = props => {
               )
               .then(user_interests => {
                 let filteredActivities = [];
+                console.log(editRerender);
                 if (user_interests.data.length >= 1) {
                   // console.log(user_interests.data);
                   for (let i = 0; i < allActivities.data.length; i++) {
@@ -62,11 +64,7 @@ export const Dashboard = props => {
                       }
                     }
                   }
-                  filteredActivities = filteredActivities.filter(activity => {
-                    if (!activities.includes(activity)) {
-                      return activity;
-                    }
-                  });
+                  setActivities([]);
                   setActivities(filteredActivities);
                 } else {
                   setActivities(allActivities.data);
@@ -84,8 +82,11 @@ export const Dashboard = props => {
       .catch(err => {
         console.log(err);
       }); // Renders activities
-  }, [modalVisible]);
+  }, [modalVisible, editRerender]);
 
+  const setRerender = () => {
+    setEditRerender(!editRerender);
+  };
   const openModal = () => {
     setModalVisible(true);
   };
@@ -112,7 +113,13 @@ export const Dashboard = props => {
         <ScrollView>
           <View style={styles.activityView}>
             {activities.map(activity => {
-              return <ActivityCard activity={activity} key={activity.id} />;
+              return (
+                <ActivityCard
+                  activity={activity}
+                  key={activity.id}
+                  setRerender={setRerender}
+                />
+              );
             })}
 
             <AddActivity isVisible={modalVisible} closeModal={closeModal} />
