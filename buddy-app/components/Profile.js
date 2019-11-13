@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
   },
   profileCounter: {
     paddingVertical: 20,
-    height: "auto"
+    height: "auto",
+    marginBottom: 10
   }
 });
 
