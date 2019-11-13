@@ -2,13 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Colors from "../styles/Colors";
 
-const ActivityCard = props => {
+const ProfileCard = props => {
   const { activity } = props;
+  console.log("profile card is being rendered");
   return (
     <View style={styles.card}>
       <Text style={[styles.textBold, { fontSize: 18 }]}>{activity.date}</Text>
       <Text style={[styles.text, { fontSize: 18 }]}>
-        {activity.activity} at {activity.time} with Person
+        {activity.name} at {activity.time} with Person
       </Text>
     </View>
   );
@@ -27,4 +28,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ActivityCard;
+export default ProfileCard;
