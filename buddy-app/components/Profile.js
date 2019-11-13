@@ -52,6 +52,7 @@ const Profile = props => {
             }
             setHighlight(res.data.slice(0, 3));
             setRest(res.data.slice(3));
+            setProfileList(res.data);
           })
           .catch(err => {
             console.log("axiosWithAuth error", err);
@@ -96,7 +97,9 @@ const Profile = props => {
             <View style={styles.profileCounter}>
               <Text style={styles.subtitle}>What I've Been Up To</Text>
               <Text style={styles.text}>Total Activities:</Text>
-              <Text style={styles.textBold}> Activities</Text>
+              <Text style={styles.textBold}>
+                {profileList.length} Activities
+              </Text>
             </View>
           </ScrollView>
         </View>
@@ -152,7 +155,7 @@ const styles = StyleSheet.create({
   activityCardList: {
     height: "auto",
     width: "100%",
-    marginTop: 30
+    marginTop: 20
   },
   profileCounter: {
     paddingVertical: 20,

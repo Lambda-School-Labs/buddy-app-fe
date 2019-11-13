@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Colors from "../styles/Colors";
+import moment from "moment";
 
 const ProfileHighlight = props => {
   console.log(props.highlight, "props.highlight");
@@ -9,11 +10,13 @@ const ProfileHighlight = props => {
     var highlight2 = props.highlight[1];
     var highlight3 = props.highlight[2];
 
+    const converter = date => moment(date, "MM-DD-YY").format("MMM Do");
+
     return (
       <View style={styles.highlightBox}>
         <View style={styles.highlightPrimary}>
-          <Text style={[styles.textBold, { fontSize: 25 }]}>
-            {highlight1.date}
+          <Text style={[styles.textBold, { fontSize: 25, marginBottom: 10 }]}>
+            {converter(highlight1.date)}
           </Text>
           <Text style={[styles.text, { fontSize: 20 }]}>
             {highlight1.name} at {highlight1.time}
@@ -22,17 +25,17 @@ const ProfileHighlight = props => {
         <View style={styles.highlightSubBox}>
           <View style={styles.highlightSecondary}>
             <Text style={[styles.textBold, { fontSize: 18 }]}>
-              {highlight2.date}
+              {converter(highlight2.date)}
             </Text>
-            <Text style={[styles.text, { fontSize: 16 }]}>
+            <Text style={styles.text}>
               {highlight2.name} at {highlight2.time}
             </Text>
           </View>
           <View style={styles.highlightSecondary}>
             <Text style={[styles.textBold, { fontSize: 18 }]}>
-              {highlight3.date}
+              {converter(highlight3.date)}
             </Text>
-            <Text style={[styles.text, { fontSize: 16 }]}>
+            <Text style={styles.text}>
               {highlight3.name} at {highlight3.time}
             </Text>
           </View>
