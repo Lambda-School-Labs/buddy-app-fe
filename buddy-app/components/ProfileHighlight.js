@@ -3,7 +3,8 @@ import { View, Text, StyleSheet } from "react-native";
 import Colors from "../styles/Colors";
 
 const ProfileHighlight = props => {
-  if (props.highlight >= 1) {
+  console.log(props.highlight, "props.highlight");
+  if (props.highlight.length >= 1) {
     var highlight1 = props.highlight[0];
     var highlight2 = props.highlight[1];
     var highlight3 = props.highlight[2];
@@ -15,7 +16,7 @@ const ProfileHighlight = props => {
             {highlight1.date}
           </Text>
           <Text style={[styles.text, { fontSize: 20 }]}>
-            {highlight1.activity} at {highlight1.time}
+            {highlight1.name} at {highlight1.time}
           </Text>
         </View>
         <View style={styles.highlightSubBox}>
@@ -24,7 +25,7 @@ const ProfileHighlight = props => {
               {highlight2.date}
             </Text>
             <Text style={[styles.text, { fontSize: 16 }]}>
-              {highlight2.activity} at {highlight2.time}
+              {highlight2.name} at {highlight2.time}
             </Text>
           </View>
           <View style={styles.highlightSecondary}>
@@ -32,7 +33,7 @@ const ProfileHighlight = props => {
               {highlight3.date}
             </Text>
             <Text style={[styles.text, { fontSize: 16 }]}>
-              {highlight3.activity} at {highlight3.time}
+              {highlight3.name} at {highlight3.time}
             </Text>
           </View>
         </View>

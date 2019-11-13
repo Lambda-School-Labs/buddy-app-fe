@@ -15,7 +15,7 @@ import { timeConvertor, chronoSorter } from "../utils/dateHelper";
 // Components
 import ProfileModal from "./ProfileModal";
 import ProfileHighlight from "./ProfileHighlight";
-import ProfileCard from "./ProfileHighlight";
+import ProfileCard from "./ProfileCard";
 import { NavBar } from "./NavBar";
 
 // Styles
@@ -50,8 +50,8 @@ const Profile = props => {
             for (let i = 0; i < res.data.length; i++) {
               timeConvertor(res.data[i].time);
             }
-            setHighlight(res.data.slice(0, 2));
-            setRest(res.data.slice(2, res.data.length));
+            setHighlight(res.data.slice(0, 3));
+            setRest(res.data.slice(3));
           })
           .catch(err => {
             console.log("axiosWithAuth error", err);
@@ -85,14 +85,14 @@ const Profile = props => {
         <View>
           <ScrollView>
             <Text style={styles.subtitle}>Upcoming Activities</Text>
-            {highlight && <ProfileHighlight highlight={highlight} />}
-            {rest && (
-              <View style={styles.activityCardList}>
-                {rest.map(activity => (
-                  <ProfileCard activity={activity} key={activity.id} />
-                ))}
-              </View>
-            )}
+            <ProfileHighlight highlight={highlight} />
+
+            <View style={styles.activityCardList}>
+              {rest.map(activity => (
+                <ProfileCard activity={activity} key={activity.id} />
+              ))}
+            </View>
+
             <View style={styles.profileCounter}>
               <Text style={styles.subtitle}>What I've Been Up To</Text>
               <Text style={styles.text}>Total Activities:</Text>
@@ -162,10 +162,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    ...state
+    ...state,
+    user: state.user
   };
 };
-export default connect(
-  mapStateToProps,
-  { addUser }
-)(Profile);
+export default connect(mapStateToProps, { addUser })(Profile);

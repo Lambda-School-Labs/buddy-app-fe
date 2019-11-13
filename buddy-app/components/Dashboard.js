@@ -108,7 +108,7 @@ export const Dashboard = props => {
                   }
                   filteredActivities = filteredActivities.sort(function(a, b) {
                     return new Date(a.date) - new Date(b.date);
-                  });
+                  }); //sort by date
                   setActivities([]);
                   filteredActivities.map(activity =>
                     axiosWithAuth(token)
@@ -235,7 +235,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { addUser }
-)(Dashboard);
+export default connect(mapStateToProps, { addUser })(Dashboard);
