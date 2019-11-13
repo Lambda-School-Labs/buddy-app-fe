@@ -13,6 +13,13 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "extra": {
+      "segmentConfig": {
+        "androidKey": "iUxaVmIHfvB7ZbC44J5wVOQW44qrMgBc",
+        "iosKey": "NBaSm2NT0bmxzi9Xbu3ADKMz8LnkHhsQ"
+      }
+    },
+    "description": ""
   }
 }
