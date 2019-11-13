@@ -19,10 +19,6 @@ const Buttons = StyleSheet.create({
     height: 40
   },
 
-  joinBtn: {
-    borderColor: "white"
-  },
-
   editBtn: { borderColor: Colors.purple },
 
   text: {

@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Alert
 } from "react-native";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { onSignOut } from "../utils/authHelper";
@@ -55,7 +56,7 @@ const InterestsOnboard = props => {
     props.addUser({ first_name: "", last_name: "", id: "" });
     onSignOut()
       .then(res => {
-        this.props.navigation.navigate("Landing");
+        props.navigation.navigate("Landing");
       })
       .catch(err => {
         console.log(err);
@@ -64,26 +65,30 @@ const InterestsOnboard = props => {
 
   const handleFinish = () => {
     // sending interests!
-    AsyncStorage.getItem("@token")
-      .then(token => {
-        userInterest.map(interest => {
-          axiosWithAuth(token)
-            .post("https://buddy-app-be.herokuapp.com/interests/user", {
-              user_id: props.user.id,
-              interests_id: interest
-            })
-            .then(res => {
-              console.log(res.data);
-            })
-            .catch(err => {
-              console.log(err);
-            });
+    if (userInterest.length == 0) {
+      Alert.alert("Alert Title", "Please select at least one interest");
+    } else {
+      AsyncStorage.getItem("@token")
+        .then(token => {
+          userInterest.map(interest => {
+            axiosWithAuth(token)
+              .post("https://buddy-app-be.herokuapp.com/interests/user", {
+                user_id: props.user.id,
+                interests_id: interest
+              })
+              .then(res => {
+                console.log(res.data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          });
+          props.navigation.navigate("Dashboard");
+        })
+        .catch(err => {
+          console.log(err);
         });
-        props.navigation.navigate("AuthStack");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    }
   };
 
   return (
