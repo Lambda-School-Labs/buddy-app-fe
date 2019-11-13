@@ -35,12 +35,12 @@ function Landing(props) {
     });
   }, []);
 
-  const androidWriteKey = Constants.manifest.extra.segmentConfig.androidKey;
-  const iosWriteKey = Constants.manifest.extra.segmentConfig.iosKey;
-  Segment.initialize({ androidWriteKey, iosWriteKey });
-  Segment.track("App Loaded", {
-    event: "Loaded Application"
-  });
+  // const androidWriteKey = Constants.manifest.extra.segmentConfig.androidKey;
+  // const iosWriteKey = Constants.manifest.extra.segmentConfig.iosKey;
+  // Segment.initialize({ androidWriteKey, iosWriteKey });
+  // Segment.track("App Loaded", {
+  //   event: "Loaded Application"
+  // });
 
   trackEventSignIn = () => {
     Segment.track("Sign In Clicked", {
@@ -67,7 +67,8 @@ function Landing(props) {
         </View>
         <View>
           <Text style={landing.subtitle}>
-            A friendly network to help you discover the world around.
+            {Constants.manifest.extra.segmentConfig.iosKey}A friendly network to
+            help you discover the world around.
           </Text>
         </View>
         <View style={landing.buttonContainer}>
