@@ -101,7 +101,7 @@ function ActivityCard(props) {
                   user_id: props.user.id,
                   activity_id: props.activity.id
                 });
-                props.setRenderActivities(false);
+                props.setRerender();
               }}
             >
               <Text style={Buttons.text}>Ask to Join</Text>
