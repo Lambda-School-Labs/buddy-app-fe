@@ -87,7 +87,6 @@ export const Dashboard = props => {
                           `${allActivities.data[i].date} ${activityTime}`
                         ) < Date.parse(`${allActivities.data[i].date} ${time}`)
                       ) {
-                        console.log(activityTime);
                       } else {
                         if (
                           allActivities.data[i].organizer_id == props.user.id
@@ -118,20 +117,20 @@ export const Dashboard = props => {
                       )
                       .then(res => {
                         // console.log("GuestList res.data", res.data);
-                        if (res.data.length > 0) {
-                          const guestList = res.data.map(
-                            activity => activity.user_id
-                          );
-                          if (
-                            (guestList.includes(props.user.id) === false &&
-                              activity.guest_limit === null) ||
-                            guestList.length < activity.guest_limit
-                          ) {
-                            setActivities(oldActivities => [
-                              ...oldActivities,
-                              activity
-                            ]);
-                          }
+
+                        const guestList = res.data.map(
+                          activity => activity.user_id
+                        );
+                        if (
+                          (guestList.includes(props.user.id) === false &&
+                            activity.guest_limit === null) ||
+                          guestList.length < activity.guest_limit ||
+                          activity.organizer_id == props.user.id
+                        ) {
+                          setActivities(oldActivities => [
+                            activity,
+                            ...oldActivities
+                          ]);
                         }
                       })
                       .catch(err => console.log(err))
