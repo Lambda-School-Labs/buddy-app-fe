@@ -8,11 +8,14 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { getToken } from "../utils/authHelper";
+import { timeConvertor, chronoSorter } from "../utils/dateHelper";
 
 // Components
 import ProfileModal from "./ProfileModal";
 import ProfileHighlight from "./ProfileHighlight";
-import ProfileCard from "./ProfileHighlight";
+import ProfileCard from "./ProfileCard";
 import { NavBar } from "./NavBar";
 
 // Styles
@@ -27,10 +30,44 @@ const Profile = props => {
   const sendToLanding = () => props.navigation.navigate("Landing"); // pass nav props since React Navigation Modal doesn't play nicely with React Navigation :-\
 
   // ---------- activities ---------- //
+
+  const [profileList, setProfileList] = useState([]);
+  const [highlight, setHighlight] = useState([]); // 3 activities displayed as highlights
+  const [rest, setRest] = useState([]); // rest of the activities
+
   // get activities where user is organizer
-  // get activities where user is guest
+  useEffect(() => {
+    getToken()
+      .then(token => {
+        axiosWithAuth(token)
+          .get(
+            `https://buddy-app-be.herokuapp.com/activities/organizer/${props.user.id}`
+          )
+          .then(res => {
+            res.data.sort(function(a, b) {
+              return new Date(a.date) - new Date(b.date);
+            });
+            for (let i = 0; i < res.data.length; i++) {
+              timeConvertor(res.data[i].time);
+            }
+            setHighlight(res.data.slice(0, 3));
+            setRest(res.data.slice(3));
+          })
+          .catch(err => {
+            console.log("axiosWithAuth error", err);
+          });
+      })
+      .catch(err => {
+        console.log("getToken error", err);
+      });
+  }, []);
+
+  // possibly sort by date
   // separate top 3 activities for ProfileHighlight box
   // remaining activities are made into ProfileCard components
+
+  console.log("Highlight", highlight);
+  console.log("Rest", rest);
 
   return (
     <View style={Global.container}>
@@ -48,14 +85,18 @@ const Profile = props => {
         <View>
           <ScrollView>
             <Text style={styles.subtitle}>Upcoming Activities</Text>
-            <ProfileHighlight />
+            <ProfileHighlight highlight={highlight} />
+
             <View style={styles.activityCardList}>
-              {/* map over remaining activities and generate <ProfileCard /> for each */}
+              {rest.map(activity => (
+                <ProfileCard activity={activity} key={activity.id} />
+              ))}
             </View>
+
             <View style={styles.profileCounter}>
               <Text style={styles.subtitle}>What I've Been Up To</Text>
               <Text style={styles.text}>Total Activities:</Text>
-              <Text style={styles.textBold}>[Count] Activities</Text>
+              <Text style={styles.textBold}> Activities</Text>
             </View>
           </ScrollView>
         </View>
@@ -121,10 +162,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    ...state
+    ...state,
+    user: state.user
   };
 };
-export default connect(
-  mapStateToProps,
-  { addUser }
-)(Profile);
+export default connect(mapStateToProps, { addUser })(Profile);

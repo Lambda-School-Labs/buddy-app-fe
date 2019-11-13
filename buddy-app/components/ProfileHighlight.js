@@ -1,32 +1,47 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Colors from "../styles/Colors";
 
 const ProfileHighlight = props => {
-  return (
-    <View style={styles.highlightBox}>
-      <View style={styles.highlightPrimary}>
-        <Text style={[styles.textBold, { fontSize: 25 }]}>Date</Text>
-        <Text style={[styles.text, { fontSize: 20 }]}>
-          Activity at Time with Person
-        </Text>
-      </View>
-      <View style={styles.highlightSubBox}>
-        <View style={styles.highlightSecondary}>
-          <Text style={[styles.textBold, { fontSize: 18 }]}>Date</Text>
-          <Text style={[styles.text, { fontSize: 16 }]}>
-            Activity at Time with Person
+  console.log(props.highlight, "props.highlight");
+  if (props.highlight.length >= 1) {
+    var highlight1 = props.highlight[0];
+    var highlight2 = props.highlight[1];
+    var highlight3 = props.highlight[2];
+
+    return (
+      <View style={styles.highlightBox}>
+        <View style={styles.highlightPrimary}>
+          <Text style={[styles.textBold, { fontSize: 25 }]}>
+            {highlight1.date}
+          </Text>
+          <Text style={[styles.text, { fontSize: 20 }]}>
+            {highlight1.name} at {highlight1.time}
           </Text>
         </View>
-        <View style={styles.highlightSecondary}>
-          <Text style={[styles.textBold, { fontSize: 18 }]}>Date</Text>
-          <Text style={[styles.text, { fontSize: 16 }]}>
-            Activity at Time with Person
-          </Text>
+        <View style={styles.highlightSubBox}>
+          <View style={styles.highlightSecondary}>
+            <Text style={[styles.textBold, { fontSize: 18 }]}>
+              {highlight2.date}
+            </Text>
+            <Text style={[styles.text, { fontSize: 16 }]}>
+              {highlight2.name} at {highlight2.time}
+            </Text>
+          </View>
+          <View style={styles.highlightSecondary}>
+            <Text style={[styles.textBold, { fontSize: 18 }]}>
+              {highlight3.date}
+            </Text>
+            <Text style={[styles.text, { fontSize: 16 }]}>
+              {highlight3.name} at {highlight3.time}
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  } else {
+    return <View style={styles.highlightBox}></View>;
+  }
 };
 
 export default ProfileHighlight;
