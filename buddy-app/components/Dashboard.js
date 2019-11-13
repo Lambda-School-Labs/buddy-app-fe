@@ -28,6 +28,7 @@ export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   const [editRerender, setEditRerender] = useState(true);
+
   BackHandler.addEventListener("hardwareBackPress", () => {
     onSignOut().then(res => {
       props.addUser({ first_name: "", last_name: "", id: "" });
@@ -109,7 +110,32 @@ export const Dashboard = props => {
                     return new Date(a.date) - new Date(b.date);
                   });
                   setActivities([]);
-                  setActivities(filteredActivities);
+                  filteredActivities.map(activity =>
+                    axiosWithAuth(token)
+                      //get length of activity guest list.
+                      .get(
+                        `https://buddy-app-be.herokuapp.com/useractivities/activity/${activity.id}`
+                      )
+                      .then(res => {
+                        // console.log("GuestList res.data", res.data);
+                        if (res.data.length > 0) {
+                          const guestList = res.data.map(
+                            activity => activity.user_id
+                          );
+                          if (
+                            (guestList.includes(props.user.id) === false &&
+                              activity.guest_limit === null) ||
+                            guestList.length < activity.guest_limit
+                          ) {
+                            setActivities(oldActivities => [
+                              ...oldActivities,
+                              activity
+                            ]);
+                          }
+                        }
+                      })
+                      .catch(err => console.log(err))
+                  );
                 } else {
                   props.navigation.navigate("InterestOnboard");
                 }
@@ -138,6 +164,7 @@ export const Dashboard = props => {
   const closeModal = () => {
     setModalVisible(false);
   };
+
   return (
     <View style={Global.container}>
       <View style={styles.dashBoardHeader}>
