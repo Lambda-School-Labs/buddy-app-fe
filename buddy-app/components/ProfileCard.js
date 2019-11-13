@@ -3,20 +3,19 @@ import { View, Text, StyleSheet } from "react-native";
 import Colors from "../styles/Colors";
 
 const ActivityCard = props => {
+  const { activity } = props;
   return (
-    <View style={styles.activityCard}>
-      <Text style={[styles.textBold, { fontSize: 18 }]}>Date</Text>
+    <View style={styles.card}>
+      <Text style={[styles.textBold, { fontSize: 18 }]}>{activity.date}</Text>
       <Text style={[styles.text, { fontSize: 18 }]}>
-        Activity at Time with Person
+        {activity.activity} at {activity.time} with Person
       </Text>
     </View>
   );
 };
 
-export default activityCard;
-
 const styles = StyleSheet.create({
-  activityCard: {
+  card: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -27,3 +26,5 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   }
 });
+
+export default ActivityCard;
