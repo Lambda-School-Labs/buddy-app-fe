@@ -128,8 +128,8 @@ export const Dashboard = props => {
                           activity.organizer_id == props.user.id
                         ) {
                           setActivities(oldActivities => [
-                            activity,
-                            ...oldActivities
+                            ...oldActivities,
+                            activity
                           ]);
                         }
                       })
