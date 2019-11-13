@@ -28,6 +28,7 @@ export const Dashboard = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activities, setActivities] = useState([]);
   const [editRerender, setEditRerender] = useState(true);
+  const [renderActivities, setRenderActivities] = useState(false);
   BackHandler.addEventListener("hardwareBackPress", () => {
     onSignOut().then(res => {
       props.addUser({ first_name: "", last_name: "", id: "" });
@@ -108,6 +109,7 @@ export const Dashboard = props => {
                   filteredActivities = filteredActivities.sort(function(a, b) {
                     return new Date(a.date) - new Date(b.date);
                   });
+                  setRenderActivities(true);
                   setActivities([]);
                   setActivities(filteredActivities);
                 } else {
@@ -126,7 +128,7 @@ export const Dashboard = props => {
       .catch(err => {
         console.log(err);
       }); // Renders activities
-  }, [modalVisible, editRerender]);
+  }, [modalVisible, editRerender, renderActivities]);
 
   const setRerender = () => {
     setEditRerender(!editRerender);
@@ -138,6 +140,8 @@ export const Dashboard = props => {
   const closeModal = () => {
     setModalVisible(false);
   };
+
+  console.log("renderActivities", renderActivities);
   return (
     <View style={Global.container}>
       <View style={styles.dashBoardHeader}>
@@ -162,6 +166,7 @@ export const Dashboard = props => {
                   activity={activity}
                   key={activity.id}
                   setRerender={setRerender}
+                  setRenderActivities={setRenderActivities}
                 />
               );
             })}

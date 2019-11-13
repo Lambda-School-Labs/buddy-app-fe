@@ -32,7 +32,6 @@ function ActivityCard(props) {
           console.log("posted", res);
         })
         .catch(err => {
-          console.log(activity, joinedActivity);
           console.log(err);
         });
     });
@@ -56,9 +55,8 @@ function ActivityCard(props) {
     });
   }, []);
 
-  console.log("GuestList", guestList);
-
-  console.log("activity", activity);
+  // console.log("GuestList", guestList);
+  // console.log("activity", activity);
   // console.log("User", props.user);
   // console.log("props", props);
   // console.log("joinedActivity", joinedActivity);
@@ -103,6 +101,7 @@ function ActivityCard(props) {
                   user_id: props.user.id,
                   activity_id: props.activity.id
                 });
+                props.setRenderActivities(false);
               }}
             >
               <Text style={Buttons.text}>Ask to Join</Text>
