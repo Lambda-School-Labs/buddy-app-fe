@@ -41,7 +41,7 @@ const Profile = props => {
       .then(token => {
         axiosWithAuth(token)
           .get(
-            `https://buddy-app-be.herokuapp.com/activities/organizer/${props.user.id}`
+            `https://buddy-app-be.herokuapp.com/useractivities/activities/${props.user.id}`
           )
           .then(res => {
             res.data.sort(function(a, b) {
@@ -171,4 +171,7 @@ const mapStateToProps = state => {
     user: state.user
   };
 };
-export default connect(mapStateToProps, { addUser })(Profile);
+export default connect(
+  mapStateToProps,
+  { addUser }
+)(Profile);
