@@ -84,15 +84,13 @@ const Profile = props => {
         <Text style={styles.title}>Hi, {props.user.first_name}</Text>
         <View style={styles.hr} />
         <View>
-          <ScrollView>
-            <Text style={styles.subtitle}>Upcoming Activities</Text>
-            <ProfileHighlight highlight={highlight} />
+          <Text style={styles.subtitle}>Upcoming Activities</Text>
+          <ProfileHighlight highlight={highlight} />
 
-            <View style={styles.activityCardList}>
-              {rest.map(activity => (
-                <ProfileCard activity={activity} key={activity.id} />
-              ))}
-            </View>
+          <ScrollView style={styles.activityCardList}>
+            {rest.map(activity => (
+              <ProfileCard activity={activity} key={activity.id} />
+            ))}
 
             <View style={styles.profileCounter}>
               <Text style={styles.subtitle}>What I've Been Up To</Text>
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
     color: Colors.darkGray
   },
   activityCardList: {
-    height: "auto",
+    height: "38%",
     width: "100%",
     marginTop: 20
   },
