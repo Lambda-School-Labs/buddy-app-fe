@@ -160,7 +160,8 @@ const styles = StyleSheet.create({
   profileCounter: {
     paddingVertical: 20,
     height: "auto",
-    marginBottom: 50
+    marginBottom: 50,
+    flexGrow: 1
   }
 });
 
