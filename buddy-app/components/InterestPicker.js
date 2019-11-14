@@ -62,7 +62,7 @@ function InterestPicker(props) {
 const styles = StyleSheet.create({
   androidPicker: {
     height: 50,
-    width: "75%"
+    width: "100%"
   },
   iosPicker: {
     width: "100%",

@@ -90,7 +90,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { addUser }
-)(ProfileModal);
+export default connect(mapStateToProps, { addUser })(ProfileModal);
