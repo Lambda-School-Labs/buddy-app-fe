@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   },
   highlightBox: {
     width: "100%",
+    height: "auto",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -83,11 +84,13 @@ const styles = StyleSheet.create({
   highlightSubBox: {
     flexGrow: 2,
     paddingLeft: 15,
+    width: "80%",
     flexDirection: "column",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    flex: 1,
+    flexWrap: "wrap"
   },
   highlightSecondary: {
-    width: "80%",
     paddingVertical: 10
   }
 });
