@@ -78,12 +78,12 @@ const InterestsOnboard = props => {
               })
               .then(res => {
                 console.log(res.data);
+                props.navigation.navigate("Dashboard");
               })
               .catch(err => {
                 console.log(err);
               });
           });
-          props.navigation.navigate("Dashboard");
         })
         .catch(err => {
           console.log(err);
@@ -191,7 +191,4 @@ const mapStateToProps = state => {
     user: state.user
   };
 };
-export default connect(
-  mapStateToProps,
-  { addUser }
-)(InterestsOnboard);
+export default connect(mapStateToProps, { addUser })(InterestsOnboard);

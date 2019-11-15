@@ -43,8 +43,13 @@ export const Dashboard = props => {
     time = time.split(":");
 
     if (PM) {
-      var hour = 12 + parseInt(time[0], 10);
-      var min = time[1].replace("PM", "");
+      if (time[0] == 12) {
+        var hour = 12;
+        var min = time[1].replace("PM", "");
+      } else {
+        var hour = 12 + parseInt(time[0], 10);
+        var min = time[1].replace("PM", "");
+      }
     } else {
       var hour = time[0];
       var min = time[1].replace("AM", "");
@@ -105,9 +110,7 @@ export const Dashboard = props => {
                       }
                     }
                   }
-                  filteredActivities = filteredActivities.sort(function(a, b) {
-                    return new Date(a.date) - new Date(b.date);
-                  }); //sort by date
+
                   setActivities([]);
                   filteredActivities.map(activity =>
                     axiosWithAuth(token)
@@ -127,10 +130,11 @@ export const Dashboard = props => {
                           guestList.length < activity.guest_limit ||
                           activity.organizer_id == props.user.id
                         ) {
-                          setActivities(oldActivities => [
-                            ...oldActivities,
-                            activity
-                          ]);
+                          setActivities(oldActivities =>
+                            [...oldActivities, activity].sort(function(a, b) {
+                              return new Date(a.date) - new Date(b.date);
+                            })
+                          );
                         }
                       })
                       .catch(err => console.log(err))
