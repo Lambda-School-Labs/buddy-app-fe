@@ -43,6 +43,7 @@ function AddActivity(props) {
     name: "",
     notes: "",
     location: "",
+    guest_limit: "",
     organizer_id: props.user.id
   });
 
@@ -99,12 +100,24 @@ function AddActivity(props) {
                 onChangeText={e => activityChangeHandler(e, "name")}
               ></TextInput>
 
-              <Text style={styles.addText}>Select A Category</Text>
-              <InterestPicker
-                activityInterest={activityInterest}
-                setActivityInterest={setActivityInterest}
-                interests={interests}
-              />
+              <View style={styles.categoryBox}>
+                <View style={{ width: "60%" }}>
+                  <Text style={styles.addText}>Category</Text>
+                  <InterestPicker
+                    activityInterest={activityInterest}
+                    setActivityInterest={setActivityInterest}
+                    interests={interests}
+                  />
+                </View>
+                <View style={{ width: "35%" }}>
+                  <Text style={styles.addText}>Guest Limit?</Text>
+                  <TextInput
+                    style={[Global.input, styles.addInput]}
+                    placeholder="None"
+                    onChangeText={e => activityChangeHandler(e, "guest_limit")}
+                  ></TextInput>
+                </View>
+              </View>
 
               <Text style={styles.addText}>When Do You Want To Go?</Text>
               <View style={[styles.datePicker, styles.addInput]}>
@@ -137,6 +150,7 @@ function AddActivity(props) {
                   customStyles={{ dateInput: { borderRadius: 5 } }}
                 />
               </View>
+
               <Text style={styles.addText}>Where?</Text>
               <TextInput
                 style={[Global.input, styles.addInput]}
@@ -200,7 +214,7 @@ const styles = StyleSheet.create({
   },
 
   addInput: {
-    marginBottom: 25
+    marginBottom: 20
   },
 
   addBtn: {
@@ -209,7 +223,14 @@ const styles = StyleSheet.create({
   datePicker: {
     marginTop: 20,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+
+  categoryBox: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start"
   },
 
   date: {
@@ -229,7 +250,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(AddActivity);
+export default connect(mapStateToProps, {})(AddActivity);

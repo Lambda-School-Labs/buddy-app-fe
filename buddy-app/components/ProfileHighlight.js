@@ -4,13 +4,12 @@ import Colors from "../styles/Colors";
 import moment from "moment";
 
 const ProfileHighlight = props => {
-  console.log(props.highlight, "props.highlight");
+  const converter = date => moment(date, "MM-DD-YY").format("MMM Do");
+
   if (props.highlight.length >= 1) {
     var highlight1 = props.highlight[0];
     var highlight2 = props.highlight[1];
     var highlight3 = props.highlight[2];
-
-    const converter = date => moment(date, "MM-DD-YY").format("MMM Do");
 
     return (
       <View style={styles.highlightBox}>
@@ -22,28 +21,36 @@ const ProfileHighlight = props => {
             {highlight1.name} at {highlight1.time}
           </Text>
         </View>
-        <View style={styles.highlightSubBox}>
-          <View style={styles.highlightSecondary}>
-            <Text style={[styles.textBold, { fontSize: 18 }]}>
-              {converter(highlight2.date)}
-            </Text>
-            <Text style={styles.text}>
-              {highlight2.name} at {highlight2.time}
-            </Text>
+        {highlight2 && (
+          <View style={styles.highlightSubBox}>
+            <View style={styles.highlightSecondary}>
+              <Text style={[styles.textBold, { fontSize: 18 }]}>
+                {converter(highlight2.date)}
+              </Text>
+              <Text style={styles.text}>
+                {highlight2.name} at {highlight2.time}
+              </Text>
+            </View>
+            {highlight3 && (
+              <View style={styles.highlightSecondary}>
+                <Text style={[styles.textBold, { fontSize: 18 }]}>
+                  {converter(highlight3.date)}
+                </Text>
+                <Text style={styles.text}>
+                  {highlight3.name} at {highlight3.time}
+                </Text>
+              </View>
+            )}
           </View>
-          <View style={styles.highlightSecondary}>
-            <Text style={[styles.textBold, { fontSize: 18 }]}>
-              {converter(highlight3.date)}
-            </Text>
-            <Text style={styles.text}>
-              {highlight3.name} at {highlight3.time}
-            </Text>
-          </View>
-        </View>
+        )}
       </View>
     );
   } else {
-    return <View style={styles.highlightBox}></View>;
+    return (
+      <View style={styles.highlightBox}>
+        <Text style={styles.text}>You have no upcoming activities</Text>
+      </View>
+    );
   }
 };
 
