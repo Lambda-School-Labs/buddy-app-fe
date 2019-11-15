@@ -29,12 +29,16 @@ function Landing(props) {
 
 	const androidWriteKey = Constants.manifest.extra.segmentConfig.androidKey;
 	const iosWriteKey = Constants.manifest.extra.segmentConfig.iosKey;
-	Segment.initialize({ androidWriteKey, iosWriteKey });
-	Segment.track('App Loaded', {
-		event: 'Loaded Application'
-	}
-	);
-	
+	useEffect(() => {
+		Segment.initialize({ androidWriteKey, iosWriteKey });
+
+		Segment.track('App Loaded', {
+			event: 'Loaded Application'
+		});
+		console.log('Segment.initalize');
+		console.log(Constants.manifest.extra.segmentConfig.iosKey)
+	}, []);
+
 	trackEventSignIn = () => {
 		Segment.track('Sign In Clicked', {
 			event: 'Click on Sign In'
@@ -49,8 +53,6 @@ function Landing(props) {
 		props.navigation.navigate('SignUp');
 		console.log('Sign Up Button Clicked');
 	};
-
-
 
 	return (
 		<ImageBackground style={landing.background} source={require('../assets/landing-background.png')}>

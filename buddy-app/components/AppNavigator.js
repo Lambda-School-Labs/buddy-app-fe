@@ -1,48 +1,52 @@
-import React from "react";
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 // components
-import Landing from "./Landing";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
-import AuthStack from "./AuthStack";
-import InterestOnboard from "./InterestsOnboard";
-import Dashboard from "./Dashboard";
-import Profile from "./Profile";
-import MapLanding from "./MapLanding"
+import Landing from './Landing';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
+import AuthStack from './AuthStack';
+import InterestOnboard from './InterestsOnboard';
+import Dashboard from './Dashboard';
+import Profile from './Profile';
+import MapLanding from './MapLanding';
+import MapContainer from './MapContainer';
 
 const AppNavigator = createStackNavigator(
-  {
-    Landing: {
-      screen: Landing
-    },
-    SignUp: {
-      screen: SignUp
-    },
-    SignIn: {
-      screen: SignIn
-    },
-    AuthStack: {
-      screen: AuthStack
-    },
-    InterestOnboard: {
-      screen: InterestOnboard
-    },
-    Dashboard: {
-      screen: Dashboard
-    },
-    Profile: {
-      screen: Profile
-    },
-    MapLanding: {
-      screen: MapLanding
-    }
-  },
-  {
-    initialRouteName: "MapLanding",
-    headerMode: "none"
-  }
+	{
+		Landing: {
+			screen: Landing
+		},
+		SignUp: {
+			screen: SignUp
+		},
+		SignIn: {
+			screen: SignIn
+		},
+		AuthStack: {
+			screen: AuthStack
+		},
+		InterestOnboard: {
+			screen: InterestOnboard
+		},
+		Dashboard: {
+			screen: Dashboard
+		},
+		Profile: {
+			screen: Profile
+		},
+		MapLanding: {
+			screen: MapLanding
+		},
+		MapContainer: {
+			screen: MapContainer
+		}
+	},
+	{
+		initialRouteName: 'Landing',
+		headerMode: 'none'
+	}
 );
 
 export default createAppContainer(AppNavigator);
