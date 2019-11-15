@@ -34,6 +34,7 @@ const Profile = props => {
   const [profileList, setProfileList] = useState([]);
   const [highlight, setHighlight] = useState([]); // 3 activities displayed as highlights
   const [rest, setRest] = useState([]); // rest of the activities
+  const [past, setPast] = useState([]);
 
   // get activities where user is organizer
   useEffect(() => {
@@ -47,12 +48,24 @@ const Profile = props => {
             res.data.sort(function(a, b) {
               return new Date(a.date) - new Date(b.date);
             });
-            for (let i = 0; i < res.data.length; i++) {
-              timeConvertor(res.data[i].time);
+
+            var filtered = res.data.filter(entry => {
+              if (Date.now() <= Date.parse(entry.date)) {
+                return true;
+              } else {
+                setPast([...past, entry]);
+                console.log("past array not displaying", past);
+                console.log("this is the entry that has passed", entry);
+                return false;
+              }
+            });
+
+            for (let i = 0; i < filtered.length; i++) {
+              timeConvertor(filtered[i].time);
             }
-            setHighlight(res.data.slice(0, 3));
-            setRest(res.data.slice(3));
-            setProfileList(res.data);
+            setHighlight(filtered.slice(0, 3));
+            setRest(filtered.slice(3));
+            setProfileList(filtered);
           })
           .catch(err => {
             console.log("axiosWithAuth error", err);
@@ -97,7 +110,7 @@ const Profile = props => {
               <Text style={styles.subtitle}>What I've Been Up To</Text>
               <Text style={styles.text}>Total Activities:</Text>
               <Text style={styles.textBold}>
-                {profileList.length} Activities Attended
+                {past.length} Activities Attended
               </Text>
             </View>
           </View>
@@ -167,7 +180,4 @@ const mapStateToProps = state => {
     user: state.user
   };
 };
-export default connect(
-  mapStateToProps,
-  { addUser }
-)(Profile);
+export default connect(mapStateToProps, { addUser })(Profile);
