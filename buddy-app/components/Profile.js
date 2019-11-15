@@ -41,7 +41,7 @@ const Profile = props => {
       .then(token => {
         axiosWithAuth(token)
           .get(
-            `https://buddy-app-be.herokuapp.com/activities/organizer/${props.user.id}`
+            `https://buddy-app-be.herokuapp.com/useractivities/activities/${props.user.id}`
           )
           .then(res => {
             res.data.sort(function(a, b) {
@@ -159,8 +159,7 @@ const styles = StyleSheet.create({
   },
   profileCounter: {
     paddingVertical: 20,
-    height: "auto",
-    marginBottom: 10
+    height: "auto"
   }
 });
 
