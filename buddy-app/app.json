@@ -11,6 +11,13 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+    "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDs2fNhV11XdsrWYDO7w81gRghWnyuvkls"
+        }
+      }
+    },
     "ios": {
       "supportsTablet": true
     },

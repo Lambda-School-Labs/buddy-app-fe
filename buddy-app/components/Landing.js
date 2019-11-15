@@ -8,7 +8,7 @@ import Global from '../styles/Global';
 import { addUser } from '../actions/buddyActions';
 import * as Segment from 'expo-analytics-segment';
 import Constants from 'expo-constants';
-
+import MapLanding from '../components/MapLanding';
 function Landing(props) {
 	useEffect(() => {
 		getToken().then((token) => {
@@ -34,7 +34,7 @@ function Landing(props) {
 		event: 'Loaded Application'
 	}
 	);
-	console.log('App Loaded')
+	
 	trackEventSignIn = () => {
 		Segment.track('Sign In Clicked', {
 			event: 'Click on Sign In'
@@ -49,6 +49,9 @@ function Landing(props) {
 		props.navigation.navigate('SignUp');
 		console.log('Sign Up Button Clicked');
 	};
+
+
+
 	return (
 		<ImageBackground style={landing.background} source={require('../assets/landing-background.png')}>
 			<View style={landing.container}>
@@ -74,7 +77,7 @@ function Landing(props) {
 				</View>
 
 				<View style={landing.mapContainer}>
-					<Image style={landing.map} source={require('../assets/landing-map.png')} />
+					<MapLanding />
 				</View>
 			</View>
 		</ImageBackground>
@@ -104,11 +107,7 @@ const landing = StyleSheet.create({
 	mapContainer: {
 		width: '100%'
 	},
-	map: {
-		resizeMode: 'cover',
-		width: '100%',
-		height: 300
-	},
+
 	buttonContainer: {
 		flexDirection: 'row',
 		width: '100%',

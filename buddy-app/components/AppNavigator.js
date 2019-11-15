@@ -10,6 +10,7 @@ import AuthStack from "./AuthStack";
 import InterestOnboard from "./InterestsOnboard";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
+import MapLanding from "./MapLanding"
 
 const AppNavigator = createStackNavigator(
   {
@@ -33,10 +34,13 @@ const AppNavigator = createStackNavigator(
     },
     Profile: {
       screen: Profile
+    },
+    MapLanding: {
+      screen: MapLanding
     }
   },
   {
-    initialRouteName: "Landing",
+    initialRouteName: "MapLanding",
     headerMode: "none"
   }
 );
