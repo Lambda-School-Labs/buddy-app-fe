@@ -115,6 +115,7 @@ function AddActivity(props) {
                     style={[Global.input, styles.addInput]}
                     placeholder="None"
                     onChangeText={e => activityChangeHandler(e, "guest_limit")}
+                    keyboardType="number-pad"
                   ></TextInput>
                 </View>
               </View>
