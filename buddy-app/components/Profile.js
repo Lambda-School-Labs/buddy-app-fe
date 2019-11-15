@@ -80,11 +80,11 @@ const Profile = props => {
           <Feather name="user" size={30} color="#000" />
         </TouchableOpacity>
       </View>
-      <View style={styles.profileBody}>
-        <Text style={styles.title}>Hi, {props.user.first_name}</Text>
-        <View style={styles.hr} />
-        <View>
-          <ScrollView>
+      <View style={{ height: "90%" }}>
+        <ScrollView>
+          <Text style={styles.title}>Hi, {props.user.first_name}</Text>
+          <View style={styles.hr} />
+          <View>
             <Text style={styles.subtitle}>Upcoming Activities</Text>
             <ProfileHighlight highlight={highlight} />
 
@@ -93,16 +93,15 @@ const Profile = props => {
                 <ProfileCard activity={activity} key={activity.id} />
               ))}
             </View>
-
             <View style={styles.profileCounter}>
               <Text style={styles.subtitle}>What I've Been Up To</Text>
               <Text style={styles.text}>Total Activities:</Text>
               <Text style={styles.textBold}>
-                {profileList.length} Activities
+                {profileList.length} Activities Attended
               </Text>
             </View>
-          </ScrollView>
-        </View>
+          </View>
+        </ScrollView>
       </View>
       <NavBar navigation={props.navigation} />
       <ProfileModal
@@ -120,9 +119,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
-  },
-  profileBody: {
-    width: "100%"
   },
   hr: {
     borderBottomColor: Colors.lightGray,
@@ -171,4 +167,7 @@ const mapStateToProps = state => {
     user: state.user
   };
 };
-export default connect(mapStateToProps, { addUser })(Profile);
+export default connect(
+  mapStateToProps,
+  { addUser }
+)(Profile);

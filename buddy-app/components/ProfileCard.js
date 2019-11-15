@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontFamily: "Nunito-Regular",
-    color: Colors.darkGray
+    color: Colors.darkGray,
+    width: "100%"
   },
   textBold: {
     fontSize: 16,
