@@ -35,6 +35,7 @@ function EditActivity(props) {
     notes,
     date,
     time,
+    guest_limit,
     organizer_id,
     interest_id,
     location
@@ -48,6 +49,7 @@ function EditActivity(props) {
     time: time,
     interest_id: interest_id,
     location: location,
+    guest_limit: guest_limit,
     organizer_id: organizer_id // technically also props.user.id
   }); // set initial state as the activity to be edited
 
@@ -128,6 +130,7 @@ function EditActivity(props) {
       notes,
       date,
       time,
+      guest_limit,
       organizer_id,
       interest_id,
       location
@@ -163,14 +166,24 @@ function EditActivity(props) {
                 value={newActivity.name}
               ></TextInput>
 
-              <Text style={styles.addText}>Select A Category</Text>
-              <InterestPicker
-                activityInterest={activityInterest}
-                setActivityInterest={setActivityInterest}
-                //activityInterest={interests[interest_id - 1].name}
-                //setNewActivity={setNewActivity}
-                interests={interests}
-              />
+              <View style={styles.categoryBox}>
+                <View style={{ width: "60%" }}>
+                  <Text style={styles.addText}>Category</Text>
+                  <InterestPicker
+                    activityInterest={activityInterest}
+                    setActivityInterest={setActivityInterest}
+                    interests={interests}
+                  />
+                </View>
+                <View style={{ width: "35%" }}>
+                  <Text style={styles.addText}>Guest Limit?</Text>
+                  <TextInput
+                    style={[Global.input, styles.addInput]}
+                    placeholder="None"
+                    onChangeText={e => activityChangeHandler(e, "guest_limit")}
+                  ></TextInput>
+                </View>
+              </View>
 
               <Text style={styles.addText}>When Do You Want To Go?</Text>
               <View style={[styles.datePicker, styles.addInput]}>
@@ -289,7 +302,7 @@ const styles = StyleSheet.create({
   },
 
   addInput: {
-    marginBottom: 25
+    marginBottom: 20
   },
 
   addBtn: {
@@ -298,7 +311,8 @@ const styles = StyleSheet.create({
   datePicker: {
     marginTop: 20,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center"
   },
 
   date: {
@@ -312,6 +326,11 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-between",
     alignItems: "center"
+  },
+  categoryBox: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start"
   }
 });
 
@@ -323,7 +342,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(EditActivity);
+export default connect(mapStateToProps, {})(EditActivity);

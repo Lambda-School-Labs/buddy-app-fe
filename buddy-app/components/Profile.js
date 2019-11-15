@@ -159,7 +159,9 @@ const styles = StyleSheet.create({
   },
   profileCounter: {
     paddingVertical: 20,
-    height: "auto"
+    height: "auto",
+    marginBottom: 50,
+    flexGrow: 1
   }
 });
 
@@ -169,4 +171,7 @@ const mapStateToProps = state => {
     user: state.user
   };
 };
-export default connect(mapStateToProps, { addUser })(Profile);
+export default connect(
+  mapStateToProps,
+  { addUser }
+)(Profile);
