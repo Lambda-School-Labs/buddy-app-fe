@@ -45,20 +45,19 @@ const Profile = props => {
             `https://buddy-app-be.herokuapp.com/useractivities/activities/${props.user.id}`
           )
           .then(res => {
-            res.data.sort(function(a, b) {
+            let dateSorted = [...res.data].sort(function(a, b) {
               return new Date(a.date) - new Date(b.date);
             });
 
-            var filtered = res.data.filter(entry => {
-              if (Date.now() <= Date.parse(entry.date)) {
-                return true;
-              } else {
-                setPast([...past, entry]);
-                console.log("past array not displaying", past);
-                console.log("this is the entry that has passed", entry);
-                return false;
-              }
-            });
+            const oldActivities = dateSorted.filter(
+              activity => Date.now() > Date.parse(activity.date)
+            );
+
+            setPast(oldActivities);
+
+            const filtered = dateSorted.filter(
+              activity => Date.now() <= Date.parse(activity.date)
+            );
 
             for (let i = 0; i < filtered.length; i++) {
               timeConvertor(filtered[i].time);

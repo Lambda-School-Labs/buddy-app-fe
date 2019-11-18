@@ -1,13 +1,21 @@
 export function timeConvertor(time) {
   var PM = time.match("PM") ? true : false;
+
   time = time.split(":");
+
   if (PM) {
-    var hour = 12 + parseInt(time[0], 10);
-    var min = time[1].replace("PM", "");
+    if (time[0] == 12) {
+      var hour = 12;
+      var min = time[1].replace("PM", "");
+    } else {
+      var hour = 12 + parseInt(time[0], 10);
+      var min = time[1].replace("PM", "");
+    }
   } else {
     var hour = time[0];
     var min = time[1].replace("AM", "");
   }
+
   return `${hour}:${min}`;
 }
 
