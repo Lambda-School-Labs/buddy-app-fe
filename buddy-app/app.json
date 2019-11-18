@@ -13,6 +13,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "extra": {
+      "iosSecret": "secret",
+      "androidSecret":"secret"
     }
   }
 }
