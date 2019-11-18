@@ -63,10 +63,13 @@ export const Dashboard = props => {
     const time = moment(Date.now()).format("HH:mm");
     console.log(time);
     console.log(now);
+    console.log(props.user);
     getToken()
       .then(token => {
         axiosWithAuth(token)
-          .get("https://buddy-app-be.herokuapp.com/activities")
+          .get(
+            `https://buddy-app-be.herokuapp.com/useractivities/activities/notattending/${props.user.id}`
+          )
           .then(allActivities => {
             axiosWithAuth(token)
               .get(
@@ -74,7 +77,7 @@ export const Dashboard = props => {
               )
               .then(user_interests => {
                 let filteredActivities = [];
-                console.log(editRerender);
+                console.log(allActivities.data);
                 if (user_interests.data.length >= 1) {
                   // console.log(user_interests.data);
 
@@ -93,16 +96,10 @@ export const Dashboard = props => {
                         ) < Date.parse(`${allActivities.data[i].date} ${time}`)
                       ) {
                       } else {
-                        if (
-                          allActivities.data[i].organizer_id == props.user.id
-                        ) {
-                          filteredActivities.unshift(allActivities.data[i]);
-                        }
                         for (let j = 0; j < user_interests.data.length; j++) {
                           if (
                             user_interests.data[j].interests_id ==
-                              allActivities.data[i].interest_id &&
-                            !filteredActivities.includes(allActivities.data[i])
+                            allActivities.data[i].interest_id
                           ) {
                             filteredActivities.push(allActivities.data[i]);
                           }
@@ -111,45 +108,17 @@ export const Dashboard = props => {
                     }
                   }
 
-                  setActivities([]);
-                  filteredActivities.map(activity =>
-                    axiosWithAuth(token)
-                      //get length of activity guest list.
-                      .get(
-                        `https://buddy-app-be.herokuapp.com/useractivities/activity/${activity.id}`
-                      )
-                      .then(res => {
-                        // console.log("GuestList res.data", res.data);
-
-                        const guestList = res.data.map(
-                          activity => activity.user_id
-                        );
-                        if (
-                          (guestList.includes(props.user.id) === false &&
-                            activity.guest_limit === null) ||
-                          guestList.length < activity.guest_limit ||
-                          activity.organizer_id == props.user.id
-                        ) {
-                          setActivities(oldActivities =>
-                            [...oldActivities, activity].sort(function(a, b) {
-                              let bTime = timeConvertor(b.time);
-                              let aTime = timeConvertor(a.time);
-                              return (
-                                new Date(`${a.date} ${aTime}`) -
-                                new Date(`${b.date} ${bTime}`)
-                              );
-                            })
-                          );
-                        }
-                      })
-                      .catch(err => console.log(err))
+                  setActivities(
+                    [...filteredActivities].sort(function(a, b) {
+                      return new Date(a.date) - new Date(b.date);
+                    })
                   );
                 } else {
                   props.navigation.navigate("InterestOnboard");
                 }
               })
               .catch(err => {
-                console.log(err);
+                console.log(err.message);
               });
             //setActivities(res.data);
           })

@@ -45,6 +45,7 @@ const Profile = props => {
             `https://buddy-app-be.herokuapp.com/useractivities/activities/${props.user.id}`
           )
           .then(res => {
+            console.log(res.data);
             let dateSorted = [...res.data].sort(function(a, b) {
               return new Date(a.date) - new Date(b.date);
             });
