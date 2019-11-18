@@ -14,7 +14,10 @@ import { getToken } from "../utils/authHelper";
 import Buttons from "../styles/Buttons";
 import Global from "../styles/Global";
 import { addUser } from "../actions/buddyActions";
-
+// analytics
+import * as Segment from 'expo-analytics-segment';
+const iosWriteKey = process.env.IOSWRITEKEY_API_KEY;
+const androidWriteKey = process.env.ANDROIDWRITEKEY_API_KEY;
 function Landing(props) {
   useEffect(() => {
     getToken().then(token => {
@@ -45,6 +48,7 @@ function Landing(props) {
         <View>
           <Text style={landing.subtitle}>
             A friendly network to help you discover the world around.
+            {iosWriteKey}, {androidWriteKey}
           </Text>
         </View>
         <View style={landing.buttonContainer}>

@@ -9,18 +9,14 @@ import { createStore } from "redux";
 import { buddyReducer } from "./reducers/BuddyReducer";
 const store = createStore(buddyReducer);
 
-// analytics
-import * as Segment from 'expo-analytics-segment';
 
 export default class App extends React.Component {
   state = {
     isReady: false
   };
 
-  componentWillMount() {
-    Segment.initialize({ androidWriteKey, iosWriteKey })
-    Segment.track('App Loaded')
-  }
+ 
+
   componentWillMount() {
     (async () => {
       await Font.loadAsync({
@@ -34,6 +30,7 @@ export default class App extends React.Component {
       this.setState({ isReady: true });
     })();
   }
+
 
   render() {
     return (
