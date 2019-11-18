@@ -11,7 +11,6 @@ const store = createStore(buddyReducer);
 
 // analytics
 import * as Segment from 'expo-analytics-segment';
-import Constants from 'expo-constants';
 
 export default class App extends React.Component {
   state = {
