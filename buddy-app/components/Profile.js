@@ -51,15 +51,17 @@ const Profile = props => {
               return new Date(a.date) - new Date(b.date);
             });
 
-            const oldActivities = dateSorted.filter(
-              activity => Date.now() > Date.parse(activity.date)
-            );
+            const oldActivities = dateSorted.filter(activity => {
+              const time = timeConvertor(activity.time);
+              return Date.now() > Date.parse(`${activity.date} ${time}`);
+            });
 
             setPast(oldActivities);
 
-            const filtered = dateSorted.filter(
-              activity => Date.now() <= Date.parse(activity.date)
-            );
+            const filtered = dateSorted.filter(activity => {
+              const time = timeConvertor(activity.time);
+              return Date.now() <= Date.parse(`${activity.date} ${time}`);
+            });
 
             for (let i = 0; i < filtered.length; i++) {
               timeConvertor(filtered[i].time);
