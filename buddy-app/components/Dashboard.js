@@ -114,7 +114,8 @@ export const Dashboard = props => {
                     })
                   );
                 } else {
-                  props.navigation.navigate("InterestOnboard");
+                  props.user.id ? props.navigation.navigate("InterestOnboard") : props.navigation.navigate("Landing");
+                  // go back a screen to InterestOnboard unless user doesn't exist, in which case they're sent to Landing.
                 }
               })
               .catch(err => {
