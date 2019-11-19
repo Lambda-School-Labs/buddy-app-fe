@@ -48,7 +48,11 @@ const Profile = props => {
           .then(res => {
             console.log(res.data);
             let dateSorted = [...res.data].sort(function(a, b) {
-              return new Date(a.date) - new Date(b.date);
+              const aTime = timeConvertor(a.time);
+              const bTime = timeConvertor(b.time);
+              return (
+                new Date(`${a.date} ${aTime}`) - new Date(`${b.date} ${bTime}`)
+              );
             });
 
             const oldActivities = dateSorted.filter(activity => {
