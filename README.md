@@ -1,4 +1,5 @@
 # Buddy App v1.0
+
 <p align="center">
     <img src="https://i.imgur.com/5whhrre.png"
         height="130">
@@ -6,18 +7,21 @@
 Deloyed project in process.
 
 ## Contributors
-[Tommy Coleman](https://github.com/tommycoleman87) |[May Ng](https://github.com/mngmay)                |[Kevin Tou](https://github.com/KevinTou)                    |[Justine Lai](https://github.com/justinelai)| [Ya'Kauna Davis](https://github.com/yakuana)                    | [Richard Lawson](https://github.com/lawsonarichard)                    
-:-----:|:-----:|:-----:|:-----:|:-----:|:-----:
-[<img src="https://avatars0.githubusercontent.com/u/50923422?s=460&v=4" width = "200" />](https://github.com/tommycoleman87)|[<img src="https://avatars2.githubusercontent.com/u/49328148?s=460&v=4" width = "200" />](https://github.com/mngmay)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/KevinTou)|[<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ6GS3RGQ-346ad610f3b0-512" width = "200" />](https://github.com/justinelai)|[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/yakuana)|[<img src="https://media.licdn.com/dms/image/C4E03AQEW1CPRPl-_pg/profile-displayphoto-shrink_200_200/0?e=1577318400&v=beta&t=Xd2wk7JzHQf1k3mM0LQ5XYfBdAP_g3ymjkRy8iYABkU" width = "200" />](https://github.com/lawsonarichard)
-[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87) |[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mngmay)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KevinTou)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/justinelai)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/yakuana)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lawsonarichard)
-[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tommy-coleman-028151a4/)   |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mngmay)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevin-tou/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/justine-lai-943b02195/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lawsonarichard/)
+
+|                                           [Tommy Coleman](https://github.com/tommycoleman87)                                            |                                          [May Ng](https://github.com/mngmay)                                           |                                                      [Kevin Tou](https://github.com/KevinTou)                                                       |                                              [Justine Lai](https://github.com/justinelai)                                              |                                                     [Ya'Kauna Davis](https://github.com/yakuana)                                                     |                                                                                      [Richard Lawson](https://github.com/lawsonarichard)                                                                                       |
+| :-------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|      [<img src="https://avatars0.githubusercontent.com/u/50923422?s=460&v=4" width = "200" />](https://github.com/tommycoleman87)       |  [<img src="https://avatars2.githubusercontent.com/u/49328148?s=460&v=4" width = "200" />](https://github.com/mngmay)  | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/KevinTou) |      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ6GS3RGQ-346ad610f3b0-512" width = "200" />](https://github.com/justinelai)       | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/yakuana) | [<img src="https://media.licdn.com/dms/image/C4E03AQEW1CPRPl-_pg/profile-displayphoto-shrink_200_200/0?e=1577318400&v=beta&t=Xd2wk7JzHQf1k3mM0LQ5XYfBdAP_g3ymjkRy8iYABkU" width = "200" />](https://github.com/lawsonarichard) |
+|                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87)                       |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mngmay)                   |                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KevinTou)                                |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/justinelai)                         |                                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/yakuana)                                 |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lawsonarichard)                                                                   |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tommy-coleman-028151a4/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mngmay) |             [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevin-tou/)              | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/justine-lai-943b02195/) |                    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                     |                                                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lawsonarichard/)                                                 |
 
 <br>
 <br>
 
-***
+---
+
 # Project Overview
-***
+
+---
 
 [Trello Board](https://trello.com/b/JoYYbVxb/labs17-buddy-app)
 
@@ -31,26 +35,37 @@ An alternative networking platform that we hope to bridge the gap of social medi
 
 A social platform connecting individuals to the World around them.
 
-***
+---
+
 # Features Overview
-***
+
+---
 
 ## Version 1.0
 
 - Sign Up
 - Login
-- Select Activities
+- Creating Activities
+- Editing Activities
+- Deleting Activities
 - Dashboard
+- Joining Activities
+- Profile
 
-***
+---
+
 # [Front-end]() Overview
-***
+
+---
 
 - [React Native](https://facebook.github.io/react-native/)
 
-***
+---
+
 ### React Native Frameworks
-***
+
+---
+
 - [React Native Form Validator](https://github.com/perscrew/react-native-form-validator#readme) - Used to validate form fields
 
 - [React Native Gesture Handler](https://github.com/kmagiera/react-native-gesture-handler) - Provides native-driver gesture management APIs for building the best possible touch-based experiences
@@ -67,100 +82,68 @@ A social platform connecting individuals to the World around them.
 
 - [React Redux](https://react-redux.js.org/) - Lets React components read data from a Redux store and dispatch actions to the store to update data
 
-***    
+---
+
 ### Deployment
-***
 
-- [Buddy App]()
+---
 
+**--- Under development ---**
 
+---
 
-***
-# [Back-end]() Overview 
-***
+# [Back-end]() Overview
+
+---
+
 - [Node JS](http://nodejs.org/)
 - [Heroku](http://heroku.com)
 
-***
+---
+
 ### Node.js Frameworks
-***
+
+---
 
 - [express](https://github.com/expressjs/express) - Web framework for Node
 
-- [cors](https://github.com/expressjs/cors) - Express middleware used to enable CORS (Cross-origin resource sharing) 
+- [cors](https://github.com/expressjs/cors) - Express middleware used to enable CORS (Cross-origin resource sharing)
 
+* [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) - Helps hash passwords
 
-- [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme) - Helps hash passwords
+* [knex.js](http://knexjs.org/) - SQL query builder
+* [knex-cleaner](https://github.com/steven-ferguson/knex-cleaner#readme) - Helper library to clean databases using Knex
 
-- [knex.js](http://knexjs.org/) - SQL query builder
-- [knex-cleaner](https://github.com/steven-ferguson/knex-cleaner#readme) - Helper library to clean databases using Knex
+---
 
-***    
 ### Data Base
-***
 
-- [SQLite3](https://github.com/mapbox/node-sqlite3)
-- [PostgREST](https://github.com/PostgREST/postgrest)
+---
 
-***    
-### Deployed on Herkou
-***
+- [SQLite3](https://www.sqlite.org/index.html)
+- [PostgreSQL](https://www.postgresql.org/)
+
+---
+
+### Deployed on Heroku
+
+---
 
 - [Buddy App Heroku](https://buddy-app-be.herokuapp.com)
-
-# APIs
-
-## 2️⃣ Authentication API here
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
 # 3️⃣ Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
-
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
-
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| N/A    | N/A  | N/A |
-| N/A    | N/A| N/A                            |
 
 # 4️⃣ Testing
 
-🚫Document what you used for testing and why
+For testing, we used `Jest` and `react-native-testing-library`.
+
+`Jest` was chosen for it's wide variety of testing tools and the fact that it came alog with Expo.
+
+`react-native-testing-library` was chosen for its compatibility with React Native.
 
 # Installation Instructions
 
@@ -177,26 +160,30 @@ npm install
 **Step 3:** If using Android
 
 ```
-react-native run-android
+npm start
 ```
-*Before run android build, setup [Android Studio](https://facebook.github.io/react-native/docs/android-setup.html)*
+
+Then press `a` to run for android
+
+_Before run android build, install and setup [Android Studio](https://facebook.github.io/react-native/docs/android-setup.html)_
 
 **Step 4:** If using iOS
 
 ```
-react-native run-ios
+npm start
 ```
 
-*Before running iOS build, Install [Xcode](https://developer.apple.com/xcode/download/)*
+Then press `i` to run for iOS
+
+_Before running iOS build, install [Xcode](https://developer.apple.com/xcode/download/)_
+
+**\*\*NOTE\*\*** - `npm start` is the same as running `expo start`
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
     * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * test - runs tests
+    * eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
@@ -237,4 +224,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/buddy-app-be) for details on the backend of our project.
