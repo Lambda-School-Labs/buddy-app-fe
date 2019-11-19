@@ -16,8 +16,9 @@ import Global from "../styles/Global";
 import { addUser } from "../actions/buddyActions";
 // analytics
 import * as Segment from 'expo-analytics-segment';
-const iosWriteKey = process.env.IOSWRITEKEY_API_KEY;
-const androidWriteKey = process.env.ANDROIDWRITEKEY_API_KEY;
+import Constants from 'expo-constants';
+const iosWriteKey = Constants.manifest.extra.iOSKey;
+const androidWriteKey = Constants.manifest.extra.AndroidKey;
 function Landing(props) {
   useEffect(() => {
     getToken().then(token => {
@@ -36,6 +37,13 @@ function Landing(props) {
     });
   }, []);
 
+  useEffect(() => {
+    Segment.initialize({ androidWriteKey, iosWriteKey })
+    Segment.track('Landing Page Loaded')
+  }, [])
+
+
+
   return (
     <ImageBackground
       style={landing.background}
@@ -47,8 +55,9 @@ function Landing(props) {
         </View>
         <View>
           <Text style={landing.subtitle}>
+            <Text>{androidWriteKey} - {iosWriteKey}</Text>
             A friendly network to help you discover the world around.
-            {iosWriteKey}, {androidWriteKey}
+        
           </Text>
         </View>
         <View style={landing.buttonContainer}>
