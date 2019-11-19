@@ -43,7 +43,7 @@ function AddActivity(props) {
     name: "",
     notes: "",
     location: "",
-    guest_limit: "",
+    guest_limit: null,
     organizer_id: props.user.id
   });
 

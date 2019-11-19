@@ -64,7 +64,8 @@ function EditActivity(props) {
     )[0].id; // match picker string to the list of interests and return ID
     const submitted = {
       ...newActivity,
-      interest_id: interestId
+      interest_id: interestId,
+      guest_limit: newActivity.guest_limit ? newActivity.guest_limit : null
     }; // final update of non-input form components? */
     console.log("submitted", submitted);
     console.log(newActivity);
