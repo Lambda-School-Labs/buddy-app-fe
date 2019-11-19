@@ -3,7 +3,8 @@ import {
   ADD_USER,
   IS_LOADING,
   ADD_INTEREST,
-  GET_INTERESTS
+  GET_INTERESTS,
+  FORCE_RENDER
 } from "../actions/buddyActions";
 export const initialState = {
   token: null,
@@ -14,6 +15,7 @@ export const initialState = {
     interests: []
   },
   interests: [],
+  forceRender: false,
   isLoading: false
 };
 
@@ -52,6 +54,13 @@ export const buddyReducer = (state = initialState, action) => {
       return {
         ...state,
         interests: [...action.payload]
+      };
+    }
+
+    case FORCE_RENDER: {
+      return {
+        ...state,
+        forceRender: !state.forceRender
       };
     }
     default:

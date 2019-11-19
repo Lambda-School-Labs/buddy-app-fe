@@ -181,6 +181,11 @@ function EditActivity(props) {
                     style={[Global.input, styles.addInput]}
                     placeholder="None"
                     onChangeText={e => activityChangeHandler(e, "guest_limit")}
+                    value={
+                      newActivity.guest_limit !== null
+                        ? String(newActivity.guest_limit)
+                        : ""
+                    }
                   ></TextInput>
                 </View>
               </View>
