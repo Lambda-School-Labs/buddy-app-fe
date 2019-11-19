@@ -110,7 +110,12 @@ export const Dashboard = props => {
 
                   setActivities(
                     [...filteredActivities].sort(function(a, b) {
-                      return new Date(a.date) - new Date(b.date);
+                      const aTime = timeConvertor(a.time);
+                      const bTime = timeConvertor(b.time);
+                      return (
+                        new Date(`${a.date} ${aTime}`) -
+                        new Date(`${b.date} ${bTime}`)
+                      );
                     })
                   );
                 } else {
