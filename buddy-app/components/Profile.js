@@ -16,7 +16,7 @@ import { timeConvertor, chronoSorter } from "../utils/dateHelper";
 import ProfileModal from "./ProfileModal";
 import ProfileHighlight from "./ProfileHighlight";
 import ProfileCard from "./ProfileCard";
-import { NavBar } from "./NavBar";
+import NavBar from "./NavBar";
 
 // Styles
 import { Feather } from "@expo/vector-icons";
@@ -35,6 +35,7 @@ const Profile = props => {
   const [highlight, setHighlight] = useState([]); // 3 activities displayed as highlights
   const [rest, setRest] = useState([]); // rest of the activities
   const [past, setPast] = useState([]);
+  const [rerender, setRerender] = useState(true);
 
   // get activities where user is organizer
   useEffect(() => {
@@ -74,12 +75,15 @@ const Profile = props => {
       .catch(err => {
         console.log("getToken error", err);
       });
-  }, []);
+  }, [props.forceRender]);
 
   // possibly sort by date
   // separate top 3 activities for ProfileHighlight box
   // remaining activities are made into ProfileCard components
-
+  const forceRerender = () => {
+    console.log("rerender");
+    setRerender(!rerender);
+  };
   console.log("Highlight", highlight);
   console.log("Rest", rest);
 
@@ -177,7 +181,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     ...state,
-    user: state.user
+    user: state.user,
+    forceRender: state.forceRender
   };
 };
 export default connect(mapStateToProps, { addUser })(Profile);

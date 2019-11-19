@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Image, TouchableOpacity } from "react-native";
-
+import { connect } from "react-redux";
+import { forceRender } from "../actions/buddyActions";
 //icons
 import bell from "../assets/icons/bell.png";
 // import home from "../assets/icons/home.png";
@@ -8,11 +9,10 @@ import bell from "../assets/icons/bell.png";
 
 import { Feather } from "@expo/vector-icons";
 
-
 //styles
 import Global from "../styles/Global";
 
-export const NavBar = props => {
+const NavBar = props => {
   return (
     <View style={Global.bottomNav}>
       <TouchableOpacity onPress={() => props.navigation.navigate("Dashboard")}>
@@ -24,9 +24,22 @@ export const NavBar = props => {
       <Image source={bell} />
       </TouchableOpacity> */}
 
-      <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+      <TouchableOpacity
+        onPress={() => {
+          props.forceRender();
+          props.navigation.navigate("Profile");
+        }}
+      >
         <Feather name="user" size={30} color="#FFF" />
       </TouchableOpacity>
     </View>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(mapStateToProps, { forceRender })(NavBar);

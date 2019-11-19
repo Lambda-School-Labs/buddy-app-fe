@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { addUser } from "../actions/buddyActions";
 import ActivityCard from "./ActivityCard";
 import AddActivity from "./AddActivity";
-import { NavBar } from "./NavBar";
+import NavBar from "./NavBar";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 //icons
