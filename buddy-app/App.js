@@ -9,10 +9,13 @@ import { createStore } from "redux";
 import { buddyReducer } from "./reducers/BuddyReducer";
 const store = createStore(buddyReducer);
 
+
 export default class App extends React.Component {
   state = {
     isReady: false
   };
+
+ 
 
   componentWillMount() {
     (async () => {
@@ -27,6 +30,7 @@ export default class App extends React.Component {
       this.setState({ isReady: true });
     })();
   }
+
 
   render() {
     return (
