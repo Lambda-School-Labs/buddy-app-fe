@@ -19,7 +19,7 @@ Deloyed project in process.
 
 ---
 
-# Project Overview
+## Project Overview
 
 ---
 
@@ -37,7 +37,7 @@ A social platform connecting individuals to the World around them.
 
 ---
 
-# Features Overview
+## Features Overview
 
 ---
 
@@ -54,7 +54,7 @@ A social platform connecting individuals to the World around them.
 
 ---
 
-# [Front-end]() Overview
+## [Front-end]() Overview
 
 ---
 
@@ -62,7 +62,7 @@ A social platform connecting individuals to the World around them.
 
 ---
 
-### React Native Frameworks
+#### React Native Frameworks
 
 ---
 
@@ -84,7 +84,7 @@ A social platform connecting individuals to the World around them.
 
 ---
 
-### Deployment
+#### Deployment
 
 ---
 
@@ -101,7 +101,7 @@ A social platform connecting individuals to the World around them.
 
 ---
 
-### Node.js Frameworks
+#### Node.js Frameworks
 
 ---
 
@@ -116,7 +116,7 @@ A social platform connecting individuals to the World around them.
 
 ---
 
-### Data Base
+#### Database
 
 ---
 
@@ -125,19 +125,22 @@ A social platform connecting individuals to the World around them.
 
 ---
 
-### Deployed on Heroku
+#### Deployed on Heroku
 
 ---
 
 - [Buddy App Heroku](https://buddy-app-be.herokuapp.com)
 
-# 3️⃣ Environment Variables
+## Environment Variables
 
-In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
+In order for the app to function correctly, the user must set up their own environment variables.
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
+There should be an `app.json` file containing the following:
 
-# 4️⃣ Testing
+    `iOSKey` - this is your iOS Key for Segment (used for analytics with Mixpanel)
+    `AndroidKey` - this is your android Key for Segment (used for analytics with Mixpanel)
+
+## Testing
 
 For testing, we used `Jest` and `react-native-testing-library`.
 
@@ -145,9 +148,9 @@ For testing, we used `Jest` and `react-native-testing-library`.
 
 `react-native-testing-library` was chosen for its compatibility with React Native.
 
-# Installation Instructions
+## Installation Instructions
 
-## Installation
+#### Installation
 
 **Step 1:** Clone Repo
 
@@ -179,19 +182,19 @@ _Before running iOS build, install [Xcode](https://developer.apple.com/xcode/dow
 
 **\*\*NOTE\*\*** - `npm start` is the same as running `expo start`
 
-## Other Scripts
+#### Other Scripts
 
     * start - starts the production server after a build is created
     * test - runs tests
     * eject - copy the configuration files and dependencies into the project so you have full control over them
 
-# Contributing
+## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
-## Issue/Bug Request
+#### Issue/Bug Request
 
 **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
 
@@ -200,11 +203,11 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 - Create a live example of the problem.
 - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
-### Feature Requests
+#### Feature Requests
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
 
-### Pull Requests
+#### Pull Requests
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
 
@@ -218,7 +221,7 @@ Remember that this project is licensed under the MIT license, and by submitting 
 - Include the relevant issue number, if applicable.
 - You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-### Attribution
+#### Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
