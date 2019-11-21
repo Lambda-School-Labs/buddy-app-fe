@@ -147,7 +147,11 @@ function EditActivity(props) {
       transparent={false}
       visible={props.isModalVisible}
     >
-      <KeyboardAwareScrollView enableOnAndroid extraScrollHeight={130}>
+      <KeyboardAwareScrollView
+        enableOnAndroid
+        extraScrollHeight={130}
+        keyboardShouldPersistTaps="handled"
+      >
         <View style={styles.viewContainer}>
           <View style={styles.addView}>
             <View style={{ alignSelf: "flex-end" }}>

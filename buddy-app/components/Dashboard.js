@@ -35,7 +35,7 @@ export const Dashboard = props => {
       AsyncStorage.removeItem("id");
       props.navigation.navigate("Landing");
     });
-  });
+  }); //this is a function for android specific back button, if you hit the back button on dashboard it will log you out
 
   function timeConvertor(time) {
     var PM = time.match("PM") ? true : false;
@@ -56,35 +56,29 @@ export const Dashboard = props => {
     }
 
     return `${hour}:${min}`;
-  }
+  } //this is a helper function to convert 12:00 PM to 24hr time for comparison
 
   useEffect(() => {
     const now = moment(Date.now()).format("MM/D/YY");
     const time = moment(Date.now()).format("HH:mm");
-    console.log(time);
-    console.log(now);
-    console.log(props.user);
     getToken()
       .then(token => {
         axiosWithAuth(token)
           .get(
-            `https://buddy-app-be.herokuapp.com/useractivities/activities/notattending/${props.user.id}`
+            `https://buddy-app-be.herokuapp.com/useractivities/activities/notattending/${props.user.id}` //gets a list of events the user is not already joined up for
           )
           .then(allActivities => {
             axiosWithAuth(token)
               .get(
-                `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}`
+                `https://buddy-app-be.herokuapp.com/interests/user/${props.user.id}` //gets the user interests to filter the list of events by
               )
               .then(user_interests => {
                 let filteredActivities = [];
-                console.log(allActivities.data);
                 if (user_interests.data.length >= 1) {
-                  // console.log(user_interests.data);
-
                   for (let i = 0; i < allActivities.data.length; i++) {
                     let activityTime = timeConvertor(
                       allActivities.data[i].time
-                    );
+                    ); //this converts the time to 24 hour format for date time comparison
                     if (
                       Date.parse(now) <= Date.parse(allActivities.data[i].date)
                     ) {
@@ -106,7 +100,7 @@ export const Dashboard = props => {
                         }
                       }
                     }
-                  }
+                  } //this is filtering out events that have already passed so that you can not join an old event
 
                   setActivities(
                     [...filteredActivities].sort(function(a, b) {
@@ -114,10 +108,10 @@ export const Dashboard = props => {
                       const bTime = timeConvertor(b.time);
                       return (
                         new Date(`${a.date} ${aTime}`) -
-                        new Date(`${b.date} ${bTime}`)
+                        new Date(`${b.date} ${bTime}`) //this is sorting the activities by date and time so that the events happening soon show up first in the list
                       );
                     })
-                  );
+                  ); //setting the filtered and date/time sorted events to state
                 } else {
                   props.navigation.navigate("InterestOnboard");
                 }
